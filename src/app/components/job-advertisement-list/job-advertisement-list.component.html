@@ -1,1 +1,13 @@
-<p>job-advertisement-list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col s9">
+      <div class="card-panel" *ngFor="let advert of advertList">
+        <span class="blue-text text-darken-2"> {{advert}} </span>
+        <a [routerLink]="['/details', 15]"> details </a>
+      </div>
+    </div>
+    <div class="col s3">
+      sth
+    </div>
+  </div>
+</div>
