@@ -1,13 +1,42 @@
 <div class="container">
   <div class="row">
     <div class="col s9">
-      <div class="card-panel" *ngFor="let advert of advertList">
-        <span class="blue-text text-darken-2"> {{advert}} </span>
-        <a [routerLink]="['/details', 15]"> details </a>
+      <div *ngFor="let advert of advertList;">
+        <a [routerLink]="['/details', advert.id]"> <!-- TODO: Change to advert.id-->
+          <div class="card-panel hoverable">
+
+            <div class="row section valign-wrapper">
+              <div class="col s2">
+                <img class="responsive-img" src="https://via.placeholder.com/100x60">
+              </div>
+              <div class="col s10 ">
+                 <span class="black-text"> <h5>{{advert.name}}</h5> </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class=" divider mb-1"></div>
+              <div class="col s6 left-align">
+                <div class="chip green">
+                  {{advert.city}}
+                </div>
+                <div class="chip pink">
+                  {{advert.employer.name}}
+                </div>
+              </div>
+              <div class="col s6 right-align ">
+                <div class="chip amber"> {{advert.tech_stack[0].name}} </div>
+                <div class="chip amber"> {{advert.tech_stack[1].name}} </div>
+                <div class="chip amber"> {{advert.tech_stack[2].name}} </div>
+                <span class="green-text accent-3 ml-1"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}</b></span>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
     <div class="col s3">
-      sth
+      Miejsce na sortowania (Left nav bar)
     </div>
   </div>
 </div>
+
