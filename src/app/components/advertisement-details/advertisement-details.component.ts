@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { DataService } from '../../services/data.service';
+import { Advertisement } from '../../models/advertisement';
 @Component({
   selector: 'app-advertisement-details',
   templateUrl: './advertisement-details.component.html',
@@ -8,14 +9,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AdvertisementDetailsComponent implements OnInit {
 
-  id: String;
+  id: number;
+  advert: Advertisement;
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private dataService: DataService
     ) { }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.advert = this.dataService.getSingleAdvert(this.id);
   }
 
 }
