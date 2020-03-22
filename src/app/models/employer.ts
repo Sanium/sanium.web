@@ -1,4 +1,6 @@
 export class Employer {
   companyName: String;
-  adresses: String[];
+  size: Number;
+  siteUrl: String;
+  logoUrl: String;
 }
