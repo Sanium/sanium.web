@@ -13,7 +13,8 @@ export class DataService {
   filters: {};
   urlBuilder: string;
   urlFinal: string;
-  private apiUrl = 'http://213.92.171.157/api/offers';
+  host = window.location.hostname;
+  apiUrl = this.host + `/api/offers`;
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +34,7 @@ export class DataService {
 
   getStaticAdverts(){
     return this.advertList;
+    console.log(this.host);
   }
 
   getFilters(){
