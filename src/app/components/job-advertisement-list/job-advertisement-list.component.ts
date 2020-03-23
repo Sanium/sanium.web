@@ -15,8 +15,9 @@ export class JobAdvertisementListComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.advertList = this.dataService.getAdverts();
+    this.dataService.getAdverts().subscribe(
+      (x) => this.advertList = x['data']
+    );
   }
-
 
 }

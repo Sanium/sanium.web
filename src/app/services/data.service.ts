@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Employer } from '../models/employer';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Advertisement } from '../models/advertisement';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  advertList: Advertisement[] = [
+  advertListTest: Advertisement[] = [
     {
       id: 2,
       name: "JS Dev ",
@@ -279,15 +282,18 @@ export class DataService {
                   }
               },
 ];
+  advertList: Advertisement[];
 
-  constructor() { }
+  private apiUrl = 'http://213.92.171.157/api/offers';
 
-  getAdverts(): Advertisement[] {
-    return this.advertList;
+  constructor(private http: HttpClient) { }
+
+  getAdverts(): Observable<Advertisement[]> {
+    return this.http.get<Advertisement[]>(this.apiUrl);
   }
 
-  getSingleAdvert(id: number): Advertisement {
-    return this.advertList.find( (el) => el.id === id );
+  getSingleAdvert(id: number): Observable<Advertisement> {
+    return this.http.get<Advertisement>(`${this.apiUrl}/${id}`);
   }
 
 }
