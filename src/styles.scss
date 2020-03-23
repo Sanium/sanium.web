@@ -1,6 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~node_modules/materialize-css/sass/materialize";
 
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.ml-1{
+  margin-left: 1rem;
+}
+.mr-1{
+  margin-right: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.ml-2{
+  margin-left: 2rem;
+}
+.mr-2{
+  margin-right: 2rem;
+}
+
+.rmpm {
+  margin: 0px;
+  padding: 0px;
+}
+.rounded-border {
+  border-radius: 10px;
+}
+.disclaimer-text {
+  font-size: 14px;
+  opacity: 0.6;
+}
 /*
 $danger: #dc3545;
 $white:    #fff;
