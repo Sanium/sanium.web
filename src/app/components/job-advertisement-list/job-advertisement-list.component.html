@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col s9">
+      <div *ngIf="advertList?.length=== 0" class="center-align"> <!-- Nothing found-->
+        <h5>Nie znaleziono ofert spełniających wymagania</h5>
+      </div>
       <div *ngFor="let advert of advertList;">
         <a [routerLink]="['/details', advert.id]"> <!-- TODO: Change to advert.id-->
           <div class="card-panel rounded-border hoverable">
@@ -33,10 +36,34 @@
         </a>
       </div>
     </div>
-    <div class="col s3">
-
+  <div *ngIf="filters !== undefined" class="col s3">
+    <div class="card-panel rounded-border white z-depth-1 pinned">
+      <h5> Filtruj oferty </h5>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col s3 mt-1">
+          <div *ngFor="let tech of filters['tech']" class="col s12  mb-1 " >
+            <div class="hoverable chip gray accent-1" (click)="selectTechOption(tech);" [class.amber]="selectedTechOption === tech"> {{tech}} </div>
+          </div>
+        </div>
+        <div class="col s3 mt-1">
+          <h6 class="rmpm"> Wynagrodzenie</h6>
+          <div class="mt-1"> Od: {{salaryMin}} </div>
+          <input  type="range" min="0" max="20000" step="100" [(ngModel)]="salaryMin">
+          <div>Do: {{salaryMax}} </div>
+          <input  type="range" min="0" max="20000" step="100" [(ngModel)]="salaryMax">
+        </div>
+        <div class="col s2 mt-1">
+          <div *ngFor="let exp of filters['exp']" class="col s12 mb-1">
+            <div class="hoverable chip gray accent-1" (click)="selectExpOption(exp);" [class.amber]="selectedExpOption === exp"> {{exp}} </div>
+          </div>
+        </div>
+        <div class="col s3 mt-1">
+          <input type="text" placeholder="City" [(ngModel)]="city">
+      </div>
+      <div class="col s12 center-align">
+        <button type="submit" class="waves-effect waves-light btn" (click)="filterAdverts();"> Filtruj </button>
+      </div>
     </div>
   </div>
 </div>
-
-

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { Advertisement } from '../../models/advertisement';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-advertisement-details',
   templateUrl: './advertisement-details.component.html',
@@ -14,12 +16,16 @@ export class AdvertisementDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private location: Location
     ) { }
 
   ngOnInit(): void {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.dataService.getSingleAdvert(this.id).subscribe( (data) => {this.advert = data['data']; console.log(data['data'])});
+    this.dataService.getSingleAdvert(this.id).subscribe( (data) => this.advert = data['data']);
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 }
