@@ -1,3 +1,56 @@
-<div class="container">
-  {{id}}
+<div class="container ">
+  <div class="section">
+    <div class="card-panel rounded-border white z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col s2">
+          <img src="https://via.placeholder.com/100x60" alt="" class="responsive-img">
+        </div>
+        <div class="col s10">
+          <span class="black-text">
+            <h5>{{advert.name}}</h5>
+          </span>
+        </div>
+      </div>
+      <div class="divider amber accent-1"></div>
+      <div class="row rmpm">
+        <div class="col s1 center-align">{{advert.employer.name}} <br>  <div class="disclaimer-text grey-text lighten-5"> Nazwa firmy </div> </div>
+        <div class="col s1 offset-s1 center-align"> {{advert.employer.size}} <br> <div class="disclaimer-text grey-text lighten-5"> Liczba pracowników </div></div>
+        <div class="col s2 offset-s1">{{advert.city}} {{advert.street}}</div>
+        <div class="col s2 right"> {{advert.contact}} </div>
+        <div class="col s2 right"> {{advert.employer.website}} </div>
+      </div>
+    </div>
+  </div>
+<!-- TODO: DODAĆ KILO IKONEK-->
+  <div class="mb-2 section white z-depth-1"> <!-- grey lighten-5-->
+    <div class="row rmpm">
+      <div class="col s2 offset-s2 white z-depth-1 center-align rounded-border"><div class="amber-text" > Doświadczenie </div> {{advert.experience}}  <br> <br> </div>
+      <div class="col s2 offset-s1 white z-depth-1 center-align rounded-border"><div class="amber-text" >Typ zatrudnienia</div> {{advert.employment}} <br> <br> </div>
+      <div class="col s2 offset-s1 white z-depth-1 center-align rounded-border light-green-text text-accent-4"><div class="amber-text lighten-5" >Wynagrodzenie </div> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}</b> <br> <br> </div>
+    </div>
+  </div>
+
+  <div class="card mb-2">
+    <div class="card-content">
+      <span class="card-title"> Pożądane umiejętności </span>
+    </div>
+    <div class="card-action ">
+      <div class="row">
+        <div class="col s3" *ngFor="let tech of advert.tech_stack"> {{tech.name}} : {{tech.level}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Opis pracy</span>
+          <p> {{advert.description}} </p>
+    </div>
+    <div class="card-action">
+      {{advert.disclaimer}}
+    </div>
+  </div>
+
+  <!--  <div>{{advert.employer.logo}} </div> TODO: Remove and add to img tag-->
+
 </div>

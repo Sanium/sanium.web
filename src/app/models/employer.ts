@@ -5,7 +5,7 @@ export interface Employer {
   size: Number;
   website: String;
   logo: String; // path to logo
-  link: String;
+  link: String; // profile
   created_at: String;
   updated_at: String;
 }

@@ -3,31 +3,30 @@
     <div class="col s9">
       <div *ngFor="let advert of advertList;">
         <a [routerLink]="['/details', advert.id]"> <!-- TODO: Change to advert.id-->
-          <div class="card-panel hoverable">
-
-            <div class="row section valign-wrapper">
+          <div class="card-panel rounded-border hoverable">
+            <div class="row ">
               <div class="col s2">
                 <img class="responsive-img" src="https://via.placeholder.com/100x60">
               </div>
-              <div class="col s10 ">
+              <div class="col s7 ">
                  <span class="black-text"> <h5>{{advert.name}}</h5> </span>
               </div>
+              <div class="col s3 ">
+                <span class="light-green-text text-accent-4 ml-1 right"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}</b></span>
+                <br>
+                 <div class="black-text right mt-1"> {{advert.city}} </div>
+              </div>
             </div>
-            <div class="row">
+            <div class="row rmpm">
               <div class=" divider mb-1"></div>
-              <div class="col s6 left-align">
-                <div class="chip green">
-                  {{advert.city}}
-                </div>
-                <div class="chip pink">
+              <div class="col s6 black-text left-align">
                   {{advert.employer.name}}
-                </div>
               </div>
               <div class="col s6 right-align ">
-                <div class="chip amber"> {{advert.tech_stack[0].name}} </div>
-                <div class="chip amber"> {{advert.tech_stack[1].name}} </div>
-                <div class="chip amber"> {{advert.tech_stack[2].name}} </div>
-                <span class="green-text accent-3 ml-1"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}</b></span>
+                <div class="chip amber accent-1"> {{advert.tech_stack[0].name}} </div>
+                <div class="chip amber accent-1"> {{advert.tech_stack[1].name}} </div>
+                <div class="chip amber accent-1"> {{advert.tech_stack[2].name}} </div>
+
               </div>
             </div>
           </div>
