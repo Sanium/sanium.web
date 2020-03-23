@@ -23,9 +23,9 @@
                   {{advert.employer.name}}
               </div>
               <div class="col s6 right-align ">
-                <div class="chip amber accent-1"> {{advert.tech_stack[0].name}} </div>
-                <div class="chip amber accent-1"> {{advert.tech_stack[1].name}} </div>
-                <div class="chip amber accent-1"> {{advert.tech_stack[2].name}} </div>
+                <div *ngIf="advert.tech_stack !== null" class="chip amber accent-1"> {{advert.tech_stack[0].name}} </div>
+                <div *ngIf="advert.tech_stack !== null" class="chip amber accent-1"> {{advert.tech_stack[1].name}} </div>
+                <div *ngIf="advert.tech_stack !== null" class="chip amber accent-1"> {{advert.tech_stack[2].name}} </div>
 
               </div>
             </div>
@@ -34,8 +34,9 @@
       </div>
     </div>
     <div class="col s3">
-      Miejsce na sortowania (Left nav bar)
+
     </div>
   </div>
 </div>
+
 
