@@ -14,7 +14,7 @@ export class DataService {
   urlBuilder: string;
   urlFinal: string;
   host = window.location.hostname;
-  apiUrl = this.host + `/api/offers`;
+  apiUrl = `http://sanium.olszanowski.it/api/offers`;
 
   constructor(private http: HttpClient) { }
 
