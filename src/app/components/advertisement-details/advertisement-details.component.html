@@ -44,7 +44,7 @@
   <div class="card">
     <div class="card-content">
       <span class="card-title">Opis pracy</span>
-          <p> {{advert.description}} </p>
+         <div [innerHTML]="advert.description"> </div>
     </div>
     <div class="card-action">
       {{advert.disclaimer}}
