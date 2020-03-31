@@ -1,14 +1,15 @@
-<div *ngIf="advert?.employer" class="container ">
+<!-- Nagłówek ogłoszenia-->
+<div *ngIf="advert?.employer" class="container "> <!-- Jeśli występuje employer - wyświetl zawartość-->
   <div class="section">
     <div class="card-panel rounded-border white z-depth-1">
       <div class="row valign-wrapper flow-text">
-        <div class="col">
+        <div class="col s6">
           <span class="black-text">
             <h3>{{advert.name}}</h3>
           </span>
         </div>
-        <div class="col s3 center-align">{{advert.city}} {{advert.street}} <div class="disclaimer-text grey-text lighten-5"> Miejsce pracy </div> </div>
-        <div class="col s3 right center-align"> {{advert.contact}} <br> <div class="disclaimer-text grey-text lighten-5"> Kontakt </div> </div>
+        <div class="col s3 center-align "> {{advert.city}} {{advert.street}} <div class="disclaimer-text grey-text lighten-5 "> Miejsce pracy </div></div>
+        <div class="col s3 right center-align break-text"> {{advert.contact}} <br> <div class="disclaimer-text grey-text lighten-5"> Kontakt </div></div> <!-- TODO: break text class-->
       </div>
       <div class="divider amber accent-1"></div>
     </div>
@@ -16,44 +17,35 @@
   <!-- Sekcja Pracodawcy-->
   <div class="card">
     <div class="row card-content">
-        <div class="valign-wrapper val">
-            <div class="col">
-                <img name="company-logo" class="responsive-img circle" width="60"
-                     [src]="advert.employer.logo">
-            </div>
-            <div class="col">
-              <p class="small">Nazwa firmy</p>
-              <span class="card-title"><b>{{advert.employer.name}}</b></span>
-            </div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col center-align">
-                <p class="small">Rozmiar firmy</p>
-                <span class="card-title"><b>{{advert.employer.size}}</b></span>
-            </div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col center-align">
-                <p class="small ">Strona firmy</p>
-                <span
-                    class="card-title ">
-                        <a
-                            target="_blank" [href]="advert.employer.website">{{ advert.employer.website }}
-                        </a>
-                </span>
-            </div>
+      <div class="valign-wrapper">
+        <div class="col">
+          <img name="company-logo" class="responsive-img circle" width="60" [src]="advert.employer.logo">
         </div>
-    </div>
-</div>
-<!-- TODO: DODAĆ KILO IKONEK-->
-  <div class="mb-2 section white z-depth-1"> <!-- grey lighten-5-->
-    <div class="row rmpm">
-      <div class="col s2 offset-s2 amber z-depth-1 center-align rounded-border"><div class="white-text" > Doświadczenie </div> <b>{{advert.experience}}</b> <br> <br> </div>
-      <div class="col s2 offset-s1 amber z-depth-1 center-align rounded-border"><div class="white-text" >Typ zatrudnienia</div> <b>{{advert.employment}}</b> <br> <br> </div>
-      <div class="col s2 offset-s1 amber z-depth-1 center-align rounded-border "><div class="white-text " >Wynagrodzenie </div> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}</b> <br> <br> </div>
+        <div class="col">
+          <p>Nazwa firmy</p>
+          <span class="card-title"><b> {{advert.employer.name}} </b></span>
+        </div>
+        <div class="col offset-s1 center-align">
+            <p>Rozmiar firmy</p>
+            <span class="card-title"><b> {{advert.employer.size}} </b></span>
+        </div>
+        <div class="col offset-s1 center-align break-text">
+          <p>Strona firmy</p>
+          <span class="card-title ">
+            <a [href]="advert.employer.website"> {{advert.employer.website}} </a>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
-
+<!-- Sekcja cech pracy -->
+  <div class="section white z-depth-1 mb-2">
+    <div class="row rmpm">
+      <div class="col s2 offset-s2 amber z-depth-1 center-align rounded-border"><div class="white-text"> Doświadczenie </div> <b> {{advert.experience}} </b><br><br></div>
+      <div class="col s2 offset-s1 amber z-depth-1 center-align rounded-border"><div class="white-text"> Typ zatrudnienia </div> <b> {{advert.employment}} </b><br><br></div>
+      <div class="col s2 offset-s1 amber z-depth-1 center-align rounded-border"><div class="white-text"> Wynagrodzenie </div> <b> {{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}} </b><br><br></div>
+    </div>
+  </div>
   <div class="card mb-2">
     <div class="card-content">
       <span class="card-title"> Pożądane umiejętności </span>
@@ -65,17 +57,14 @@
       </div>
     </div>
   </div>
-
   <div class="card">
     <div class="card-content">
-      <span class="card-title">Opis pracy</span>
-         <div [innerHTML]="advert.description"> </div>
+      <span class="card-title"> Opis pracy </span>
+        <div [innerHTML]="advert.description"></div>
     </div>
     <div class="card-action">
       {{advert.disclaimer}}
     </div>
   </div>
-  <button type="submit" class="waves-effect waves-light btn" (click)="goBack();"> Wstecz </button>
-  <!--  <div>{{advert.employer.logo}} </div> TODO: Remove and add to img tag-->
-
+  <button type="submit" class="waves-effect waves-light btn mb-1" (click)="goBack();"> Wstecz </button>
 </div>

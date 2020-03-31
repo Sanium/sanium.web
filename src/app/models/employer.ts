@@ -3,7 +3,7 @@ export interface Employer {
   name: String;
   slug: String;
   size: Number;
-  website: String;
+  website: String; // Employers website
   logo: String; // path to logo
   link: String; // profile
   created_at: String;

@@ -22,7 +22,7 @@ export class AdvertisementDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.dataService.getSingleAdvert(this.id).subscribe( (data) => {this.advert = data['data']; console.log(data);console.log(this.advert)});
+    this.dataService.getSingleAdvert(this.id).subscribe( (data) => this.advert = data['data']);
   }
 
   goBack(): void {
