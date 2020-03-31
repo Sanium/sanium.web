@@ -14,9 +14,9 @@ export interface Advertisement {
   street: String;
   remote: number; // isRemote
   tech_stack: {name: String, level: String}[] // jobRequirements <!-- TODO:FIX -->
-  technology: String;
-  contact: String;
-  website: String;
+  technology: String; // Filtering purposes
+  contact: String;  // For advertisement (not employer)
+  website: String; // ?
   expires_at: String;
   created_at: String;
   updated_at: String;

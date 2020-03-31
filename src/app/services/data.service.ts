@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Advertisement } from '../models/advertisement';
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class DataService {
   filters: {};
   urlBuilder: string;
   urlFinal: string;
-  host = window.location.hostname;
   apiUrl = `http://sanium.olszanowski.it/api/offers`;
 
   constructor(private http: HttpClient) { }
@@ -34,14 +32,13 @@ export class DataService {
 
   getStaticAdverts(){
     return this.advertList;
-    console.log(this.host);
   }
 
   getFilters(){
     return this.filters;
   }
 
-  getAdverts(): Observable<Advertisement[]> {
+  getAdvertsFromServer(): Observable<Advertisement[]> {
     return this.http.get<Advertisement[]>(this.apiUrl);
   }
 
@@ -49,13 +46,12 @@ export class DataService {
     return this.http.get<Advertisement>(`${this.apiUrl}/${id}`);
   }
 
-  getFilteredAdverts(data: {}): Observable<Advertisement[]> {
+  getFilteredAdverts(filters: {}): Observable<Advertisement[]> {
     this.urlBuilder = this.apiUrl;
-    this.urlBuilder += `?from=${data['salaryMin']}&to=${data['salaryMax']}`;
-    if (data['selectedTechOption']) this.urlBuilder += `&tech=${data['selectedTechOption']}`;
-    if (data['selectedExpOption']) this.urlBuilder += `&exp=${data['selectedExpOption']}`;
-    if (data['city']) this.urlBuilder += `&city=` + this.slugify(data['city']);
-    console.log(this.urlBuilder);
+    this.urlBuilder += `?from=${filters['salaryMin']}&to=${filters['salaryMax']}`;
+    if (filters['technology']) this.urlBuilder += `&tech=${filters['technology']}`;
+    if (filters['exp']) this.urlBuilder += `&exp=${filters['exp']}`;
+    if (filters['city']) this.urlBuilder += `&city=` + this.slugify(filters['city']);
     return this.http.get<Advertisement[]>(`${this.urlBuilder}`);
   }
 

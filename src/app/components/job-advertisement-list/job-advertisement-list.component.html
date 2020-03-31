@@ -1,34 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col s9">
-      <div *ngIf="advertList?.length=== 0" class="center-align">
-        <h5>Nie znaleziono ofert spełniających wymagania</h5>
+      <div *ngIf="advertList?.length === 0" class="center-align">
+        <h5> Nie znaleziono ofert spełniających wymagania </h5>
       </div>
       <div *ngFor="let advert of advertList;">
-        <a [routerLink]="['/details', advert.id]"> <!-- TODO: Change to advert.id-->
+        <a [routerLink]="['/details', advert.id]">
           <div class="card-panel rounded-border hoverable">
-            <div class="row ">
+            <div class="row">
               <div class="col s2">
                 <img class="responsive-img" [src]="advert.employer.logo">
               </div>
-              <div class="col s7 ">
-                 <span class="black-text"> <h5>{{advert.name}}</h5> </span>
+              <div class="col s7">
+                <span class="black-text"> <h5> {{advert.name}} </h5></span>
               </div>
               <div class="col s3 ">
-                <span class="light-green-text text-accent-4 ml-1 right"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}</b></span>
+                <span class="light-green-text text-accent-4 ml-1 right"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}} </b></span>
                 <br>
-                 <div class="black-text right mt-1"> {{advert.city}} </div>
+                <div class="black-text right mt-1"> {{advert.city}} </div>
               </div>
             </div>
             <div class="row rmpm">
               <div class=" divider mb-1"></div>
               <div class="col s6 black-text left-align">
-                  {{advert.employer.name}}
+                {{advert.employer.name}}
               </div>
-              <div class="col s6 right-align ">
-                <!--<div *ngIf="advert.tech_stack !== null" class="chip amber accent-1"> {{advert.tech_stack[0].name}} </div>
-                <div *ngIf="advert.tech_stack !== null" class="chip amber accent-1"> {{advert.tech_stack[1].name}} </div>
-                div *ngIf="advert.tech_stack !== null" class="chip amber accent-1"> {{advert.tech_stack[2].name}} </div> -->
+              <div class="col s6 right-align">
                 <div class="chip amber accent-1"> {{advert.technology}} </div>
               </div>
             </div>
@@ -36,36 +33,38 @@
         </a>
       </div>
     </div>
-  <div *ngIf="filters !== undefined" class="col s1" >
-    <div class="card-panel rounded-border white z-depth-1 pinned">
-      <h5> Filtruj oferty </h5>
-      <div class="divider"></div>
-      <div class="row">
-        <div class="col s3 mt-1">
-          <div *ngFor="let tech of filters['tech']" class="col s12  mb-1 " >
-            <div class="hoverable chip gray accent-1" (click)="selectTechOption(tech);" [class.amber]="selectedTechOption === tech"> {{tech}} </div>
+    <div *ngIf="filters !== undefined" class="col s3" >
+      <div class="card-panel rounded-border white z-depth-1 pinned">
+        <h5> Filtruj oferty </h5>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col s3 mt-1">
+            <div *ngFor="let tech of filters['tech']" class="col s12  mb-1">
+              <div class="hoverable chip gray accent-1" (click)="selectTechOption(tech);" [class.amber]="selectedFilters.technology === tech"> {{tech}} </div>
+            </div>
+          </div>
+          <div class="col s3 mt-1">
+            <h6 class="rmpm"> Wynagrodzenie</h6>
+            <div class="mt-1"> Od: {{selectedFilters.salaryMin}} </div>
+            <input  type="range" min="0" max="20000" step="100" [(ngModel)]="selectedFilters.salaryMin">
+            <div> Do: {{selectedFilters.salaryMax}} </div>
+            <input  type="range" min="0" max="20000" step="100" [(ngModel)]="selectedFilters.salaryMax">
+          </div>
+          <div class="col s2 mt-1">
+            <div *ngFor="let exp of filters['exp']" class="col s12 mb-1">
+              <div class="hoverable chip gray accent-1" (click)="selectExpOption(exp);" [class.amber]="selectedFilters.exp === exp"> {{exp}} </div>
+            </div>
+          </div>
+          <div class="col s3 mt-1">
+            <input type="text" placeholder="City" [(ngModel)]="selectedFilters.city">
+          </div>
+          <div class="col s11 center-align">
+            <button type="submit" class="waves-effect waves-light btn" (click)="filterAdverts();"> Filtruj </button>
           </div>
         </div>
-        <div class="col s3 mt-1">
-          <h6 class="rmpm"> Wynagrodzenie</h6>
-          <div class="mt-1"> Od: {{salaryMin}} </div>
-          <input  type="range" min="0" max="20000" step="100" [(ngModel)]="salaryMin">
-          <div>Do: {{salaryMax}} </div>
-          <input  type="range" min="0" max="20000" step="100" [(ngModel)]="salaryMax">
-        </div>
-        <div class="col s2 mt-1">
-          <div *ngFor="let exp of filters['exp']" class="col s12 mb-1">
-            <div class="hoverable chip gray accent-1" (click)="selectExpOption(exp);" [class.amber]="selectedExpOption === exp"> {{exp}} </div>
-          </div>
-        </div>
-        <div class="col s3 mt-1">
-          <input type="text" placeholder="City" [(ngModel)]="city">
-      </div>
-      <div class="col s11 center-align">
-        <button type="submit" class="waves-effect waves-light btn" (click)="filterAdverts();"> Filtruj </button>
       </div>
     </div>
   </div>
 </div>
-</div>
-</div>
+
+<button (click)="log()"> Click </button>

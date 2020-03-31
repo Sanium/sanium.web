@@ -17,9 +17,6 @@
 .mb-2 {
   margin-bottom: 2rem;
 }
-.spy{
-  background-color: red;
-}
 
 .mt-2 {
   margin-top: 2rem;
@@ -29,6 +26,14 @@
 }
 .mr-2{
   margin-right: 4rem;
+}
+
+.spy {
+  background-color: red;
+}
+
+.spy2 {
+  background-color: orange;
 }
 
 .rmpm {
@@ -41,6 +46,12 @@
 .disclaimer-text {
   font-size: 14px;
   opacity: 0.6;
+}
+
+.break-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .hoverable {
