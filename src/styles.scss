@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+/*
 .mb-1 {
   margin-bottom: 1rem;
 }
@@ -27,21 +28,29 @@
   margin-right: 4rem;
 }
 
+.rounded-border {
+  border-radius: 10px;
+}
+*/
 .spy {
-  background-color: red;
+  background-color: rgb(0, 255, 34);
+  opacity: 0.7;
 }
 
 .spy2 {
-  background-color: orange;
+  background-color: rgb(234, 0, 255);
+  opacity: 0.7;
+}
+.spy3 {
+  background-color: lightblue;
+  opacity: 0.5;
 }
 
 .rmpm {
   margin: 0px;
   padding: 0px;
 }
-.rounded-border {
-  border-radius: 10px;
-}
+
 .disclaimer-text {
   font-size: 14px;
   opacity: 0.6;
