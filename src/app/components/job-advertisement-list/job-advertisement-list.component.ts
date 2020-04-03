@@ -12,9 +12,9 @@ export class JobAdvertisementListComponent implements OnInit {
 
   filters: {};
   advertList: Advertisement[];
-  selectedFilters: { salaryMin: number, salaryMax: number, technology?: string, exp?: string, city?: string } = {salaryMin: 2000, salaryMax: 6000};
+  selectedFilters: { salaryMin: number, salaryMax: number, technology?: string, exp?: string, city?: string } = {salaryMin: 0, salaryMax: 20000 };
   nextPage: string;
-
+  showDropdown: boolean = false;
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
