@@ -71,9 +71,9 @@
 </div>
 -->
 
-<div *ngIf="advert?.employer" class="container-fluid">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-6"> <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
+    <div *ngIf="advert" class="col-6"> <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
       <div class="row spy">
         <div class="col-10"> <!-- Tytuł -->
           {{advert.name}}
@@ -109,7 +109,7 @@
           {{advert.salary_from}} - {{advert.salary_to}}
         </div>
       </div>
-      <div class="row spy2">
+      <div class="row">
         Here tech
         <div class="col-12" *ngIf="advert?.tech_stack">
           <mdb-badge pill="true" primary="true" *ngFor="let tech of advert.tech_stack">
@@ -118,11 +118,15 @@
         </div>
       </div>
     </div>
-    <div class="col-6 spy3"> <!-- Prawa część: Mapa, miasto, ulica-->
-      Mapaa
+    <div class="col-6"> <!-- Prawa część: Mapa, miasto, ulica-->
+      <div class="map-container">
+        <div class="map-frame">
+          <div id="map"></div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row spy3">
+  <div *ngIf="advert" class="row spy3">
     <div class="col-12" [innerHTML]="advert.description"> <!-- Opis pracy -->
 
     </div>
