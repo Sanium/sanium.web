@@ -27,9 +27,9 @@
                 </button>
                 <div class="dropdown-menu">
                   <span class="font-weight-bold text-primary ml-2 valueSpan2">Od: {{selectedFilters.salaryMin}} </span>
-                  <input type="range" min="0" max="20000" step="100" class="custom-range pl-2 pr-2" id="salaryMin" #salaryMin="ngModel" [(ngModel)]="selectedFilters.salaryMin">
+                  <input type="range" min="0" [max]="salaryMax.value" step="100" class="custom-range pl-2 pr-2" id="salaryMin" #salaryMin="ngModel" [(ngModel)]="selectedFilters.salaryMin">
                   <span class="font-weight-bold text-primary ml-2 valueSpan2">Do: {{selectedFilters.salaryMax}} </span>
-                  <input type="range" min="0" max="20000" step="100" class="custom-range pl-2 pr-2" id="salaryMax" #salaryMax="ngModel" [(ngModel)]="selectedFilters.salaryMax">
+                  <input type="range" [min]="salaryMin.value" max="20000" step="100" class="custom-range pl-2 pr-2" id="salaryMax" #salaryMax="ngModel" [(ngModel)]="selectedFilters.salaryMax">
                 </div>
               </div>
             </div>
