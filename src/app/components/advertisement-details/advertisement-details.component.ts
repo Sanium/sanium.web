@@ -4,6 +4,9 @@ import { DataService } from '../../services/data.service';
 import { Advertisement } from '../../models/advertisement';
 import { Location } from '@angular/common';
 import * as L from 'leaflet';
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon-2x.png";
+
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 @Component({
@@ -16,6 +19,7 @@ export class AdvertisementDetailsComponent implements OnInit {
   private provider = new OpenStreetMapProvider();
   id: number;
   advert: Advertisement;
+  mapLocation: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,13 +32,30 @@ export class AdvertisementDetailsComponent implements OnInit {
     this.dataService.getSingleAdvert(this.id)
     .subscribe( (data) => {
       this.advert = data['data'];
-      this.initMap();
+      this.setMapLocation(`${this.advert.street} ${this.advert.city}`);
     });
   }
 
-  private initMap(): void {
+  private setMapLocation(location: string): void{
+    this.provider.search({query: location}).then(
+      (result) => {
+        console.log(result);
+        this.initMap(+result[0].x, +result[0].y)
+        this.setPointer(+result[0].x, +result[0].y)
+      }
+    );
+  }
+
+  private setPointer(x: number, y:number){
+    L.marker([y, x]).addTo(this.map)
+    .bindPopup(`${this.advert.street}, ${this.advert.city}`)
+    .openPopup();
+  }
+
+  private initMap(x: number, y: number): void {
+    console.log("Setting map: " + x +" " + y);
     this.map = L.map('map', {
-      center: [ 52.84135, 17.71124 ],
+      center: [ y, x ],
       zoom: 16
     });
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -43,10 +64,6 @@ export class AdvertisementDetailsComponent implements OnInit {
     });
 
      tiles.addTo(this.map);
-
-     this.provider.search({query: "Polna 3 Żnin"}).then(
-       (res) => console.log(res)
-     );
     }
 
   goBack(): void {
