@@ -1,38 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~leaflet/dist/leaflet.css";
 
-/*
-.mb-1 {
-  margin-bottom: 1rem;
-}
-.mt-1 {
-  margin-top: 1rem;
-}
-.ml-1{
-  margin-left: 1rem;
-}
-.mr-1{
-  margin-right: 1rem;
-}
-
-.mb-2 {
-  margin-bottom: 2rem;
-}
-
-.mt-2 {
-  margin-top: 2rem;
-}
-.ml-2{
-  margin-left: 4rem;
-}
-.mr-2{
-  margin-right: 4rem;
-}
-
-.rounded-border {
-  border-radius: 10px;
-}
-*/
 .spy {
   background-color: rgb(0, 255, 34);
   opacity: 0.7;
@@ -66,30 +34,4 @@
 .hoverable {
   cursor: pointer;
 }
-/*
-$danger: #dc3545;
-$white:    #fff;
-$gray-100: #f8f9fa;
-$gray-200: #e9ecef;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #6c757d;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
-$black:    #000;
 
-$dark: $gray-900;
-$body-bg: $gray-800;
-$body-color: $white;
-$component-active-bg: $danger;
-
-// Whole Bootstrap library
-@import "~node_modules/bootstrap/scss/bootstrap";
-
-.btn-outline-danger {
-    color: white;
-}
-
-*/

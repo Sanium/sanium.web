@@ -32,6 +32,9 @@ export class AdvertisementDetailsComponent implements OnInit {
     this.dataService.getSingleAdvert(this.id)
     .subscribe( (data) => {
       this.advert = data['data'];
+      console.log(`${this.advert.street} ${this.advert.city}`)
+      //this.initMap(51.8400, 20.4243);
+      //this.setPointer(51.8400, 20.4243);
       this.setMapLocation(`${this.advert.street} ${this.advert.city}`);
     });
   }
@@ -47,18 +50,17 @@ export class AdvertisementDetailsComponent implements OnInit {
   }
 
   private setPointer(x: number, y:number){
-    L.marker([y, x]).addTo(this.map)
+    L.marker([ y, x ]).addTo(this.map)
     .bindPopup(`${this.advert.street}, ${this.advert.city}`)
     .openPopup();
   }
-
   private initMap(x: number, y: number): void {
     console.log("Setting map: " + x +" " + y);
     this.map = L.map('map', {
-      center: [ y, x ],
+      center: [ y, x ], // TODO: change to args
       zoom: 16
     });
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const tiles = L.tileLayer('http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });

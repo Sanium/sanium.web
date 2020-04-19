@@ -1,138 +1,87 @@
-
-<!-- Nagłówek ogłoszenia
-<div *ngIf="advert?.employer" class="container ">
-  <div class="section">
-    <div class="mdb-card rounded-border white z-depth-1">
-      <div class="row valign-wrapper flow-text">
-        <div class="col-sm-6">
-          <span class="black-text">
-            <h3>{{advert.name}}</h3>
-          </span>
+<div class="container ">
+  <div class="row mt-4">
+    <div *ngIf="advert" class="col-12 col-lg-7"> <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
+      <div class="row z-depth-1 rounded mt-2 py-5">
+        <div class="col-lg-10 text-center my-auto"> <!-- Tytuł -->
+          <div class="accent-underline"><h1 ><strong>{{advert.name }}</strong></h1></div>
         </div>
-        <div class="col-sm-3 center-align "> {{advert.city}} {{advert.street}} <div class="disclaimer-text grey-text lighten-5 "> Miejsce pracy </div></div>
-        <div class="col s3 right center-align break-text"> {{advert.contact}} <br> <div class="disclaimer-text grey-text lighten-5"> Kontakt </div></div>
-      </div>
-      <div class="divider amber accent-1"></div>
-    </div>
-  </div>
-  #Sekcja Pracodawcy
-  <div class="card">
-    <div class="row card-content">
-      <div class="valign-wrapper">
-        <div class="col">
-          <img name="company-logo" class="responsive-img circle" width="60" [src]="advert.employer.logo">
-        </div>
-        <div class="col">
-          <p>Nazwa firmy</p>
-          <span class="card-title"><b> {{advert.employer.name}} </b></span>
-        </div>
-        <div class="col offset-s1 center-align">
-            <p>Rozmiar firmy</p>
-            <span class="card-title"><b> {{advert.employer.size}} </b></span>
-        </div>
-        <div class="col offset-s1 center-align break-text">
-          <p>Strona firmy</p>
-          <span class="card-title ">
-            <a [href]="advert.employer.website"> {{advert.employer.website}} </a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-#Sekcja cech pracy
-  <div class="section white z-depth-1 mb-2">
-    <div class="row rmpm">
-      <div class="col s2 offset-s2 amber z-depth-1 center-align rounded-border"><div class="white-text"> Doświadczenie </div> <b> {{advert.experience}} </b><br><br></div>
-      <div class="col s2 offset-s1 amber z-depth-1 center-align rounded-border"><div class="white-text"> Typ zatrudnienia </div> <b> {{advert.employment}} </b><br><br></div>
-      <div class="col s2 offset-s1 amber z-depth-1 center-align rounded-border"><div class="white-text"> Wynagrodzenie </div> <b> {{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}} </b><br><br></div>
-    </div>
-  </div>
-  <div class="card mb-2">
-    <div class="card-content">
-      <span class="card-title"> Pożądane umiejętności </span>
-    </div>
-    <div class="card-action ">
-      <div class="row">
-        <div class="col s3"> {{advert.technology}}</div>
-        #<div class="col s3" *ngFor="let tech of advert.tech_stack"> {{tech.name}} : {{tech.level}}</div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title"> Opis pracy </span>
-        <div [innerHTML]="advert.description"></div>
-    </div>
-    <div class="card-action">
-      {{advert.disclaimer}}
-    </div>
-  </div>
-  <button type="submit" class="waves-effect waves-light btn mb-1" (click)="goBack();"> Wstecz </button>
-</div>
--->
-
-<div class="container-fluid">
-  <div class="row">
-    <div *ngIf="advert" class="col-6"> <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
-      <div class="row spy">
-        <div class="col-10"> <!-- Tytuł -->
-          {{advert.name}}
-        </div>
-        <div class="col-2"> <!-- Ikonka (np. JS)-->
+        <div class="col-lg-2 my-auto"> <!-- Ikonka (np. JS)-->
           <img class="img-thumbnail rounded-circle float-left" width="70" alt="thumbnail"  [src]="advert.employer.logo">
         </div>
       </div>
-      <div class="row spy2">
-        <div class="col-2"> <!-- Ikona firmy -->
+      <div class="row z-depth-1 rounded mt-4 py-4">
+        <div class="col-lg-2 my-auto"> <!-- Ikona firmy -->
           <img class="img-thumbnail rounded-circle float-left" width="70" alt="thumbnail"  [src]="advert.employer.logo">
         </div>
-        <div class="col-3"> <!-- nazwa firmy-->
-          <p>Nazwa firmy</p>
-          <span class=""><b> {{advert.employer.name}} </b></span>
+        <div class="col-lg-3 text-center my-auto"> <!-- nazwa firmy-->
+          <p class="disclaimer-text mb-1">Nazwa firmy</p>
+          <span class=""><h4><strong>{{advert.employer.name}}</strong></h4></span>
         </div>
-        <div class="col-3"> <!-- rozmiar firmy-->
-          <p>rozmiar firmy</p>
-          <span class="card-title"><b> {{advert.employer.size}} </b></span>
+        <div class="col-lg-3 text-center my-auto"> <!-- rozmiar firmy-->
+          <p class="disclaimer-text mb-1">Rozmiar firmy</p>
+          <span class=""> <h4><b>{{advert.employer.size}}</b></h4></span>
         </div>
-        <div class="col-4"> <!-- Strona firmy-->
-          <a [href]="advert.employer.website"> {{advert.employer.website}} </a>
-        </div>
-      </div>
-      <div class="row spy">
-        <div class="col-4"> <!-- Doświadczenie -->
-          {{advert.experience}}
-        </div>
-        <div class="col-4"> <!-- Typ zatrudnienia -->
-          {{advert.employment}}
-        </div>
-        <div class="col-4"> <!-- Wynagrodzenie -->
-          {{advert.salary_from}} - {{advert.salary_to}}
+        <div class="col-lg-4 text-center my-auto"> <!-- Strona firmy-->
+          <p class="disclaimer-text mb-1">Strona firmy</p>
+          <a [href]="advert.employer.website"> <h5 class="text-truncate">{{advert.employer.website}}</h5> </a>
         </div>
       </div>
-      <div class="row">
-        Here tech
-        <div class="col-12" *ngIf="advert?.tech_stack">
-          <mdb-badge pill="true" primary="true" *ngFor="let tech of advert.tech_stack">
-            {{tech.name}} : {{tech.level}}
-          </mdb-badge>
+      <!-- Content -->
+        <div class="row z-depth-1 justify-content-center rounded mt-4 py-4">
+          <div class="col-4 text-center">
+            <p class="disclaimer-text mb-0">Doświadczenie</p>
+            <p class="font-weight-bold mb-0">{{advert.experience}}</p>
+          </div>
+          <div class="col-4 text-center border-left border-right">
+            <p class="disclaimer-text mb-0">Rodzaj zatrudnienia</p>
+            <p class="font-weight-bold mb-0">{{advert.employment}}</p>
+          </div>
+          <div class="col-4 text-center">
+            <p class="disclaimer-text mb-0">Wynagrodzenie</p>
+            <p class="font-weight-bold mb-0">{{advert.salary_from}} - {{advert.salary_to}}</p>
+          </div>
+        </div>
+      <!--
+      <div class="row z-depth-1 justify-content-center rounded mt-4 py-4">
+        <div class="col-lg-3 text-center z-depth-1 light-bg pt-1 pb-4">
+          <p class="disclaimer-text"> Doświadczenie </p>
+          <h5 class="">{{advert.experience}}</h5>
+        </div>
+        <div class="col-lg-3 text-center offset-lg-1 light-bg z-depth-1 pt-1 pb-4">
+          <p class="disclaimer-text"> Rodzaj zatrudnienia </p>
+          <h5>{{advert.employment}}</h5>
+        </div>
+        <div class="col-lg-3 text-center offset-lg-1 light-bg z-depth-1 pt-1 pb-4">
+          <p class="disclaimer-text"> Wynagrodzenie </p>
+          <h5>{{advert.salary_from}} - {{advert.salary_to}}</h5>
         </div>
       </div>
+    -->
     </div>
-    <div class="col-6"> <!-- Prawa część: Mapa, miasto, ulica-->
+    <div class="col-0 col-lg-5 mt-2 d-none d-lg-block"> <!-- Prawa część: Mapa, miasto, ulica-->
       <div class="map-container">
-        <div class="map-frame">
+        <div class="map-frame rounded">
           <div id="map"></div>
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="advert" class="row spy3">
-    <div class="col-12" [innerHTML]="advert.description"> <!-- Opis pracy -->
-
+  <div class="row py-4">
+    <div class="col-12 z-depth-1">
+      Here tech <br><br><br>
+      <!-- TODO:*ngIf dać na col ^
+      <mdb-badge  *ngIf="advert?.tech_stack" pill="true" primary="true" *ngFor="let tech of advert.tech_stack">
+        {{tech.name}} : {{tech.level}}
+      </mdb-badge>
+    -->
     </div>
-    <div class="col-12"> <!-- Disclaimer ??-->
-      {{advert.disclaimer}}
+    <div *ngIf="advert" class="col-12 my-3 py-4 z-depth-1 rounded">
+      <div class="col-12 underline " [innerHTML]="advert.description"> <!-- Opis pracy -->
+      </div>
+      <div class="col-12 py-2 my-auto"> <!-- Disclaimer ??-->
+        {{advert.disclaimer}}
+      </div>
     </div>
   </div>
-  <button type="submit" class="waves-effect waves-light btn" (click)="goBack();"> Wstecz </button>
+  <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect mb-5" (click)="goBack();"> Wstecz </button>
 </div>
