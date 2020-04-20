@@ -10,14 +10,14 @@
             <div class="col-4 col-xl-2 my-auto">
               <div class="btn-group btn-block dropdown" mdbDropdown>
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
-                  mdbWavesEffect
-                  style="border: 2px solid #B3E5Fc; color: #03A9F4">
+                  mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
                   {{selectedFilters?.technology || "Technologia"}}
                 </button>
                 <!-- Tech dropdown -->
                 <div class="dropdown-menu dropdown-primary">
                   <ul class="rmpm">
-                    <li *ngFor="let tech of filters['tech']" (click)="selectTechOption(tech);" class="dropdown-item" >{{tech}}</li>
+                    <li *ngFor="let tech of filters['tech']" (click)="selectTechOption(tech);" class="dropdown-item">
+                      {{tech}}</li>
                   </ul>
                 </div>
               </div>
@@ -36,9 +36,11 @@
                 <!-- Tech dropdown -->
                 <div class="dropdown-menu">
                   <span class="text-primary-color ml-2">Od: {{selectedFilters.salaryMin}} </span>
-                  <input type="range" min="0" [max]="salaryMax.value" step="100" class="custom-range pl-2 pr-2" id="salaryMin" #salaryMin="ngModel" [(ngModel)]="selectedFilters.salaryMin">
+                  <input type="range" min="0" [max]="salaryMax.value" step="100" class="custom-range pl-2 pr-2"
+                    id="salaryMin" #salaryMin="ngModel" [(ngModel)]="selectedFilters.salaryMin">
                   <span class="text-primary-color ml-2">Do: {{selectedFilters.salaryMax}} </span>
-                  <input type="range" [min]="salaryMin.value" max="20000" step="100" class="custom-range pl-2 pr-2" id="salaryMax" #salaryMax="ngModel" [(ngModel)]="selectedFilters.salaryMax">
+                  <input type="range" [min]="salaryMin.value" max="20000" step="100" class="custom-range pl-2 pr-2"
+                    id="salaryMax" #salaryMax="ngModel" [(ngModel)]="selectedFilters.salaryMax">
                 </div>
               </div>
             </div>
@@ -47,14 +49,14 @@
             <div class="col-4 col-xl-2 my-auto">
               <div class="btn-group btn-block" mdbDropdown>
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
-                  mdbWavesEffect
-                  style="border: 2px solid #B3E5Fc; color: #03A9F4">
+                  mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
                   {{selectedFilters?.exp || "Doświadczenie"}}
                 </button>
                 <!-- Tech dropdown -->
                 <div class="dropdown-menu">
                   <ul class="rmpm">
-                    <li *ngFor="let exp of filters['exp']" (click)="selectExpOption(exp);" class="dropdown-item" >{{exp}}</li>
+                    <li *ngFor="let exp of filters['exp']" (click)="selectExpOption(exp);" class="dropdown-item">{{exp}}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -63,18 +65,19 @@
             <!-- Miasto -->
             <div class="col-8 col-xl-3 my-auto ml-0">
               <div class="md-form">
-                <input mdbInput  type="text" class="form-control " id="inputCity" [(ngModel)]="selectedFilters.city">
+                <input mdbInput type="text" class="form-control " id="inputCity" [(ngModel)]="selectedFilters.city">
                 <label for="inputCity" class="">Miasto</label>
               </div>
             </div>
 
             <!-- Submit -->
             <div class="col-1 col-xl-1 my-auto mr-5">
-              <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect" (click)="filterAdverts();"> Filtruj </button>
+              <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect"
+                (click)="filterAdverts();"> Filtruj </button>
             </div>
 
           </div>
-       </div>
+        </div>
       </mdb-card-body>
     </mdb-card>
   </div>
@@ -96,7 +99,8 @@
         <div class="row my-0 text-dark">
           <!-- Employer logo -->
           <div class="col-3 text-center col-md-2 my-auto py-3 ml-2 ml-md-5">
-            <img class="img-thumbnail rounded-circle float-left" width="70px" alt="thumbnail"  [src]="advert.employer.logo">
+            <img class="img-thumbnail rounded-circle float-left" width="70px" alt="thumbnail"
+              [src]="advert.employer.logo">
           </div>
           <!--Advert main section -->
           <div class="col-6 col-lg-5 pt-3 ">
@@ -106,15 +110,20 @@
                 <h4 class="primary-text ">{{advert.name}}</h4>
               </div>
               <!-- Advert Salary range -->
-              <div class="col-lg-12 col-xl"*ngIf="advert?.salary_from" >
-                <span class="text-primary-color"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}} </b></span>
+              <div class="col-lg-12 col-xl" *ngIf="advert?.salary_from">
+                <span class="text-primary-color"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}
+                  </b></span>
               </div>
             </div>
             <!-- Employer name/city-->
             <div class="row mb-1 mb-xl-0">
               <div class="col mb-1 mb-md-0 grey-text">
-                <span class="mr-2 mr-lg-5"><mdb-icon far icon="building" class="mr-0 mr-md-1"></mdb-icon> {{advert.employer.name}} </span>
-                <span> <mdb-icon fas icon="map-marker-alt" class="mr-0 mr-md-1"></mdb-icon> {{advert.city}} </span>
+                <span class="mr-2 mr-lg-5">
+                  <mdb-icon far icon="building" class="mr-0 mr-md-1"></mdb-icon> {{advert.employer.name}}
+                </span>
+                <span>
+                  <mdb-icon fas icon="map-marker-alt" class="mr-0 mr-md-1"></mdb-icon> {{advert.city}}
+                </span>
               </div>
             </div>
           </div>
@@ -124,19 +133,21 @@
               <div *ngIf="advert?.tech_stack[0]" class="text-white accent-bg badge text-wrap mr-2" style="width: 4rem;">
                 {{advert.tech_stack[0].tag}}
               </div>
-              <div *ngIf="advert.tech_stack[1]" class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" style="width: 4rem;">
+              <div *ngIf="advert.tech_stack[1]" class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2"
+                style="width: 4rem;">
                 {{advert.tech_stack[1].tag}}
               </div>
-              <div *ngIf="advert.tech_stack[2]" class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" style="width: 4rem;">
+              <div *ngIf="advert.tech_stack[2]" class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2"
+                style="width: 4rem;">
                 {{advert.tech_stack[2].tag}}
               </div>
             </div>
           </div>
-           <!-- Left aligned tech. icon -->
+          <!-- Left aligned tech. icon -->
           <div class="col col-md-1 float-sm-left rounded-y text-center blue-gradient py-3 text-white">
             <div class="row h-100">
               <div class="col-12 my-auto">
-               {{advert.technology}}
+                {{advert.technology}}
               </div>
             </div>
           </div>
@@ -145,5 +156,3 @@
     </div>
   </div>
 </div>
-
-<button type="button" mdbBtn color="primary" mdbWavesEffect (click)="log()">Primary</button>
