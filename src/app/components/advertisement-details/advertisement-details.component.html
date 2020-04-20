@@ -106,7 +106,7 @@
         <h2>Apply for this job</h2>
       </div>
       <form #applyForm (ngSubmit)="onSubmit()" enctype="multipart/form-data" method="POST" [action]="actionUrl">
-        <input type="hidden" name="_csrf" [value]="csrf">
+        <input type="hidden" name="_token" [value]="csrf">
         <div class="row">
           <div class="col">
             <div class="md-form">
