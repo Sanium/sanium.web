@@ -23,7 +23,6 @@ export class AdvertisementDetailsComponent implements OnInit {
   mapLocation: string;
   actionUrl: string;
   fileInput: string = '';
-  tech_stack: {tag: string}[] = [{tag: "JS"},{tag:"React"},{tag:"Redux"},{tag:"ES6+"},{tag:"Node"},{tag:"VS Code"}]
 
   constructor(
     private activatedRoute: ActivatedRoute,

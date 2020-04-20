@@ -51,16 +51,18 @@
     </div>
   </div>
   <div class="row py-4 justify-content-center">
-    <div class="col-12 z-depth-1 py-2 pb-5">
-      <h4 class=""> <span class="mt-2"> Pożądane umiejętności </span></h4>
+    <div class="col-12 z-depth-1 py-3 pb-3">
+      <h4 class=""> <span class="ml-2 mt-2"> Pożądane umiejętności </span></h4>
       <div class="underline"></div>
 
-      <div class="row"> <!-- class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" -->
-        <div *ngFor="let tech of tech_stack" class="col-2" style="width: 4rem;">
-          {{tech.tag}}
-        </div>
-        <div *ngFor="let tech of tech_stack" class="col-2" style="width: 4rem;">
-          {{tech.tag}}
+      <div class="row mb-3"> <!-- class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" -->
+        <div *ngFor="let tech of advert.tech_stack" class="rounded-big text-center col-auto mx-2 mx-lg-3 mt-3 z-depth-1"
+        style="height: 5rem; min-width: 5rem;">
+          <div class="row h-100">
+            <div class="col-12 my-auto">
+              {{tech.tag}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
