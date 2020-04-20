@@ -13,7 +13,7 @@ export interface Advertisement {
   city: String;
   street: String;
   remote: number; // isRemote
-  tech_stack: {name: String, level: String}[] // jobRequirements <!-- TODO:FIX -->
+  tech_stack: {tag: String}[] // jobRequirements <!-- TODO:FIX -->
   technology: String; // Filtering purposes
   contact: String;  // For advertisement (not employer)
   website: String; // ?

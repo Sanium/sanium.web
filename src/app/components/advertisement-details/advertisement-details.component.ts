@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { Advertisement } from '../../models/advertisement';
 import { Location } from '@angular/common';
+
 import * as L from 'leaflet';
 import "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/images/marker-icon-2x.png";
@@ -20,11 +21,14 @@ export class AdvertisementDetailsComponent implements OnInit {
   id: number;
   advert: Advertisement;
   mapLocation: string;
+  actionUrl: string;
+  fileInput: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataService: DataService,
-    private location: Location
+    private location: Location,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -32,6 +36,7 @@ export class AdvertisementDetailsComponent implements OnInit {
     this.dataService.getSingleAdvert(this.id)
     .subscribe( (data) => {
       this.advert = data['data'];
+      this.actionUrl = `http://localhost/offers/${this.id}/contact`;
       console.log(`${this.advert.street} ${this.advert.city}`)
       //this.initMap(51.8400, 20.4243);
       //this.setPointer(51.8400, 20.4243);
@@ -67,6 +72,15 @@ export class AdvertisementDetailsComponent implements OnInit {
 
      tiles.addTo(this.map);
     }
+
+  onSubmit() {
+    this.router.navigate([`/`]);
+  }
+
+  fileEvent(fileInput: any){
+    let file = fileInput.target.files[0];
+    this.fileInput = file.name;
+  }
 
   goBack(): void {
     this.location.back();
