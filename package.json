@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc"
+    "postinstall": "ngcc",
+    "prod": "ng build --outputHashing=none --prod=true --extractCss=true --extractLicenses=true"
   },
   "private": true,
   "dependencies": {
