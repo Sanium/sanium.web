@@ -12,29 +12,29 @@ export class DataService {
   filters: {};
   urlBuilder: string;
   urlFinal: string;
-  apiUrl = `http://sanium.olszanowski.it/api/offers`;
+  apiUrl = `http://${window.location.hostname}/api/offers`;
 
   constructor(private http: HttpClient) { }
 
-  setAdverts(data: Advertisement[]){
+  setAdverts(data: Advertisement[]) {
     this.advertList = data;
   }
-  setFilters(data: {}){
+  setFilters(data: {}) {
     this.filters = data;
   }
-  updateAdverts(data: Advertisement[]){
-    data.forEach( (element) => this.advertList.push(element));
+  updateAdverts(data: Advertisement[]) {
+    data.forEach((element) => this.advertList.push(element));
   }
 
-  getNextPage(url: string){
+  getNextPage(url: string) {
     return this.http.get<Advertisement[]>(url);
   }
 
-  getStaticAdverts(){
+  getStaticAdverts() {
     return this.advertList;
   }
 
-  getFilters(){
+  getFilters() {
     return this.filters;
   }
 
