@@ -13,7 +13,7 @@ import { AdvertisementDetailsComponent } from './components/advertisement-detail
   declarations: [
     AppComponent,
     JobAdvertisementListComponent,
-    AdvertisementDetailsComponent
+    AdvertisementDetailsComponent,
   ],
   imports: [
     BrowserModule,

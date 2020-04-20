@@ -1,32 +1,32 @@
 <div class="container ">
   <div class="row mt-4">
     <div *ngIf="advert" class="col-12 col-lg-7"> <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
-      <div class="row z-depth-1 rounded mt-2 py-5">
-        <div class="col-lg-10 text-center my-auto"> <!-- Tytuł -->
+      <div class="row justify-content-center z-depth-1 rounded mt-2 py-5">
+        <div class="col-9 col-lg-10 text-center my-auto"> <!-- Tytuł -->
           <div class="accent-underline"><h1 ><strong>{{advert.name }}</strong></h1></div>
         </div>
-        <div class="col-lg-2 my-auto"> <!-- Ikonka (np. JS)-->
+        <div class="col-2 col-lg-2 my-auto"> <!-- Ikonka (np. JS)-->
           <img class="img-thumbnail rounded-circle float-left" width="70" alt="thumbnail"  [src]="advert.employer.logo">
         </div>
       </div>
       <div class="row z-depth-1 rounded mt-4 py-4">
-        <div class="col-lg-2 my-auto"> <!-- Ikona firmy -->
-          <img class="img-thumbnail rounded-circle float-left" width="70" alt="thumbnail"  [src]="advert.employer.logo">
+        <div class="col-12 text-center col-lg-2 my-auto"> <!-- Ikona firmy -->
+          <img class="img-thumbnail rounded-circle " width="70" alt="thumbnail"  [src]="advert.employer.logo">
         </div>
-        <div class="col-lg-3 text-center my-auto"> <!-- nazwa firmy-->
+        <div class="col-12 col-lg-3 text-center my-auto"> <!-- nazwa firmy-->
           <p class="disclaimer-text mb-1">Nazwa firmy</p>
           <span class=""><h4><strong>{{advert.employer.name}}</strong></h4></span>
         </div>
-        <div class="col-lg-3 text-center my-auto"> <!-- rozmiar firmy-->
+        <div class="col-12 col-lg-3 text-center my-auto"> <!-- rozmiar firmy-->
           <p class="disclaimer-text mb-1">Rozmiar firmy</p>
           <span class=""> <h4><b>{{advert.employer.size}}</b></h4></span>
         </div>
-        <div class="col-lg-4 text-center my-auto"> <!-- Strona firmy-->
+        <div class="col-12 col-lg-4 text-center my-auto"> <!-- Strona firmy-->
           <p class="disclaimer-text mb-1">Strona firmy</p>
           <a [href]="advert.employer.website"> <h5 class="text-truncate">{{advert.employer.website}}</h5> </a>
         </div>
       </div>
-      <!-- Content -->
+      <!-- Wymagania-profity -->
         <div class="row z-depth-1 justify-content-center rounded mt-4 py-4">
           <div class="col-4 text-center">
             <p class="disclaimer-text mb-0">Doświadczenie</p>
@@ -41,22 +41,6 @@
             <p class="font-weight-bold mb-0">{{advert.salary_from}} - {{advert.salary_to}}</p>
           </div>
         </div>
-      <!--
-      <div class="row z-depth-1 justify-content-center rounded mt-4 py-4">
-        <div class="col-lg-3 text-center z-depth-1 light-bg pt-1 pb-4">
-          <p class="disclaimer-text"> Doświadczenie </p>
-          <h5 class="">{{advert.experience}}</h5>
-        </div>
-        <div class="col-lg-3 text-center offset-lg-1 light-bg z-depth-1 pt-1 pb-4">
-          <p class="disclaimer-text"> Rodzaj zatrudnienia </p>
-          <h5>{{advert.employment}}</h5>
-        </div>
-        <div class="col-lg-3 text-center offset-lg-1 light-bg z-depth-1 pt-1 pb-4">
-          <p class="disclaimer-text"> Wynagrodzenie </p>
-          <h5>{{advert.salary_from}} - {{advert.salary_to}}</h5>
-        </div>
-      </div>
-    -->
     </div>
     <div class="col-0 col-lg-5 mt-2 d-none d-lg-block"> <!-- Prawa część: Mapa, miasto, ulica-->
       <div class="map-container">
@@ -66,21 +50,85 @@
       </div>
     </div>
   </div>
-  <div class="row py-4">
-    <div class="col-12 z-depth-1">
-      Here tech <br><br><br>
+  <div class="row py-4 justify-content-center">
+    <div class="col-12 z-depth-1 py-2 pb-5">
+      <h4 class=""> <span class="mt-2"> Pożądane umiejętności </span></h4>
+      <div class="underline"></div>
+
+      <div class="row"> <!-- class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" -->
+        <div *ngFor="let tech of tech_stack" class="col-2" style="width: 4rem;">
+          {{tech.tag}}
+        </div>
+        <div *ngFor="let tech of tech_stack" class="col-2" style="width: 4rem;">
+          {{tech.tag}}
+        </div>
+      </div>
+    </div>
+
       <!-- TODO:*ngIf dać na col ^
       <mdb-badge  *ngIf="advert?.tech_stack" pill="true" primary="true" *ngFor="let tech of advert.tech_stack">
         {{tech.name}} : {{tech.level}}
       </mdb-badge>
     -->
-    </div>
     <div *ngIf="advert" class="col-12 my-3 py-4 z-depth-1 rounded">
       <div class="col-12 underline " [innerHTML]="advert.description"> <!-- Opis pracy -->
       </div>
       <div class="col-12 py-2 my-auto"> <!-- Disclaimer ??-->
         {{advert.disclaimer}}
       </div>
+    </div>
+  </div>
+  <!-- Form -->
+  <div class="card w-100 my-5">
+    <div class="card-body">
+      <div class="d-flex card-title">
+        <h2>Apply for this job</h2>
+      </div>
+      <form #applyForm (ngSubmit)="onSubmit()" enctype="multipart/form-data" method="POST"
+          [action]="actionUrl">
+        <div class="row">
+          <div class="col">
+              <div class="md-form">
+                <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name" class="form-control">
+                <label for="name" class="">Imię i Nazwisko</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="md-form">
+                <input mdbInput name="email" id="email" type="email" aria-label="Text input for email" class="form-control">
+                <label for="email" class="">Email</label>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="md-form"> <!-- Change -->
+              <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links" class="form-control">
+              <label for="links" class="">Opowiedz o sobie (LinkedIn/GitHub link)</label>
+            </div>
+          </div>
+          <div class="col my-auto">
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
+                  aria-describedby="inputGroupFileAddon01" lang="pl-Pl" (change)="fileEvent($event)">
+                <label class="custom-file-label" for="inputGroupFile01" ><span class="text-truncate">{{fileInput==='' ? 'Wybierz plik': fileInput}}</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="d-flex justify-content-end">
+              <div class="md-form mb-0">
+                <button class="btn light-blue text-white btn-block" type="submit" (click)="applyForm.submit()">
+                    Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
   <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect mb-5" (click)="goBack();"> Wstecz </button>

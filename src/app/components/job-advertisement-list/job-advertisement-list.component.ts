@@ -15,6 +15,8 @@ export class JobAdvertisementListComponent implements OnInit {
   selectedFilters: { salaryMin: number, salaryMax: number, technology?: string, exp?: string, city?: string } = {salaryMin: 0, salaryMax: 20000 };
   nextPage: string;
   showDropdown: boolean = false;
+  tech_stack: {tag: string}[] = [{tag: "JS"},{tag:"React"},{tag:"Redux"},{tag:"ES6+"},{tag:"Node"},{tag:"VS Code"}]
+
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
