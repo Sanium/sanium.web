@@ -11,8 +11,8 @@ export class DataService {
   advertList: Advertisement[];
   filters: {};
   urlBuilder: string;
-  urlFinal: string;
-  apiUrl = `http://${window.location.hostname}/api/offers`;
+  urlFinal: string; //http://${window.location.hostname}/api/offers`
+  apiUrl = `http://sanium.olszanowski.it/api/offers`;
 
   constructor(private http: HttpClient) { }
 

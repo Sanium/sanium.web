@@ -36,7 +36,7 @@ export class AdvertisementDetailsComponent implements OnInit {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.dataService.getSingleAdvert(this.id)
       .subscribe((data) => {
-        this.advert = data['data'];
+        this.advert = data['data']; // http://${window.location.hostname}/offers/${this.id}/contact`
         this.actionUrl = `http://${window.location.hostname}/offers/${this.id}/contact`;
         this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
         console.log(`${this.advert.street} ${this.advert.city}`)
