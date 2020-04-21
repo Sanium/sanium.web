@@ -7,8 +7,8 @@
           <div class="form-group my-0 row justify-content-center">
 
             <!-- Technologia -->
-            <div class="col-4 col-xl-2 my-auto">
-              <div class="btn-group btn-block dropdown" mdbDropdown>
+            <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
+              <div class="btn-group btn-block mb-1 mb-lg-0 dropdown" mdbDropdown>
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
                   mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
                   {{selectedFilters?.technology || "Technologia"}}
@@ -24,8 +24,8 @@
             </div>
 
             <!-- Wynagrodzenie -->
-            <div class="col-4 col-xl-2 my-auto">
-              <div class="btn-group btn-block " mdbDropdown [autoClose]="false">
+            <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
+              <div class="btn-group btn-block mb-1 mb-lg-0" mdbDropdown [autoClose]="false">
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
                   mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
                   {{(selectedFilters.salaryMin == 0
@@ -46,7 +46,7 @@
             </div>
 
             <!-- Doświadczenie -->
-            <div class="col-4 col-xl-2 my-auto">
+            <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
               <div class="btn-group btn-block" mdbDropdown>
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
                   mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
@@ -63,7 +63,7 @@
             </div>
 
             <!-- Miasto -->
-            <div class="col-8 col-xl-3 my-auto ml-0">
+            <div class="col-12 col-sm-8 col-xl-3 my-auto ml-0">
               <div class="md-form">
                 <input mdbInput type="text" class="form-control " id="inputCity" [(ngModel)]="selectedFilters.city">
                 <label for="inputCity" class="">Miasto</label>
@@ -71,7 +71,7 @@
             </div>
 
             <!-- Submit -->
-            <div class="col-1 col-xl-1 my-auto mr-5">
+            <div class="col-6 col-md-1 my-auto mr-0 mr-md-5">
               <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect"
                 (click)="filterAdverts();"> Filtruj </button>
             </div>
@@ -98,16 +98,16 @@
         <!-- Main row -->
         <div class="row my-0 text-dark">
           <!-- Employer logo -->
-          <div class="col-3 text-center col-md-2 my-auto py-3 ml-2 ml-md-5">
+          <div class="col-3 text-center col-md-2 my-auto py-3 ">
             <img class="img-thumbnail rounded-circle float-left" width="70px" alt="thumbnail"
               [src]="advert.employer.logo">
           </div>
           <!--Advert main section -->
-          <div class="col-6 col-lg-5 pt-3 ">
+          <div class="col-6 col-md-7 col-lg-5 pt-3 ">
             <div class="row mb-2 mb-xl-0">
               <!-- Advert Name -->
               <div class="col-auto mb-0 mb-xl-2">
-                <h4 class="primary-text ">{{advert.name}}</h4>
+                <h4 class="primary-text">{{advert.name}}</h4>
               </div>
               <!-- Advert Salary range -->
               <div class="col-lg-12 col-xl" *ngIf="advert?.salary_from">
@@ -128,26 +128,27 @@
             </div>
           </div>
           <!-- Advert tech stack -->
-          <div class="col d-none d-md-block text-right my-auto mr-0 py-0 py-lg-3">
-            <div class="row mr-0">
-              <div *ngIf="advert?.tech_stack[0]" class="text-white accent-bg badge text-wrap mr-2" style="width: 4rem;">
+          <div class="col d-none d-lg-block text-right my-auto mr-0 py-0 py-lg-3">
+            <div class="row justify-content-center mr-0">
+              <div *ngIf="advert?.tech_stack[0]" class="text-white accent-bg badge text-wrap mr-2 col-auto px-1">
                 {{advert.tech_stack[0].tag}}
               </div>
-              <div *ngIf="advert.tech_stack[1]" class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2"
-                style="width: 4rem;">
+              <div class="col-lg-12 d-xl-none mt-1"></div>
+              <div *ngIf="advert.tech_stack[1]" class="text-white accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-1">
                 {{advert.tech_stack[1].tag}}
               </div>
-              <div *ngIf="advert.tech_stack[2]" class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2"
-                style="width: 4rem;">
+              <div class="col-lg-12 d-xl-none mt-1"></div>
+              <div *ngIf="advert.tech_stack[2]" class="text-white accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-1">
                 {{advert.tech_stack[2].tag}}
               </div>
             </div>
           </div>
+          <div class="col-1 d-none d-md-block d-lg-none"></div>
           <!-- Left aligned tech. icon -->
-          <div class="col col-md-1 float-sm-left rounded-y text-center blue-gradient py-3 text-white">
+          <div class="col col-md-2 col-xl-1 float-sm-left rounded-y text-center blue-gradient py-3 text-white">
             <div class="row h-100">
               <div class="col-12 my-auto">
-                {{advert.technology}}
+                <span class="text-technology">{{advert.technology}}</span>
               </div>
             </div>
           </div>
