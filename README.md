@@ -7,5 +7,5 @@ Fragment części wizualnej aplikacji Sanium - aplikacji umożliwiającej dodawa
     npm start
 
 ## Dodatkowo
-Całą aplikację można znaleźć pod adresem:
-    sanium.olszanowski.it
+Całą aplikację można znaleźć pod adresem:<br/>
+     https://sanium.olszanowski.it
