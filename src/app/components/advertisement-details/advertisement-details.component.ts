@@ -75,16 +75,12 @@ export class AdvertisementDetailsComponent implements OnInit {
     tiles.addTo(this.map);
   }
 
-  onSubmit() {
-    this.router.navigate([`/`]);
-  }
-
   fileEvent(fileInput: any) {
     let file = fileInput.target.files[0];
     this.fileInput = file.name;
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate([``]);
   }
 }
