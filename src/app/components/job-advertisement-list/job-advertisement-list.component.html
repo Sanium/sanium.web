@@ -9,12 +9,12 @@
             <!-- Technologia -->
             <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
               <div class="btn-group btn-block mb-1 mb-lg-0 dropdown" mdbDropdown>
-                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
-                  mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
+                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
+                  mdbWavesEffect>
                   {{selectedFilters?.technology || "Technologia"}}
                 </button>
                 <!-- Tech dropdown -->
-                <div class="dropdown-menu dropdown-primary">
+                <div class="dropdown-menu w-100 dropdown-primary">
                   <ul class="rmpm">
                     <li *ngFor="let tech of filters['tech']" (click)="selectTechOption(tech);" class="dropdown-item">
                       {{tech}}</li>
@@ -26,15 +26,15 @@
             <!-- Wynagrodzenie -->
             <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
               <div class="btn-group btn-block mb-1 mb-lg-0" mdbDropdown [autoClose]="false">
-                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
-                  mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
+                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
+                  mdbWavesEffect>
                   {{(selectedFilters.salaryMin == 0
                     && selectedFilters.salaryMax == 20000
                     && salaryMin.pristine
                     && salaryMax.pristine) ? "Wynagrodzenie" : (selectedFilters.salaryMin + " - " + selectedFilters.salaryMax)}}
                 </button>
-                <!-- Tech dropdown -->
-                <div class="dropdown-menu">
+                <!-- Wynagrodzenie dropdown -->
+                <div class="dropdown-menu w-100">
                   <span class="text-primary-color ml-2">Od: {{selectedFilters.salaryMin}} </span>
                   <input type="range" min="0" [max]="salaryMax.value" step="100" class="custom-range pl-2 pr-2"
                     id="salaryMin" #salaryMin="ngModel" [(ngModel)]="selectedFilters.salaryMin">
@@ -48,12 +48,12 @@
             <!-- Doświadczenie -->
             <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
               <div class="btn-group btn-block" mdbDropdown>
-                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
-                  mdbWavesEffect style="border: 2px solid #B3E5Fc; color: #03A9F4">
+                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
+                  mdbWavesEffect>
                   {{selectedFilters?.exp || "Doświadczenie"}}
                 </button>
-                <!-- Tech dropdown -->
-                <div class="dropdown-menu">
+                <!-- Doświadczenie dropdown -->
+                <div class="dropdown-menu w-100">
                   <ul class="rmpm">
                     <li *ngFor="let exp of filters['exp']" (click)="selectExpOption(exp);" class="dropdown-item">{{exp}}
                     </li>
@@ -81,6 +81,8 @@
       </mdb-card-body>
     </mdb-card>
   </div>
+  <!-- TODO: Sorting -->
+
 </div>
 
 <!-- List -->
