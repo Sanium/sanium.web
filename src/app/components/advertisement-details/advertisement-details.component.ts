@@ -38,18 +38,14 @@ export class AdvertisementDetailsComponent implements OnInit {
       .subscribe((data) => {
         this.advert = data['data']; // http://${window.location.hostname}/offers/${this.id}/contact`
         this.actionUrl = `http://${window.location.hostname}/offers/${this.id}/contact`;
-        this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
-        console.log(`${this.advert.street} ${this.advert.city}`)
-        //this.initMap(51.8400, 20.4243);
-        //this.setPointer(51.8400, 20.4243);
         this.setMapLocation(`${this.advert.street} ${this.advert.city}`);
+        this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
       });
   }
 
   private setMapLocation(location: string): void {
     this.provider.search({ query: location }).then(
       (result) => {
-        console.log(result);
         this.initMap(+result[0].x, +result[0].y)
         this.setPointer(+result[0].x, +result[0].y)
       }
@@ -62,7 +58,6 @@ export class AdvertisementDetailsComponent implements OnInit {
       .openPopup();
   }
   private initMap(x: number, y: number): void {
-    console.log("Setting map: " + x + " " + y);
     this.map = L.map('map', {
       center: [y, x], // TODO: change to args
       zoom: 16
