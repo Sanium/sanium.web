@@ -81,9 +81,14 @@
       </mdb-card-body>
     </mdb-card>
   </div>
-  <!-- TODO: Sorting -->
-
+  <!-- Sorting -->
+  <div class="row justify-content-center mb-3">
+    <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
+    (click)="sort();"> Sortuj wg. wynagrodzenia </button>
+  </div>
 </div>
+
+
 
 <!-- List -->
 <div class="container ">
@@ -158,4 +163,6 @@
       </a>
     </div>
   </div>
+
 </div>
+

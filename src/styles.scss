@@ -50,6 +50,10 @@ $divider-color: #BDBDBD;
   border: 1px solid $primary-color;
 }
 
+.primary-border-bottom {
+  border-bottom: 1px solid $primary-color;
+}
+
 .text-primary-color{
   color: #03A9F4;
 }

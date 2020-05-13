@@ -10,6 +10,8 @@ export class DataService {
 
   advertList: Advertisement[];
   filters: {};
+  isAscendingOrder: boolean = false;
+
   urlBuilder: string;
   urlFinal: string; //http://${window.location.hostname}/api/offers`
   apiUrl = `http://sanium.olszanowski.it/api/offers`;

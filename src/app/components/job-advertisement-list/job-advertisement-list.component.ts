@@ -13,8 +13,7 @@ export class JobAdvertisementListComponent implements OnInit {
   filters: {};
   advertList: Advertisement[];
   selectedFilters: { salaryMin: number, salaryMax: number, technology?: string, exp?: string, city?: string } = { salaryMin: 0, salaryMax: 20000 };
-  nextPage: string;
-  showDropdown: boolean = false;
+  isAscendingOrder: boolean;
 
   constructor(private dataService: DataService) { }
 
@@ -40,6 +39,7 @@ export class JobAdvertisementListComponent implements OnInit {
       this.filters = this.dataService.getFilters();
       this.advertList = this.dataService.getStaticAdverts();
     }
+    this.isAscendingOrder = this.dataService.isAscendingOrder;
   }
 
   filterAdverts(): void {
@@ -67,8 +67,17 @@ export class JobAdvertisementListComponent implements OnInit {
     else this.selectedFilters.exp = option;
   }
 
-  log() {
-    console.log(this.selectedFilters);
-  }
 
+  sort() {
+    this.advertList.sort( (a, b) => {
+      if(!this.isAscendingOrder) {
+        return a.salary_from - b.salary_from;
+      }
+      else {
+        return b.salary_from - a.salary_from;
+      }
+    });
+    this.isAscendingOrder = !this.isAscendingOrder;
+    this.dataService.isAscendingOrder = this.isAscendingOrder;
+  }
 }
