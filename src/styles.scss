@@ -1,20 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~leaflet/dist/leaflet.css";
 
-.spy {
-  background-color: rgb(0, 255, 34);
-  opacity: 0.7;
-}
-
-.spy2 {
-  background-color: rgb(234, 0, 255);
-  opacity: 0.7;
-}
-.spy3 {
-  background-color: lightblue;
-  opacity: 0.5;
-}
-
 .rmpm {
   margin: 0px;
   padding: 0px;
@@ -22,7 +8,7 @@
 
 .disclaimer-text {
   font-size: 14px;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .rounded{
@@ -54,16 +40,24 @@ $divider-color: #BDBDBD;
   border-bottom: 1px solid $primary-color;
 }
 
-.text-primary-color{
-  color: #03A9F4;
+.text-primary-color {
+  color: $primary-color;
+}
+
+.text-primary-color-darkmode {
+  color: $light-primary-color;
 }
 
 .primary-text {
-  color: #212121;
+  color: $primary-text;
+}
+
+.primary-text-darkmode {
+  color: #FFFFFF;
 }
 
 .secondary-text{
-  color: #757575;
+  color: $secondary-text;
 }
 
 .accent-bg {
@@ -76,8 +70,27 @@ $divider-color: #BDBDBD;
 }
 
 .light-bg {
-  background-color: $light-primary-color;
+  background-color: #fff;
   color: $primary-text;
+}
+
+.dark-bg {
+  background-color: $secondary-text;
+  color: #fff;
+}
+
+input:focus + label.dark-bg {
+  color: $light-primary-color !important;
+}
+
+label.dark-bg {
+  color: #fff !important;
+}
+
+input.dark-bg:focus {
+  color: #fff !important;
+  border-bottom: 1px solid $light-primary-color !important;
+  box-shadow: 0 1px 0 0 $light-primary-color !important;
 }
 
 button.primary-border:hover {
