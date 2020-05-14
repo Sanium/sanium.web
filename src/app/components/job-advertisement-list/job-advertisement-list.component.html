@@ -3,15 +3,16 @@
     <!-- Filters -->
     <div *ngIf="filters !== undefined" class="mb-3">
       <mdb-card>
-        <mdb-card-body class="py-1 light-bg" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'">
+        <mdb-card-body class="py-1 light-bg" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
           <div class="container">
             <div class="form-group my-0 row justify-content-center">
 
               <!-- Technologia -->
               <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
                 <div class="btn-group btn-block mb-1 mb-lg-0 dropdown" mdbDropdown>
-                  <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
-                    mdbWavesEffect>
+                  <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
+                    mdbWavesEffect
+                    [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
                     {{selectedFilters?.technology || "Technologia"}}
                   </button>
                   <!-- Tech dropdown -->
@@ -28,7 +29,8 @@
               <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
                 <div class="btn-group btn-block mb-1 mb-lg-0" mdbDropdown [autoClose]="false">
                   <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
-                    mdbWavesEffect>
+                    mdbWavesEffect
+                    [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
                     {{(selectedFilters.salaryMin == 0
                       && selectedFilters.salaryMax == 20000
                       && salaryMin.pristine
@@ -50,7 +52,8 @@
               <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
                 <div class="btn-group btn-block" mdbDropdown>
                   <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
-                    mdbWavesEffect>
+                    mdbWavesEffect
+                    [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
                     {{selectedFilters?.exp || "Doświadczenie"}}
                   </button>
                   <!-- Doświadczenie dropdown -->
@@ -66,15 +69,16 @@
               <!-- Miasto -->
               <div class="col-12 col-sm-8 col-xl-3 my-auto ml-0">
                 <div class="md-form">
-                  <input mdbInput type="text" class="form-control" [ngClass]="{'dark-bg' : isDarkTheme }" id="inputCity" [(ngModel)]="selectedFilters.city">
-                  <label [ngClass]="{'dark-bg' : isDarkTheme }" id="inputCity" for="inputCity">Miasto</label>
+                  <input mdbInput type="text" class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" [(ngModel)]="selectedFilters.city">
+                  <label [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" for="inputCity">Miasto</label>
                 </div>
               </div>
 
               <!-- Submit -->
-              <div class="col-6 col-md-1 my-auto mr-0 mr-md-5">
+              <div class="col-6 col-md-1 my-auto mr-0 text-center">
                 <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect"
-                  (click)="filterAdverts();"> Filtruj </button>
+                  (click)="filterAdverts();"
+                  [ngClass]="!isDarkTheme ? 'primary-border' : 'primary-border-darkmode'"> Filtruj </button>
               </div>
 
             </div>
@@ -85,11 +89,12 @@
     <!-- Sorting -->
     <div class="row justify-content-center mb-3 mx-0">
       <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
-      (click)="sort();"> Sortuj wg wynagrodzenia </button>
+      (click)="switchTheme();"
+      [ngClass]="{'hover-darkmode' : isDarkTheme}"> Zmień motyw </button>
     </div>
     <div class="row justify-content-center mb-3 mx-0">
       <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
-      (click)="switchTheme();"> Zmien motyw</button>
+      (click)="sort();"> Sortuj wg wynagrodzenia </button>
     </div>
   </div>
 
@@ -104,10 +109,10 @@
 
       <!-- If found -->
       <div class="col-11 col-lg-12 mb-3 hoverable rounded-y" *ngFor="let advert of advertList;"
-      [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'">
+      [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
         <a [routerLink]="['/details', advert.id]">
           <!-- Main row -->
-          <div class="row my-0 text-dark">
+          <div class="row my-0 text-dark" >
             <!-- Employer logo -->
             <div class="col-3 text-center col-md-2 my-auto py-3 ">
               <img class="img-thumbnail rounded-circle float-left" width="70px" alt="thumbnail"

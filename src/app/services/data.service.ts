@@ -11,6 +11,7 @@ export class DataService {
   advertList: Advertisement[];
   filters: {};
   isAscendingOrder: boolean = false;
+  isDarkTheme: boolean = false;
 
   urlBuilder: string;
   urlFinal: string; //http://${window.location.hostname}/api/offers`

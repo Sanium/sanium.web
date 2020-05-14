@@ -18,6 +18,11 @@ h4 {
   color: #03A9F4;
 }
 
-button.filter-border {
+.filter-border-dark {
+  border: 2px solid #03A9F4;
+  color: #fff;
+}
+
+button.filter-border, button.filter-border-dark {
   font-size: 65%;
 }

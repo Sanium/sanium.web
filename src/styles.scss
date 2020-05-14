@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~leaflet/dist/leaflet.css";
 
+// Utitlities
 .rmpm {
   margin: 0px;
   padding: 0px;
@@ -19,6 +20,15 @@
   border-radius: 25px;
 }
 
+li {
+  cursor: pointer;
+}
+
+.rounded-y {
+  border-radius: 0px 10px 10px 0px;
+}
+
+// Light Theme
 $dark-primary-color: #0288D1;
 $primary-color: #03A9F4;
 $light-primary-color: #B3E5Fc;
@@ -32,9 +42,6 @@ $divider-color: #BDBDBD;
   border-bottom: 1px solid $divider-color;
 }
 
-.primary-border {
-  border: 1px solid $primary-color;
-}
 
 .primary-border-bottom {
   border-bottom: 1px solid $primary-color;
@@ -44,16 +51,8 @@ $divider-color: #BDBDBD;
   color: $primary-color;
 }
 
-.text-primary-color-darkmode {
-  color: $light-primary-color;
-}
-
 .primary-text {
   color: $primary-text;
-}
-
-.primary-text-darkmode {
-  color: #FFFFFF;
 }
 
 .secondary-text{
@@ -74,23 +73,8 @@ $divider-color: #BDBDBD;
   color: $primary-text;
 }
 
-.dark-bg {
-  background-color: $secondary-text;
-  color: #fff;
-}
-
-input:focus + label.dark-bg {
-  color: $light-primary-color !important;
-}
-
-label.dark-bg {
-  color: #fff !important;
-}
-
-input.dark-bg:focus {
-  color: #fff !important;
-  border-bottom: 1px solid $light-primary-color !important;
-  box-shadow: 0 1px 0 0 $light-primary-color !important;
+.primary-border {
+  border: 1px solid $primary-color;
 }
 
 button.primary-border:hover {
@@ -98,10 +82,7 @@ button.primary-border:hover {
   color: white;
 }
 
-li {
-  cursor: pointer;
-}
-
+  // Z-depth shadows
 .hoverable {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
@@ -109,6 +90,54 @@ li {
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
 }
 
-.rounded-y {
-  border-radius: 0px 10px 10px 0px;
+// Dark theme
+$dark-bg: #19191A;
+$dark-surface: #303031;
+
+.text-primary-color-darkmode {
+  color: $light-primary-color;
 }
+
+.primary-text-darkmode {
+  color: #FFFFFF;
+}
+
+.opacity100 {
+  opacity: 1;
+}
+
+.dark-bg {
+  background-color: $dark-bg !important;
+  color: #fff;
+}
+
+.dark-bg-surface {
+  background-color: $dark-surface;
+  color: #fff;
+}
+
+.primary-border-darkmode {
+  border: 1px solid $dark-primary-color;
+}
+
+button.primary-border-darkmode:hover {
+  background-color: $dark-primary-color;
+  color: white;
+}
+
+input:focus + label.dark-bg-surface {
+  color: #fff !important;
+}
+
+label.dark-bg-surface {
+  color: #fff !important;
+}
+
+input.dark-bg-surface:focus {
+  color: #fff !important;
+  border-bottom: 1px solid #fff !important;
+  box-shadow: 0 1px 0 0 #fff !important;
+}
+
+
+
