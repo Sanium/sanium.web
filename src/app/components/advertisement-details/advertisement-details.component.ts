@@ -24,6 +24,7 @@ export class AdvertisementDetailsComponent implements OnInit {
   actionUrl: string;
   csrf: string;
   fileInput: string = '';
+  isDarkTheme: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,6 +35,7 @@ export class AdvertisementDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.isDarkTheme = this.dataService.isDarkTheme;
     this.dataService.getSingleAdvert(this.id)
       .subscribe((data) => {
         this.advert = data['data']; // http://${window.location.hostname}/offers/${this.id}/contact`
