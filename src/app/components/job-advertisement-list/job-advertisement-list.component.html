@@ -16,9 +16,11 @@
                     {{selectedFilters?.technology || "Technologia"}}
                   </button>
                   <!-- Tech dropdown -->
-                  <div class="dropdown-menu w-100 dropdown-primary">
+                  <div class="dropdown-menu w-100 dropdown-primary"
+                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
                     <ul class="rmpm">
-                      <li *ngFor="let tech of filters['tech']" (click)="selectTechOption(tech);" class="dropdown-item">
+                      <li *ngFor="let tech of filters['tech']" (click)="selectTechOption(tech);" class="dropdown-item"
+                      [style]="!isDarkTheme ? 'color: black;' : 'color: white'">
                         {{tech}}</li>
                     </ul>
                   </div>
@@ -37,11 +39,18 @@
                       && salaryMax.pristine) ? "Wynagrodzenie" : (selectedFilters.salaryMin + " - " + selectedFilters.salaryMax)}}
                   </button>
                   <!-- Wynagrodzenie dropdown -->
-                  <div class="dropdown-menu w-100">
-                    <span class="text-primary-color ml-2">Od: {{selectedFilters.salaryMin}} </span>
+                  <div class="dropdown-menu w-100"
+                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                    <span class="ml-2"
+                    [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'">
+                      Od: {{selectedFilters.salaryMin}}
+                    </span>
                     <input type="range" min="0" [max]="salaryMax.value" step="100" class="custom-range pl-2 pr-2"
                       id="salaryMin" #salaryMin="ngModel" [(ngModel)]="selectedFilters.salaryMin">
-                    <span class="text-primary-color ml-2">Do: {{selectedFilters.salaryMax}} </span>
+                    <span class="text-primary-color ml-2"
+                    [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'">
+                      Do: {{selectedFilters.salaryMax}}
+                    </span>
                     <input type="range" [min]="salaryMin.value" max="20000" step="100" class="custom-range pl-2 pr-2"
                       id="salaryMax" #salaryMax="ngModel" [(ngModel)]="selectedFilters.salaryMax">
                   </div>
@@ -57,9 +66,12 @@
                     {{selectedFilters?.exp || "Doświadczenie"}}
                   </button>
                   <!-- Doświadczenie dropdown -->
-                  <div class="dropdown-menu w-100">
+                  <div class="dropdown-menu w-100"
+                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
                     <ul class="rmpm">
-                      <li *ngFor="let exp of filters['exp']" (click)="selectExpOption(exp);" class="dropdown-item">{{exp}}
+                      <li *ngFor="let exp of filters['exp']" (click)="selectExpOption(exp);" class="dropdown-item"
+                      [style]="!isDarkTheme ? 'color: black;' : 'color: white'">
+                        {{exp}}
                       </li>
                     </ul>
                   </div>
