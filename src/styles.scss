@@ -1,20 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~leaflet/dist/leaflet.css";
 
-.spy {
-  background-color: rgb(0, 255, 34);
-  opacity: 0.7;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.spy2 {
-  background-color: rgb(234, 0, 255);
-  opacity: 0.7;
-}
-.spy3 {
-  background-color: lightblue;
-  opacity: 0.5;
-}
-
+// Utitlities
 .rmpm {
   margin: 0px;
   padding: 0px;
@@ -22,7 +12,11 @@
 
 .disclaimer-text {
   font-size: 14px;
-  opacity: 0.7;
+  opacity: 0.5;
+}
+
+.badge {
+  font-size: 0.85rem;
 }
 
 .rounded{
@@ -33,7 +27,16 @@
   border-radius: 25px;
 }
 
-$dark-primary-color: #0288D1;
+li {
+  cursor: pointer;
+}
+
+.rounded-y {
+  border-radius: 0px 10px 10px 0px;
+}
+
+// Light Theme
+$dark-primary-color: #0277bd;
 $primary-color: #03A9F4;
 $light-primary-color: #B3E5Fc;
 $primary-text: #212121;
@@ -46,24 +49,21 @@ $divider-color: #BDBDBD;
   border-bottom: 1px solid $divider-color;
 }
 
-.primary-border {
-  border: 1px solid $primary-color;
-}
 
 .primary-border-bottom {
   border-bottom: 1px solid $primary-color;
 }
 
-.text-primary-color{
-  color: #03A9F4;
+.text-primary-color {
+  color: $primary-color;
 }
 
 .primary-text {
-  color: #212121;
+  color: $primary-text;
 }
 
 .secondary-text{
-  color: #757575;
+  color: $secondary-text;
 }
 
 .accent-bg {
@@ -76,8 +76,12 @@ $divider-color: #BDBDBD;
 }
 
 .light-bg {
-  background-color: $light-primary-color;
+  background-color: #fff;
   color: $primary-text;
+}
+
+.primary-border {
+  border: 1px solid $primary-color;
 }
 
 button.primary-border:hover {
@@ -85,10 +89,7 @@ button.primary-border:hover {
   color: white;
 }
 
-li {
-  cursor: pointer;
-}
-
+  // Z-depth shadows
 .hoverable {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
@@ -96,6 +97,54 @@ li {
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
 }
 
-.rounded-y {
-  border-radius: 0px 10px 10px 0px;
+// Dark theme
+$dark-bg: #19191A;
+$dark-surface: #303031;
+
+.text-primary-color-darkmode {
+  color: $light-primary-color;
 }
+
+.primary-text-darkmode {
+  color: #FFFFFF;
+}
+
+.opacity100 {
+  opacity: 1;
+}
+
+.dark-bg {
+  background-color: $dark-bg !important;
+  color: #fff;
+}
+
+.dark-bg-surface {
+  background-color: $dark-surface;
+  color: #fff;
+}
+
+.primary-border-darkmode {
+  border: 1px solid $dark-primary-color;
+}
+
+button.primary-border-darkmode:hover {
+  background-color: $dark-primary-color;
+  color: white;
+}
+
+input:focus + label.dark-bg-surface {
+  color: #fff !important;
+}
+
+label.dark-bg-surface {
+  color: #fff !important;
+}
+
+input.dark-bg-surface:focus {
+  color: #fff !important;
+  border-bottom: 1px solid #fff !important;
+  box-shadow: 0 1px 0 0 #fff !important;
+}
+
+
+

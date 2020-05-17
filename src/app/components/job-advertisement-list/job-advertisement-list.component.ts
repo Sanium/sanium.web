@@ -14,6 +14,7 @@ export class JobAdvertisementListComponent implements OnInit {
   advertList: Advertisement[];
   selectedFilters: { salaryMin: number, salaryMax: number, technology?: string, exp?: string, city?: string } = { salaryMin: 0, salaryMax: 20000 };
   isAscendingOrder: boolean;
+  isDarkTheme: boolean;
 
   constructor(private dataService: DataService) { }
 
@@ -40,6 +41,7 @@ export class JobAdvertisementListComponent implements OnInit {
       this.advertList = this.dataService.getStaticAdverts();
     }
     this.isAscendingOrder = this.dataService.isAscendingOrder;
+    this.isDarkTheme = this.dataService.isDarkTheme;
   }
 
   filterAdverts(): void {
@@ -79,5 +81,10 @@ export class JobAdvertisementListComponent implements OnInit {
     });
     this.isAscendingOrder = !this.isAscendingOrder;
     this.dataService.isAscendingOrder = this.isAscendingOrder;
+  }
+
+  switchTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+    this.dataService.isDarkTheme = this.isDarkTheme;
   }
 }

@@ -1,161 +1,177 @@
-<div class="container ">
-  <div class="row mt-4">
-    <div *ngIf="advert" class="col-12 col-lg-7">
-      <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
-      <div class="row justify-content-center z-depth-1 rounded mt-2 py-5">
-        <div class="col-12 text-center my-auto">
-          <!-- Tytuł -->
-          <div class="accent-underline">
-            <h2 ><strong>{{ advert.name }}</strong></h2>
-            <!--
-            <h4 class="d-block d-lg-none"><strong>{{advert.name }}</strong></h4>
-            -->
+<div class="container-fluid" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'" style="min-height: 100%;">
+  <div class="container">
+    <div class="row">
+      <div *ngIf="advert" class="col-12 col-lg-7">
+        <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
+        <div class="row justify-content-center z-depth-1 rounded mt-2 py-5"
+        [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+          <div class="col-12 text-center my-auto">
+            <!-- Tytuł -->
+            <div class="accent-underline"
+            [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
+              <h2 ><strong>{{ advert.name }}</strong></h2>
+              <!--
+              <h4 class="d-block d-lg-none"><strong>{{advert.name }}</strong></h4>
+              -->
+            </div>
+          </div>
+          <!--
+          <div class="col-2 col-lg-2 my-auto">
+            <img class="img-thumbnail rounded-circle float-left" width="70" alt="thumbnail" [src]="advert.employer.logo">
+          </div>
+          -->
+        </div>
+        <div class="row z-depth-1 rounded mt-4 py-4"
+        [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+          <div class="col-12 text-center col-lg-2 my-auto">
+            <!-- Ikona firmy -->
+            <img class="img-thumbnail rounded-circle " width="70" alt="thumbnail" [src]="advert.employer.logo">
+          </div>
+          <div class="col-12 col-lg-3 text-center my-auto">
+            <!-- nazwa firmy-->
+            <p class="disclaimer-text mb-1">Nazwa firmy</p>
+            <span class="">
+              <h3><strong>{{advert.employer.name}}</strong></h3>
+            </span>
+          </div>
+          <div class="col-12 col-lg-3 text-center my-auto">
+            <!-- rozmiar firmy-->
+            <p class="disclaimer-text mb-1">Rozmiar firmy</p>
+            <span class="">
+              <h4><b>{{advert.employer.size}}</b></h4>
+            </span>
+          </div>
+          <div class="col-12 col-lg-4 text-center my-auto">
+            <!-- Strona firmy-->
+            <p class="disclaimer-text mb-1">Strona firmy</p>
+            <a [href]="advert.employer.website">
+              <h5 class="text-truncate">{{advert.employer.website}}</h5>
+            </a>
           </div>
         </div>
-        <!--
-        <div class="col-2 col-lg-2 my-auto">
-          <img class="img-thumbnail rounded-circle float-left" width="70" alt="thumbnail" [src]="advert.employer.logo">
-        </div>
-        -->
-      </div>
-      <div class="row z-depth-1 rounded mt-4 py-4">
-        <div class="col-12 text-center col-lg-2 my-auto">
-          <!-- Ikona firmy -->
-          <img class="img-thumbnail rounded-circle " width="70" alt="thumbnail" [src]="advert.employer.logo">
-        </div>
-        <div class="col-12 col-lg-3 text-center my-auto">
-          <!-- nazwa firmy-->
-          <p class="disclaimer-text mb-1">Nazwa firmy</p>
-          <span class="">
-            <h3><strong>{{advert.employer.name}}</strong></h3>
-          </span>
-        </div>
-        <div class="col-12 col-lg-3 text-center my-auto">
-          <!-- rozmiar firmy-->
-          <p class="disclaimer-text mb-1">Rozmiar firmy</p>
-          <span class="">
-            <h4><b>{{advert.employer.size}}</b></h4>
-          </span>
-        </div>
-        <div class="col-12 col-lg-4 text-center my-auto">
-          <!-- Strona firmy-->
-          <p class="disclaimer-text mb-1">Strona firmy</p>
-          <a [href]="advert.employer.website">
-            <h5 class="text-truncate">{{advert.employer.website}}</h5>
-          </a>
+        <!-- Wymagania-profity -->
+        <div class="row z-depth-1 justify-content-center rounded mt-4 py-4"
+        [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+          <div class="col-4 text-center">
+            <p class="disclaimer-text mb-0">Doświadczenie</p>
+            <p class="font-weight-bold mb-0">{{advert.experience}}</p>
+          </div>
+          <div class="col-4 text-center border-left border-right">
+            <p class="disclaimer-text mb-0">Rodzaj zatrudnienia</p>
+            <p class="font-weight-bold mb-0">{{advert.employment}}</p>
+          </div>
+          <div class="col-4 text-center">
+            <p class="disclaimer-text mb-0">Wynagrodzenie</p>
+            <p class="font-weight-bold mb-0">{{advert.salary_from}} - {{advert.salary_to}}</p>
+          </div>
         </div>
       </div>
-      <!-- Wymagania-profity -->
-      <div class="row z-depth-1 justify-content-center rounded mt-4 py-4">
-        <div class="col-4 text-center">
-          <p class="disclaimer-text mb-0">Doświadczenie</p>
-          <p class="font-weight-bold mb-0">{{advert.experience}}</p>
-        </div>
-        <div class="col-4 text-center border-left border-right">
-          <p class="disclaimer-text mb-0">Rodzaj zatrudnienia</p>
-          <p class="font-weight-bold mb-0">{{advert.employment}}</p>
-        </div>
-        <div class="col-4 text-center">
-          <p class="disclaimer-text mb-0">Wynagrodzenie</p>
-          <p class="font-weight-bold mb-0">{{advert.salary_from}} - {{advert.salary_to}}</p>
+      <div class="col-0 col-lg-5 mt-2 d-none d-lg-block">
+        <!-- Prawa część: Mapa, miasto, ulica-->
+        <div class="map-container">
+          <div class="map-frame rounded">
+            <div id="map"></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-0 col-lg-5 mt-2 d-none d-lg-block">
-      <!-- Prawa część: Mapa, miasto, ulica-->
-      <div class="map-container">
-        <div class="map-frame rounded">
-          <div id="map"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row py-4 justify-content-center">
-    <div class="col-12 z-depth-1 py-3 pb-3">
-      <h4 class=""> <span class="ml-2 mt-2"> Pożądane umiejętności </span></h4>
-      <div class="underline"></div>
+    <div class="row py-4 justify-content-center">
+      <div class="col-12 z-depth-1 py-3 pb-3"
+      [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+        <h4 class=""> <span class="ml-2 mt-2"> Pożądane umiejętności </span></h4>
+        <div class="underline"></div>
 
-      <div *ngIf="advert?.tech_stack" class="row mb-3">
-        <!-- class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" -->
-        <div *ngFor="let tech of advert.tech_stack" class="rounded-big text-center col-auto mx-2 mx-lg-3 mt-3 z-depth-1"
-          style="height: 5rem; min-width: 5rem;">
-          <div class="row h-100">
-            <div class="col-12 my-auto">
-              {{tech.tag}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div *ngIf="advert" class="col-12 my-3 py-4 z-depth-1 rounded">
-      <div class="col-12 underline " [innerHTML]="advert.description">
-        <!-- Opis pracy -->
-      </div>
-      <div class="col-12 py-2 my-auto">
-        <!-- Disclaimer ??-->
-        {{advert.disclaimer}}
-      </div>
-    </div>
-  </div>
-  <!-- Form -->
-  <div class="card w-100 my-5">
-    <div class="card-body">
-      <div class="d-flex card-title">
-        <h2>Apply for this job</h2>
-      </div>
-      <form #applyForm enctype="multipart/form-data" method="POST" [action]="actionUrl">
-        <input type="hidden" name="_token" [value]="csrf">
-        <div class="row justify-content-center">
-          <div class="col-8 col-sm">
-            <div class="md-form">
-              <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name"
-                class="form-control" required>
-              <label for="name" class="">Imię i Nazwisko*</label>
-            </div>
-          </div>
-          <div class="col-8 col-sm">
-            <div class="md-form">
-              <input mdbInput name="email" id="email" type="email" aria-label="Text input for email"
-                class="form-control" required>
-              <label for="email" class="">Email*</label>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-8 col-sm">
-            <div class="md-form">
-              <!-- Change -->
-              <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links"
-                class="form-control" required>
-              <label for="links" class="">Opowiedz o sobie (LinkedIn/GitHub link)*</label>
-            </div>
-          </div>
-          <div class="col-8 col-sm my-auto">
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01" required
-                  aria-describedby="inputGroupFileAddon01" lang="pl-Pl" (change)="fileEvent($event)">
-                <label class="custom-file-label" for="inputGroupFile01"><span
-                    class="text-truncate">{{fileInput==='' ? 'Wybierz plik*': fileInput}}</span></label>
+        <div *ngIf="advert?.tech_stack" class="row mb-3">
+          <!-- class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" -->
+          <div *ngFor="let tech of advert.tech_stack" class="rounded-big text-center col-auto mx-2 mx-lg-3 mt-3 z-depth-1"
+            style="height: 5rem; min-width: 5rem;">
+            <div class="row h-100">
+              <div class="col-12 my-auto">
+                {{tech.tag}}
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="d-flex justify-content-end">
-              <div class="md-form mb-0">
-                <button class="btn light-blue text-white btn-block" type="submit" (click)="applyForm.submit()">
-                  Apply
-                </button>
+      </div>
+
+      <div *ngIf="advert" class="col-12 my-3 py-4 z-depth-1 rounded"
+      [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+        <div class="col-12 underline " [innerHTML]="advert.description">
+          <!-- Opis pracy -->
+        </div>
+        <div class="col-12 py-2 my-auto">
+          <!-- Disclaimer ??-->
+          {{advert.disclaimer}}
+        </div>
+      </div>
+    </div>
+    <!-- Form -->
+    <div class="card w-100 my-5"
+    [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+      <div class="card-body">
+        <div class="d-flex card-title">
+          <h2>Aplikuj na ofertę</h2>
+        </div>
+        <form #applyForm enctype="multipart/form-data" method="POST" [action]="actionUrl">
+          <input type="hidden" name="_token" [value]="csrf">
+          <div class="row justify-content-center">
+            <div class="col-8 col-sm">
+              <div class="md-form">
+                <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name"
+                  class="form-control" required
+                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                <label for="name" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Imię i Nazwisko*</label>
+              </div>
+            </div>
+            <div class="col-8 col-sm">
+              <div class="md-form">
+                <input mdbInput name="email" id="email" type="email" aria-label="Text input for email"
+                  class="form-control" required
+                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                <label for="email" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Email*</label>
               </div>
             </div>
           </div>
-        </div>
-      </form>
+          <div class="row justify-content-center">
+            <div class="col-8 col-sm">
+              <div class="md-form">
+                <!-- Change -->
+                <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links"
+                  class="form-control" required
+                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                <label for="links" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Opowiedz o sobie (LinkedIn/GitHub link)*</label>
+              </div>
+            </div>
+            <div class="col-8 col-sm my-auto">
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" name="file" class="custom-file-input" id="inputGroupFile01" required
+                    aria-describedby="inputGroupFileAddon01" lang="pl-Pl" (change)="fileEvent($event)"
+                    [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                  <label class="custom-file-label" for="inputGroupFile01"
+                    [ngClass]="{'dark-bg-surface' : isDarkTheme }"><span
+                      class="text-truncate">{{fileInput==='' ? 'Wybierz plik*': fileInput}}</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="d-flex justify-content-end">
+                <div class="md-form mb-0">
+                  <button class="btn light-blue text-white btn-block" type="submit" (click)="applyForm.submit()"
+                  [ngClass]="{'darken-3' : isDarkTheme}">
+                    Aplikuj
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+    <button mdbBtn mdbWavesEffect class="rounded waves-effect mb-5" (click)="goBack();"
+    [ngClass]="{'primary-border' : !isDarkTheme , 'primary-border-darkmode' : isDarkTheme}">
+      Wstecz </button>
   </div>
-  <button mdbBtn mdbWavesEffect class="primary-border rounded waves-effect mb-5" (click)="goBack();">
-    Wstecz </button>
 </div>
