@@ -31,3 +31,9 @@ h3 {
 .text-technology {
   font-size: 1.3vh;
 }
+
+$dark-surface: #303031;
+
+.primary-border-darkmode {
+  background-color: $dark-surface;
+}

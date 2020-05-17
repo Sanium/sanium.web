@@ -15,6 +15,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   opacity: 0.5;
 }
 
+.badge {
+  font-size: 0.85rem;
+}
+
 .rounded{
   border-radius: 10px;
 }
@@ -32,7 +36,7 @@ li {
 }
 
 // Light Theme
-$dark-primary-color: #0288D1;
+$dark-primary-color: #0277bd;
 $primary-color: #03A9F4;
 $light-primary-color: #B3E5Fc;
 $primary-text: #212121;

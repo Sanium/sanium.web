@@ -159,7 +159,8 @@
             <div class="col">
               <div class="d-flex justify-content-end">
                 <div class="md-form mb-0">
-                  <button class="btn light-blue text-white btn-block" type="submit" (click)="applyForm.submit()">
+                  <button class="btn light-blue text-white btn-block" type="submit" (click)="applyForm.submit()"
+                  [ngClass]="{'darken-3' : isDarkTheme}">
                     Aplikuj
                   </button>
                 </div>
