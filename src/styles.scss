@@ -35,6 +35,16 @@ li {
   border-radius: 0px 10px 10px 0px;
 }
 
+.dropdown-item {
+  font-weight: 300;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  opacity: 0.8;
+  background-color: inherit;
+}
+
+
 // Light Theme
 $dark-primary-color: #0277bd;
 $primary-color: #03A9F4;
@@ -145,6 +155,4 @@ input.dark-bg-surface:focus {
   border-bottom: 1px solid #fff !important;
   box-shadow: 0 1px 0 0 #fff !important;
 }
-
-
 
