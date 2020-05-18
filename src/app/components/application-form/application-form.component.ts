@@ -14,8 +14,9 @@ export class ApplicationFormComponent implements OnInit {
   actionUrl: string; // http://${window.location.hostname}/offers/${this.id}/contact`
   csrf: string;
   isDarkTheme: boolean;
-  postResponse: {status: number , error: string} = {status: 200, error: "Aplikacja została już złożona"};
+  postResponse: {};
   showForm = false; // window.showForm;
+
   // Form
   applicationForm = new FormGroup({
     _token: new FormControl(this.csrf),
@@ -40,7 +41,12 @@ export class ApplicationFormComponent implements OnInit {
 
   submitForm(){
     console.log(this.applicationForm.value);
-    //this.dataService.postApplication(this.id, this.applicationForm)
-    //.subscribe( data => this.postResponse = data);
+    this.dataService.postApplication(this.id, this.applicationForm)
+    .subscribe(
+      (data) => {
+        this.postResponse = data;
+        console.log(this.postResponse);
+      }
+    );
   }
 }

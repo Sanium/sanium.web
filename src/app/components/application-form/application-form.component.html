@@ -5,7 +5,7 @@
      <div class="d-flex card-title">
        <h2>Aplikuj na ofertę</h2>
      </div>
-     <form enctype="multipart/form-data" [formGroup]="applicationForm">
+     <form id="applicationForm" enctype="multipart/form-data" [formGroup]="applicationForm">
        <input type="hidden" name="_token">
        <div class="row justify-content-center">
          <div class="col-8 col-sm">
@@ -50,17 +50,17 @@
          </div>
        </div>
       <div class="row">
-        <div *ngIf="postResponse.status!=100" class="col mt-3">
+        <div *ngIf="true" class="col mt-3">
           <div class="d-flex justify-content-center">
             <div class="alert alert-danger px-5 w-100 text-center" role="alert">
-              <span> {{postResponse.error}} </span>
+              <span> Coś poszło nie tak </span>
             </div>
           </div>
         </div>
-        <div *ngIf="postResponse.status==100" class="col mt-3">
+        <div *ngIf="false" class="col mt-3">
           <div class="d-flex justify-content-center">
             <div class="alert alert-success px-5 w-100 text-center" role="alert">
-              <span> {{postResponse.error}} </span>
+              <span> Wszystko git </span>
             </div>
           </div>
         </div>

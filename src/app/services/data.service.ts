@@ -14,10 +14,14 @@ export class DataService {
   isDarkTheme: boolean = false;
 
   urlBuilder: string;
-  apiUrl = `http://sanium.olszanowski.it/api`; //http://${window.location.hostname}/api/offers`
+  apiUrl = `http://${window.location.hostname}/api`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      })
+    };
+
   constructor(private http: HttpClient) { }
 
   setAdverts(data: Advertisement[]) {
