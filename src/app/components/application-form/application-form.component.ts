@@ -12,9 +12,10 @@ export class ApplicationFormComponent implements OnInit {
   @Input() id;
   fileInput: string = '';
   isDarkTheme: boolean;
-  postResponse: {error?: string, ok?: string};
+  postResponse: { error?: string, ok?: string };
   showForm: any;
   formData;
+  csrf;
 
   // Form
   applicationForm = new FormGroup({
@@ -31,6 +32,7 @@ export class ApplicationFormComponent implements OnInit {
     this.showForm = window['showForm'];
     //this.showForm = true;
     this.formData = new FormData();
+    this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
     this.dataService.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
   }
 
@@ -38,18 +40,19 @@ export class ApplicationFormComponent implements OnInit {
     let file = fileInput.target.files[0];
     console.log(file);
     this.fileInput = file.name;
-    this.formData.append('uploadFile', file, file.name);
+    this.formData.append('file', file, file.name);
   }
 
-  submitForm(){
+  submitForm() {
+    this.formData.append('_token', this.csrf);
     this.formData.append('name', this.applicationForm.value.name);
     this.formData.append('email', this.applicationForm.value.email);
     this.formData.append('links', this.applicationForm.value.links);
     this.dataService.postApplication(this.id, this.formData)
-    .subscribe(
-      (data) => {
-        this.postResponse = data;
-      }
-    );
+      .subscribe(
+        (data) => {
+          this.postResponse = data;
+        }
+      );
   }
 }

@@ -62,7 +62,7 @@ export class DataService {
   postApplication(id: number, formData) {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
+        //'Content-Type': 'multipart/form-data',
         'Accept': 'application/json',
         'X-CSRF-TOKEN': this.csrf
       })
