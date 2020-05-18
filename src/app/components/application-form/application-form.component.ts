@@ -11,15 +11,13 @@ export class ApplicationFormComponent implements OnInit {
 
   @Input() id;
   fileInput: string = '';
-  actionUrl: string; // http://${window.location.hostname}/offers/${this.id}/contact`
   csrf: string;
   isDarkTheme: boolean;
-  postResponse: {};
+  postResponse: {status: number, error: string} = {status: undefined, error: "coś"};
   showForm = false; // window.showForm;
 
   // Form
   applicationForm = new FormGroup({
-    _token: new FormControl(this.csrf),
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     links: new FormControl('', Validators.required),
@@ -30,8 +28,8 @@ export class ApplicationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.isDarkTheme = this.dataService.isDarkTheme;
-    this.actionUrl = `http://sanium.olszanowski/offers/${this.id}/contact`;
     this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
+    this.applicationForm.addControl('_token', new FormControl(this.csrf));
   }
 
   fileEvent(fileInput: any) {
@@ -41,11 +39,10 @@ export class ApplicationFormComponent implements OnInit {
 
   submitForm(){
     console.log(this.applicationForm.value);
-    this.dataService.postApplication(this.id, this.applicationForm)
+    this.dataService.postApplication(this.id, this.applicationForm.value)
     .subscribe(
       (data) => {
-        this.postResponse = data;
-        console.log(this.postResponse);
+        this.postResponse = data as {status: number, error: string};
       }
     );
   }

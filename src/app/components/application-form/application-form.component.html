@@ -50,17 +50,17 @@
          </div>
        </div>
       <div class="row">
-        <div *ngIf="true" class="col mt-3">
+        <div *ngIf="postResponse?.status !== undefined" class="col mt-3">
           <div class="d-flex justify-content-center">
             <div class="alert alert-danger px-5 w-100 text-center" role="alert">
-              <span> Coś poszło nie tak </span>
+              <span> {{postResponse?.error}} </span>
             </div>
           </div>
         </div>
-        <div *ngIf="false" class="col mt-3">
+        <div *ngIf="postResponse?.status === undefined" class="col mt-3">
           <div class="d-flex justify-content-center">
             <div class="alert alert-success px-5 w-100 text-center" role="alert">
-              <span> Wszystko git </span>
+              <span> {{postResponse?.error}} </span>
             </div>
           </div>
         </div>

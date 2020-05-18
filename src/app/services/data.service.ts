@@ -14,7 +14,7 @@ export class DataService {
   isDarkTheme: boolean = false;
 
   urlBuilder: string;
-  apiUrl = `http://${window.location.hostname}/api`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
+  apiUrl = `http://${window.location.hostname}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
   httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'multipart/form-data',
@@ -47,15 +47,15 @@ export class DataService {
   }
 
   getAdvertsFromServer(): Observable<Advertisement[]> {
-    return this.http.get<Advertisement[]>(`${this.apiUrl}/offers`);
+    return this.http.get<Advertisement[]>(`${this.apiUrl}/api/offers`);
   }
 
   getSingleAdvert(id: number): Observable<Advertisement> {
-    return this.http.get<Advertisement>(`${this.apiUrl}/offers/${id}`);
+    return this.http.get<Advertisement>(`${this.apiUrl}/api/offers/${id}`);
   }
 
   getFilteredAdverts(filters: {}): Observable<Advertisement[]> {
-    this.urlBuilder = `${this.apiUrl}/offers`;
+    this.urlBuilder = `${this.apiUrl}/api/offers`;
     this.urlBuilder += `?from=${filters['salaryMin']}&to=${filters['salaryMax']}`;
     if (filters['technology']) this.urlBuilder += `&tech=${filters['technology']}`;
     if (filters['exp']) this.urlBuilder += `&exp=${filters['exp']}`;
