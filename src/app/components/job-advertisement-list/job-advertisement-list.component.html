@@ -104,7 +104,7 @@
       (click)="switchTheme();"
       [ngClass]="{'hover-darkmode' : isDarkTheme}"> Zmień motyw </button>
     </div>
-    <div class="row justify-content-center mb-3 mx-0">
+    <div *ngIf="advertList" class="row justify-content-center mb-3 mx-0">
       <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
       (click)="sort();"> Sortuj wg wynagrodzenia </button>
     </div>
@@ -185,6 +185,9 @@
             </div>
           </div>
         </a>
+      </div>
+      <div *ngIf="!advertList" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
     </div>
   </div>
