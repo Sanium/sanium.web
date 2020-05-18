@@ -16,13 +16,7 @@ export class DataService {
 
   urlBuilder: string;
   apiUrl = `${window.location.origin}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'multipart/form-data',
-      'Accept': 'application/json',
-      'X-CSRF-TOKEN': this.csrf
-    })
-  };
+
 
   constructor(private http: HttpClient) { }
 
@@ -66,7 +60,14 @@ export class DataService {
   }
 
   postApplication(id: number, formData) {
-    return this.http.post(`${this.apiUrl}/offers/${id}/contact`, formData, this.httpOptions);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': this.csrf
+      })
+    };
+    return this.http.post(`${this.apiUrl}/offers/${id}/contact`, formData, httpOptions);
   }
 
   slugify(text: string): string {

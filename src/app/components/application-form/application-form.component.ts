@@ -28,14 +28,15 @@ export class ApplicationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.isDarkTheme = this.dataService.isDarkTheme;
-    //this.showForm = window['showForm'];
-    this.showForm = true;
+    this.showForm = window['showForm'];
+    //this.showForm = true;
     this.formData = new FormData();
     this.dataService.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
   }
 
   fileEvent(fileInput: any) {
     let file = fileInput.target.files[0];
+    console.log(file);
     this.fileInput = file.name;
     this.formData.append('uploadFile', file, file.name);
   }
