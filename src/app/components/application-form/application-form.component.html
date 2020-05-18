@@ -9,7 +9,7 @@
        <input type="hidden" name="_token">
        <div class="row justify-content-center">
          <div class="col-8 col-sm">
-           <div *ngIf="showForm" class="md-form">
+           <div *ngIf="window.showForm" class="md-form">
              <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name"
                class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }"
                formControlName="name">
@@ -17,7 +17,7 @@
            </div>
          </div>
          <div class="col-8 col-sm">
-           <div *ngIf="showForm"  class="md-form">
+           <div *ngIf="window.showForm"  class="md-form">
              <input mdbInput name="email" id="email" type="email" aria-label="Text input for email"
                class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }"
                formControlName="email">
@@ -27,7 +27,7 @@
        </div>
        <div class="row justify-content-center">
          <div class="col-8 col-sm">
-           <div *ngIf="showForm"  class="md-form">
+           <div *ngIf="window.showForm"  class="md-form">
              <!-- Change -->
              <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links"
                class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }"
@@ -35,7 +35,7 @@
              <label for="links" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Opowiedz o sobie (LinkedIn/GitHub link)*</label>
            </div>
          </div>
-         <div *ngIf="showForm" class="col-8 col-sm my-auto">
+         <div *ngIf="window.showForm" class="col-8 col-sm my-auto">
            <div class="input-group">
              <div class="custom-file">
                <input type="file" name="file" class="custom-file-input" id="fileInput"
@@ -50,24 +50,17 @@
          </div>
        </div>
       <div class="row">
-        <div *ngIf="postResponse?.status !== undefined" class="col mt-3">
+        <div *ngIf="postResponse?.error !== undefined" class="col mt-3">
           <div class="d-flex justify-content-center">
-            <div class="alert alert-danger px-5 w-100 text-center" role="alert">
-              <span> {{postResponse?.error}} </span>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="postResponse?.status === undefined" class="col mt-3">
-          <div class="d-flex justify-content-center">
-            <div class="alert alert-success px-5 w-100 text-center" role="alert">
+            <div class="alert alert-secondary px-5 w-100 text-center" role="alert">
               <span> {{postResponse?.error}} </span>
             </div>
           </div>
         </div>
         <div class="col-12">
-           <div class="d-flex" [ngClass]="showForm ? 'justify-content-end' : 'justify-content-center'">
+           <div class="d-flex" [ngClass]="window.showForm ? 'justify-content-end' : 'justify-content-center'">
              <div class="md-form mb-0">
-              <button [disabled]="!applicationForm.valid && showForm" class="btn light-blue text-white btn-block" type="submit" (click)="submitForm()"
+              <button [disabled]="!applicationForm.valid && window.showForm" class="btn light-blue text-white btn-block" type="submit" (click)="submitForm()"
               [ngClass]="{'darken-3' : isDarkTheme}">
                 Aplikuj
               </button>

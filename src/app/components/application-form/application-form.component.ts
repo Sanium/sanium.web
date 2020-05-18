@@ -13,8 +13,7 @@ export class ApplicationFormComponent implements OnInit {
   fileInput: string = '';
   csrf: string;
   isDarkTheme: boolean;
-  postResponse: {status: number, error: string} = {status: undefined, error: "coś"};
-  showForm = false; // window.showForm;
+  postResponse: {status: number, error: string};
 
   // Form
   applicationForm = new FormGroup({

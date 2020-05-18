@@ -14,10 +14,10 @@ export class DataService {
   isDarkTheme: boolean = false;
 
   urlBuilder: string;
-  apiUrl = `http://${window.location.hostname}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
+  apiUrl = `${window.location.hostname}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
   httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         'Accept': 'application/json'
       })
     };
