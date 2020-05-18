@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Advertisement } from '../models/advertisement';
 import { Observable } from 'rxjs';
 
@@ -14,9 +14,10 @@ export class DataService {
   isDarkTheme: boolean = false;
 
   urlBuilder: string;
-  urlFinal: string; //http://${window.location.hostname}/api/offers`
-  apiUrl = `http://sanium.olszanowski.it/api/offers`;
-
+  apiUrl = `http://sanium.olszanowski.it/api`; //http://${window.location.hostname}/api/offers`
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   constructor(private http: HttpClient) { }
 
   setAdverts(data: Advertisement[]) {
@@ -42,20 +43,24 @@ export class DataService {
   }
 
   getAdvertsFromServer(): Observable<Advertisement[]> {
-    return this.http.get<Advertisement[]>(this.apiUrl);
+    return this.http.get<Advertisement[]>(`${this.apiUrl}/offers`);
   }
 
   getSingleAdvert(id: number): Observable<Advertisement> {
-    return this.http.get<Advertisement>(`${this.apiUrl}/${id}`);
+    return this.http.get<Advertisement>(`${this.apiUrl}/offers/${id}`);
   }
 
   getFilteredAdverts(filters: {}): Observable<Advertisement[]> {
-    this.urlBuilder = this.apiUrl;
+    this.urlBuilder = `${this.apiUrl}/offers`;
     this.urlBuilder += `?from=${filters['salaryMin']}&to=${filters['salaryMax']}`;
     if (filters['technology']) this.urlBuilder += `&tech=${filters['technology']}`;
     if (filters['exp']) this.urlBuilder += `&exp=${filters['exp']}`;
     if (filters['city']) this.urlBuilder += `&city=` + this.slugify(filters['city']);
     return this.http.get<Advertisement[]>(`${this.urlBuilder}`);
+  }
+
+  postApplication(id: number, formData) {
+    return this.http.post(`${this.apiUrl}/offers/${id}/contact`, formData, this.httpOptions);
   }
 
   slugify(text: string): string {

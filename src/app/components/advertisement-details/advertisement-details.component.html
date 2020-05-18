@@ -103,71 +103,9 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <!-- Form -->
-    <div class="card w-100 my-5"
-    [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
-      <div class="card-body">
-        <div class="d-flex card-title">
-          <h2>Aplikuj na ofertę</h2>
-        </div>
-        <form #applyForm enctype="multipart/form-data" method="POST" [action]="actionUrl">
-          <input type="hidden" name="_token" [value]="csrf">
-          <div class="row justify-content-center">
-            <div class="col-8 col-sm">
-              <div class="md-form">
-                <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name"
-                  class="form-control" required
-                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
-                <label for="name" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Imię i Nazwisko*</label>
-              </div>
-            </div>
-            <div class="col-8 col-sm">
-              <div class="md-form">
-                <input mdbInput name="email" id="email" type="email" aria-label="Text input for email"
-                  class="form-control" required
-                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
-                <label for="email" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Email*</label>
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-8 col-sm">
-              <div class="md-form">
-                <!-- Change -->
-                <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links"
-                  class="form-control" required
-                  [ngClass]="{'dark-bg-surface' : isDarkTheme }">
-                <label for="links" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Opowiedz o sobie (LinkedIn/GitHub link)*</label>
-              </div>
-            </div>
-            <div class="col-8 col-sm my-auto">
-              <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input" id="inputGroupFile01" required
-                    aria-describedby="inputGroupFileAddon01" lang="pl-Pl" (change)="fileEvent($event)"
-                    [ngClass]="{'dark-bg-surface' : isDarkTheme }" accept="application/pdf">
-                  <label class="custom-file-label" for="inputGroupFile01"
-                    [ngClass]="{'dark-bg-surface' : isDarkTheme }"><span
-                      class="text-truncate">{{fileInput==='' ? 'Wybierz plik*': fileInput}}</span></label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div class="d-flex justify-content-end">
-                <div class="md-form mb-0">
-                  <button class="btn light-blue text-white btn-block" type="submit" (click)="applyForm.submit()"
-                  [ngClass]="{'darken-3' : isDarkTheme}">
-                    Aplikuj
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+    <!-- Form component -->
+    <app-application-form [id]="id"></app-application-form>
+
     <button mdbBtn mdbWavesEffect class="rounded waves-effect mb-5" (click)="goBack();"
     [ngClass]="{'primary-border' : !isDarkTheme , 'primary-border-darkmode' : isDarkTheme}">
       Wstecz </button>

@@ -21,9 +21,6 @@ export class AdvertisementDetailsComponent implements OnInit {
   id: number;
   advert: Advertisement;
   mapLocation: string;
-  actionUrl: string;
-  csrf: string;
-  fileInput: string = '';
   isDarkTheme: boolean;
 
   constructor(
@@ -38,10 +35,8 @@ export class AdvertisementDetailsComponent implements OnInit {
     this.isDarkTheme = this.dataService.isDarkTheme;
     this.dataService.getSingleAdvert(this.id)
       .subscribe((data) => {
-        this.advert = data['data']; // http://${window.location.hostname}/offers/${this.id}/contact`
-        this.actionUrl = `http://${window.location.hostname}/offers/${this.id}/contact`;
+        this.advert = data['data'];
         this.setMapLocation(`${this.advert.street} ${this.advert.city}`);
-        this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
       });
   }
 
@@ -70,11 +65,6 @@ export class AdvertisementDetailsComponent implements OnInit {
     });
 
     tiles.addTo(this.map);
-  }
-
-  fileEvent(fileInput: any) {
-    let file = fileInput.target.files[0];
-    this.fileInput = file.name;
   }
 
   goBack(): void {
