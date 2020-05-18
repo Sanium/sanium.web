@@ -12,13 +12,15 @@ export class DataService {
   filters: {};
   isAscendingOrder: boolean = false;
   isDarkTheme: boolean = false;
+  csrf: string;
 
   urlBuilder: string;
   apiUrl = `${window.location.origin}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Content-Type': 'multipart/form-data',
+      'Accept': 'application/json',
+      'X-CSRF-TOKEN': this.csrf
     })
   };
 

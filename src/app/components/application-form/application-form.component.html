@@ -50,10 +50,17 @@
          </div>
        </div>
       <div class="row">
-        <div *ngIf="postResponse?.error !== undefined" class="col mt-3">
+        <div *ngIf="postResponse?.error" class="col mt-3">
           <div class="d-flex justify-content-center">
-            <div class="alert alert-secondary px-5 w-100 text-center" role="alert">
+            <div class="alert alert-danger px-5 w-100 text-center" role="alert">
               <span> {{postResponse?.error}} </span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="postResponse?.ok" class="col mt-3">
+          <div class="d-flex justify-content-center">
+            <div class="alert alert-success px-5 w-100 text-center" role="alert">
+              <span> {{postResponse?.ok}} </span>
             </div>
           </div>
         </div>

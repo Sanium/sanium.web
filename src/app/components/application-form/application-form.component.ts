@@ -11,10 +11,10 @@ export class ApplicationFormComponent implements OnInit {
 
   @Input() id;
   fileInput: string = '';
-  csrf: string;
   isDarkTheme: boolean;
-  postResponse: {status: number, error: string};
+  postResponse: {error?: string, ok?: string};
   showForm: any;
+  formData;
 
   // Form
   applicationForm = new FormGroup({
@@ -28,22 +28,26 @@ export class ApplicationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.isDarkTheme = this.dataService.isDarkTheme;
-    this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
-    this.applicationForm.addControl('_token', new FormControl(this.csrf));
-    this.showForm = window['showForm'];
+    //this.showForm = window['showForm'];
+    this.showForm = true;
+    this.formData = new FormData();
+    this.dataService.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
   }
 
   fileEvent(fileInput: any) {
     let file = fileInput.target.files[0];
     this.fileInput = file.name;
+    this.formData.append('uploadFile', file, file.name);
   }
 
   submitForm(){
-    console.log(this.applicationForm.value);
-    this.dataService.postApplication(this.id, this.applicationForm.value)
+    this.formData.append('name', this.applicationForm.value.name);
+    this.formData.append('email', this.applicationForm.value.email);
+    this.formData.append('links', this.applicationForm.value.links);
+    this.dataService.postApplication(this.id, this.formData)
     .subscribe(
       (data) => {
-        this.postResponse = data as {status: number, error: string};
+        this.postResponse = data;
       }
     );
   }
