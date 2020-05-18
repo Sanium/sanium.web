@@ -10,16 +10,8 @@
             <div class="accent-underline"
             [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
               <h2 ><strong>{{ advert.name }}</strong></h2>
-              <!--
-              <h4 class="d-block d-lg-none"><strong>{{advert.name }}</strong></h4>
-              -->
             </div>
           </div>
-          <!--
-          <div class="col-2 col-lg-2 my-auto">
-            <img class="img-thumbnail rounded-circle float-left" width="70" alt="thumbnail" [src]="advert.employer.logo">
-          </div>
-          -->
         </div>
         <div class="row z-depth-1 rounded mt-4 py-4"
         [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
@@ -76,7 +68,7 @@
       </div>
     </div>
     <div class="row py-4 justify-content-center">
-      <div class="col-12 z-depth-1 py-3 pb-3"
+      <div *ngIf="advert?.tech_stack" class="col-12 z-depth-1 py-3 pb-3"
       [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
         <h4 class=""> <span class="ml-2 mt-2"> Pożądane umiejętności </span></h4>
         <div class="underline"></div>
@@ -103,6 +95,12 @@
           <!-- Disclaimer ??-->
           {{advert.disclaimer}}
         </div>
+      </div>
+    </div>
+    <!-- Display loading spinner if cant fetch adverts -->
+    <div *ngIf="!advert" class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
     </div>
     <!-- Form -->
@@ -147,7 +145,7 @@
                 <div class="custom-file">
                   <input type="file" name="file" class="custom-file-input" id="inputGroupFile01" required
                     aria-describedby="inputGroupFileAddon01" lang="pl-Pl" (change)="fileEvent($event)"
-                    [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                    [ngClass]="{'dark-bg-surface' : isDarkTheme }" accept="application/pdf">
                   <label class="custom-file-label" for="inputGroupFile01"
                     [ngClass]="{'dark-bg-surface' : isDarkTheme }"><span
                       class="text-truncate">{{fileInput==='' ? 'Wybierz plik*': fileInput}}</span></label>
