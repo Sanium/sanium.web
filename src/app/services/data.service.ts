@@ -14,7 +14,7 @@ export class DataService {
   isDarkTheme: boolean = false;
 
   urlBuilder: string;
-  apiUrl = `${window.location.protocol}://${window.location.hostname}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
+  apiUrl = `${window.location.origin}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
