@@ -14,6 +14,7 @@ export class ApplicationFormComponent implements OnInit {
   csrf: string;
   isDarkTheme: boolean;
   postResponse: {status: number, error: string};
+  showForm: any;
 
   // Form
   applicationForm = new FormGroup({
@@ -29,6 +30,7 @@ export class ApplicationFormComponent implements OnInit {
     this.isDarkTheme = this.dataService.isDarkTheme;
     this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
     this.applicationForm.addControl('_token', new FormControl(this.csrf));
+    this.showForm = window['showForm'];
   }
 
   fileEvent(fileInput: any) {
