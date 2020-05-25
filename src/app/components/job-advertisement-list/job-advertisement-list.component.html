@@ -1,4 +1,4 @@
-<div [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'" style="height: 100%;">
+<div [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'" style="min-height:100%;">
   <div class="container-fluid rmpm">
     <!-- Filters -->
     <div *ngIf="filters !== undefined" class="mb-3">
@@ -98,15 +98,16 @@
         </mdb-card-body>
       </mdb-card>
     </div>
-    <!-- Sorting -->
+    <!-- Theme switch -->
     <div class="row justify-content-center mb-3 mx-0">
       <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
       (click)="switchTheme();"
-      [ngClass]="{'hover-darkmode' : isDarkTheme}"> Zmień motyw </button>
+      [ngClass]="{'hover-darkmode' : isDarkTheme}"> Zmień motyw <mdb-icon fas class="ml-1" [icon]="!isDarkTheme ? 'moon' : 'sun'"></mdb-icon> </button>
     </div>
+    <!-- Sorting -->
     <div *ngIf="advertList" class="row justify-content-center mb-3 mx-0">
       <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
-      (click)="sort();"> Sortuj wg wynagrodzenia </button>
+      (click)="sort();"> Sortuj wg wynagrodzenia <mdb-icon fas icon="angle-down" style="margin-left: 2px;"></mdb-icon> </button>
     </div>
   </div>
 
@@ -120,7 +121,8 @@
       </div>
 
       <!-- If found -->
-      <div class="col-11 col-lg-12 mb-3 hoverable rounded-y" *ngFor="let advert of advertList;"
+      <div class="col-11 col-lg-12 mb-3 hoverable rounded-y"
+       *ngFor="let advert of advertList | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: totalItems }"
       [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
         <a [routerLink]="['/details', advert.id]">
           <!-- Main row -->
@@ -189,6 +191,21 @@
       <div *ngIf="!advertList" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
+      <!-- Pagination -->
+      <pagination-controls
+        directionLinks="true"
+        autoHide="true"
+        previousLabel=""
+        nextLabel=""
+        maxSize="5"
+        (pageChange)="switchPage($event);"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page"
+        class="my-pagination text-center">
+      </pagination-controls>
     </div>
   </div>
 </div>
+
+
