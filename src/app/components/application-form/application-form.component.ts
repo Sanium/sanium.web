@@ -28,7 +28,7 @@ export class ApplicationFormComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.isDarkTheme = this.dataService.isDarkTheme;
+    this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
     this.showForm = window['showForm'];
     //this.showForm = true;
     this.formData = new FormData();

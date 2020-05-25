@@ -32,7 +32,7 @@ export class AdvertisementDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.isDarkTheme = this.dataService.isDarkTheme;
+    this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
     this.dataService.getSingleAdvert(this.id)
       .subscribe((data) => {
         this.advert = data['data'];
@@ -68,6 +68,6 @@ export class AdvertisementDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate([``]);
+    this.router.navigate(['advert-list'], { queryParams: {page: this.dataService.currenPage}});
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Advertisement } from '../models/advertisement';
+import { Advertisement } from '../models/Advertisement';
+import { AdvertisementPages } from '../models/AdvertisementPages';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,34 +9,32 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  advertList: Advertisement[];
+  advertList: AdvertisementPages = {};
   filters: {};
   isAscendingOrder: boolean = false;
-  isDarkTheme: boolean = false;
   csrf: string;
+  totalItems: number;
+  currenPage: number = 1;
 
   urlBuilder: string;
-  apiUrl = `${window.location.origin}`; //http://${window.location.hostname}/api/offers` http://sanium.olszanowski.it/api
-
+  apiUrl = `http://sanium.olszanowski.it`; //`${window.location.origin}` http://sanium.olszanowski.it/api
+  //TODO:
 
   constructor(private http: HttpClient) { }
 
-  setAdverts(data: Advertisement[]) {
-    this.advertList = data;
+  setAdverts(data: Advertisement[], page: number) {
+    this.advertList[page] = data;
   }
   setFilters(data: {}) {
     this.filters = data;
   }
-  updateAdverts(data: Advertisement[]) {
-    data.forEach((element) => this.advertList.push(element));
+
+  getPage(page: number) {
+    return this.http.get<Advertisement[]>(`${this.apiUrl}/api/offers?page=${page}`);
   }
 
-  getNextPage(url: string) {
-    return this.http.get<Advertisement[]>(url);
-  }
-
-  getStaticAdverts() {
-    return this.advertList;
+  getStaticPage(page: number) {
+    return this.advertList[page];
   }
 
   getFilters() {
@@ -56,6 +55,9 @@ export class DataService {
     if (filters['technology']) this.urlBuilder += `&tech=${filters['technology']}`;
     if (filters['exp']) this.urlBuilder += `&exp=${filters['exp']}`;
     if (filters['city']) this.urlBuilder += `&city=` + this.slugify(filters['city']);
+    if(this.urlBuilder === `${this.apiUrl}/api/offers?from=0&to=20000`){
+      return this.getPage(this.currenPage);
+    }
     return this.http.get<Advertisement[]>(`${this.urlBuilder}`);
   }
 

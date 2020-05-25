@@ -1,4 +1,4 @@
-import { Employer } from './employer';
+import { Employer } from './Employer';
 
 export interface Advertisement {
   id: number;
