@@ -17,8 +17,7 @@ export class DataService {
   currenPage: number = 1;
 
   urlBuilder: string;
-  apiUrl = `http://sanium.olszanowski.it`; //`${window.location.origin}` http://sanium.olszanowski.it/api
-  //TODO:
+  apiUrl = `${window.location.origin}`;
 
   constructor(private http: HttpClient) { }
 

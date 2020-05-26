@@ -56,7 +56,7 @@ export class AdvertisementDetailsComponent implements OnInit {
   }
   private initMap(x: number, y: number): void {
     this.map = L.map('map', {
-      center: [y, x], // TODO: change to args
+      center: [y, x],
       zoom: 16
     });
     const tiles = L.tileLayer('http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
