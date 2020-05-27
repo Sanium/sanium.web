@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
-import { Advertisement } from '../../models/advertisement';
+import { Advertisement } from '../../models/Advertisement';
 import { Location } from '@angular/common';
 
 import * as L from 'leaflet';
