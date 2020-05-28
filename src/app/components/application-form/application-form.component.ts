@@ -30,7 +30,6 @@ export class ApplicationFormComponent implements OnInit {
   ngOnInit(): void {
     this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
     this.showForm = window['showForm'];
-    //this.showForm = true;
     this.formData = new FormData();
     this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
     this.dataService.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');

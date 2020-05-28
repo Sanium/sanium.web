@@ -29,8 +29,13 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.route.queryParams.subscribe(params => {
-      this.currentPage = +params['page'];
-      this.dataService.currenPage = this.currentPage;
+      if(params['page'] === undefined){
+        this.currentPage = 1;
+      }
+      else {
+        this.currentPage = +params['page'];
+      }
+      this.dataService.currentPage = this.currentPage;
       this.getPageFromServer(this.currentPage);
    });
     this.isAscendingOrder = this.dataService.isAscendingOrder;
@@ -88,7 +93,7 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
 
   switchPage(page: number){
     this.currentPage = page;
-    this.dataService.currenPage = page;
+    this.dataService.currentPage = page;
     this.router.navigate(['advert-list'], { queryParams: {page: page}});
   }
 
@@ -112,10 +117,5 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
       this.advertList = this.dataService.getStaticPage(page);
       this.totalItems = this.dataService.totalItems;
     }
-  }
-  log(){
-    console.log(this.currentPage);
-    console.log(this.dataService.advertList[this.currentPage]);
-    console.log(this.advertList[0]);
   }
 }
