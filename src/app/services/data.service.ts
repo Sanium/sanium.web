@@ -14,13 +14,15 @@ export class DataService {
   isAscendingOrder: boolean = false;
   csrf: string;
   totalItems: number;
-  currenPage: number = 1;
+  currentPage: number = 1;
 
   urlBuilder: string;
   apiUrl = `http://sanium.olszanowski.it`; //`${window.location.origin}` http://sanium.olszanowski.it/api
   //TODO:
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    console.log(this.currentPage);
+  }
 
   setAdverts(data: Advertisement[], page: number) {
     this.advertList[page] = data;
@@ -56,7 +58,7 @@ export class DataService {
     if (filters['exp']) this.urlBuilder += `&exp=${filters['exp']}`;
     if (filters['city']) this.urlBuilder += `&city=` + this.slugify(filters['city']);
     if(this.urlBuilder === `${this.apiUrl}/api/offers?from=0&to=20000`){
-      return this.getPage(this.currenPage);
+      return this.getPage(this.currentPage);
     }
     return this.http.get<Advertisement[]>(`${this.urlBuilder}`);
   }
