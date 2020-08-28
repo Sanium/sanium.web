@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from '../../services/data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -13,9 +12,7 @@ export class ApplicationFormComponent implements OnInit {
   fileInput: string = '';
   isDarkTheme: boolean;
   postResponse: { error?: string, ok?: string };
-  showForm: any;
-  formData;
-  csrf;
+  formData: FormData;
 
   // Form
   applicationForm = new FormGroup({
@@ -25,15 +22,11 @@ export class ApplicationFormComponent implements OnInit {
     fileInput: new FormControl('', Validators.required),
   });
 
-  constructor(private dataService: DataService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
-    this.showForm = window['showForm'];
-    //this.showForm = true;
     this.formData = new FormData();
-    this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
-    this.dataService.csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
   }
 
   fileEvent(fileInput: any) {
@@ -44,15 +37,8 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   submitForm() {
-    this.formData.append('_token', this.csrf);
     this.formData.append('name', this.applicationForm.value.name);
     this.formData.append('email', this.applicationForm.value.email);
     this.formData.append('links', this.applicationForm.value.links);
-    this.dataService.postApplication(this.id, this.formData)
-      .subscribe(
-        (data) => {
-          this.postResponse = data;
-        }
-      );
   }
 }

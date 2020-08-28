@@ -68,6 +68,6 @@ export class AdvertisementDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['advert-list'], { queryParams: {page: this.dataService.currentPage}});
+    this.router.navigate(['adverts'], { queryParams: {page: this.dataService.currentPage}});
   }
 }
