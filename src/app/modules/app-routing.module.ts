@@ -5,9 +5,9 @@ import { JobAdvertisementListComponent } from '../components/job-advertisement-l
 import { AdvertisementDetailsComponent } from '../components/advertisement-details/advertisement-details.component';
 
 const appRoutes: Routes = [
-  {path: 'advert-list', component: JobAdvertisementListComponent },
+  {path: 'adverts', component: JobAdvertisementListComponent },
   {path: 'details/:id', component: AdvertisementDetailsComponent },
-  {path: '**', redirectTo: '/advert-list', pathMatch: 'full'}
+  {path: '**', redirectTo: '/adverts', pathMatch: 'full'}
 ];
 
 
@@ -16,7 +16,7 @@ const appRoutes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes),
   ],
   exports: [
     RouterModule

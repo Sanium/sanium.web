@@ -94,7 +94,7 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
   switchPage(page: number){
     this.currentPage = page;
     this.dataService.currentPage = page;
-    this.router.navigate(['advert-list'], { queryParams: {page: page}});
+    this.router.navigate(['advertst'], { queryParams: {page: page}});
   }
 
   getPageFromServer(page: number){

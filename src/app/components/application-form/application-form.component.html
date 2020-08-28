@@ -5,17 +5,16 @@
       <h2>Aplikuj na ofertę</h2>
     </div>
     <form id="applicationForm" enctype="multipart/form-data" [formGroup]="applicationForm">
-      <input type="hidden" name="_token" [value]="csrf">
       <div class="row justify-content-center">
         <div class="col-8 col-sm">
-          <div *ngIf="showForm" class="md-form">
+          <div class="md-form">
             <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name"
               class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" formControlName="name">
             <label for="name" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Imię i Nazwisko*</label>
           </div>
         </div>
         <div class="col-8 col-sm">
-          <div *ngIf="showForm" class="md-form">
+          <div class="md-form">
             <input mdbInput name="email" id="email" type="email" aria-label="Text input for email" class="form-control"
               [ngClass]="{'dark-bg-surface' : isDarkTheme }" formControlName="email">
             <label for="email" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Email*</label>
@@ -24,7 +23,7 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-8 col-sm">
-          <div *ngIf="showForm" class="md-form">
+          <div class="md-form">
             <!-- Change -->
             <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links"
               class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" formControlName="links">
@@ -32,7 +31,7 @@
               link)*</label>
           </div>
         </div>
-        <div *ngIf="showForm" class="col-8 col-sm my-auto">
+        <div class="col-8 col-sm my-auto">
           <div class="input-group">
             <div class="custom-file">
               <input type="file" name="file" class="custom-file-input" id="fileInput" aria-label="File input"
@@ -60,10 +59,10 @@
           </div>
         </div>
         <div class="col-12">
-          <div class="d-flex" [ngClass]="showForm ? 'justify-content-end' : 'justify-content-center'">
+          <div class="d-flex justify-content-end">
             <div class="md-form mb-0">
-              <button [disabled]="!applicationForm.valid && showForm" class="btn light-blue text-white btn-block"
-                type="submit" (click)="submitForm()" [ngClass]="{'darken-3' : isDarkTheme}">
+              <button [disabled]="!applicationForm.valid " class="btn light-blue text-white btn-block"
+                type="submit" [ngClass]="{'darken-3' : isDarkTheme}">
                 Aplikuj
               </button>
             </div>
