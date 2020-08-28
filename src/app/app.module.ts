@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { JobAdvertisementListComponent } from './components/job-advertisement-list/job-advertisement-list.component';
 import { AdvertisementDetailsComponent } from './components/advertisement-details/advertisement-details.component';
 import { ApplicationFormComponent } from './components/application-form/application-form.component';
+import { OpenStreetMapComponent } from './components/open-street-map/open-street-map.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ApplicationFormComponent } from './components/application-form/applicat
     JobAdvertisementListComponent,
     AdvertisementDetailsComponent,
     ApplicationFormComponent,
+    OpenStreetMapComponent,
   ],
   imports: [
     BrowserModule,

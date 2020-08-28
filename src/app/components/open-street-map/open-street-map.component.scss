@@ -1,0 +1,40 @@
+.map-container {
+    height: 100%;
+  }
+  
+  .map-frame {
+    border: 2px solid black;
+    height: 100%;
+    padding-top: 1px;
+    padding-left: 1px;
+  }
+  
+  #map {
+    min-height: 100%;
+  }
+  
+  h1 {
+    font-size: 5vh;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  .text-primary-color {
+    font-size: 0.8rem;
+  }
+  
+  .grey-text {
+    font-size: 0.8rem;
+  }
+  
+  .text-technology {
+    font-size: 1.3vh;
+  }
+  
+  $dark-surface: #303031;
+  
+  .primary-border-darkmode {
+    background-color: $dark-surface;
+  }
+  

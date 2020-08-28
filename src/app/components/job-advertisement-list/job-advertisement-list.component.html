@@ -160,19 +160,19 @@
             <!-- Advert tech stack -->
             <div class="col d-none d-lg-block text-right my-auto mr-0 py-0 py-lg-3">
               <div class="row justify-content-center mr-0">
-                <div *ngIf="advert?.tech_stack[0]" class=" accent-bg badge text-wrap mr-2 col-auto px-2"
+                <div *ngIf="advert?.tech_stack" class=" accent-bg badge text-wrap mr-2 col-auto px-2"
                 [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
-                  {{advert.tech_stack[0].tag}}
+                  {{advert.tech_stack[0]?.tag}}
                 </div>
                 <div class="col-lg-12 d-xl-none mt-1"></div>
-                <div *ngIf="advert.tech_stack[1]" class="accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
+                <div *ngIf="advert?.tech_stack" class="accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
                 [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
-                  {{advert.tech_stack[1].tag}}
+                  {{advert.tech_stack[1]?.tag}}
                 </div>
                 <div class="col-lg-12 d-xl-none mt-1"></div>
-                <div *ngIf="advert.tech_stack[2]" class=" accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
+                <div *ngIf="advert.tech_stack" class=" accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
                 [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
-                  {{advert.tech_stack[2].tag}}
+                  {{advert.tech_stack[2]?.tag}}
                 </div>
               </div>
             </div>
