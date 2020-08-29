@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Advertisement } from '../../models/Advertisement';
-import { DataService } from '../../services/data.service';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { getAdverts } from '../../store/advert.actions';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdvertState } from 'src/app/models/AdvertState';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-job-advertisement-list',
@@ -10,24 +12,26 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./job-advertisement-list.component.scss']
 })
 
-export class JobAdvertisementListComponent implements OnInit, OnDestroy {
+export class JobAdvertisementListComponent implements OnInit{
 
-  private sub: any;
-  filters: {};
-  advertList: Advertisement[];
-  selectedFilters: { salaryMin: number, salaryMax: number, technology?: string, exp?: string, city?: string } = { salaryMin: 0, salaryMax: 20000 };
+  advertList$: Observable<Advertisement[]>;
   isAscendingOrder: boolean;
   isDarkTheme: boolean;
   currentPage: number;
   totalItems: number;
 
   constructor(
-    private dataService: DataService,
+    private store: Store<{store: AdvertState}>,
     private route: ActivatedRoute,
     private router: Router
     ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(getAdverts());
+    this.advertList$ = this.store.select(state => state.store.adverts);
+    this.isDarkTheme = (localStorage.getItem('isDarkTheme') === 'true');
+
+    /* 
     this.sub = this.route.queryParams.subscribe(params => {
       if(params["page"] === undefined) {
         this.currentPage = 1;
@@ -39,35 +43,10 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
       this.getPageFromServer(this.currentPage);
    });
     this.isAscendingOrder = this.dataService.isAscendingOrder;
-    this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
+    */
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-
-  filterAdverts(): void {
-    this.dataService.getFilteredAdverts(this.selectedFilters).subscribe(
-      (adverts) => {
-        this.advertList = adverts['data'];
-        this.dataService.setAdverts(adverts['data'], this.currentPage);
-        this.totalItems = adverts['meta'].total;
-        this.dataService.totalItems = this.totalItems;
-        this.currentPage = 1;
-      }
-    );
-  }
-
-  selectTechOption(option: string): void {
-    if (this.selectedFilters.technology === option) this.selectedFilters.technology = "";
-    else this.selectedFilters.technology = option;
-  }
-
-  selectExpOption(option: string): void {
-    if (this.selectedFilters.exp === option) this.selectedFilters.exp = "";
-    else this.selectedFilters.exp = option;
-  }
-
+  /* 
   sort() {
     this.advertList.sort( (a, b) => {
       if(!this.isAscendingOrder) {
@@ -78,9 +57,8 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
       }
     });
     this.isAscendingOrder = !this.isAscendingOrder;
-    this.dataService.isAscendingOrder = this.isAscendingOrder;
   }
-
+*/
   switchTheme() {
     if (this.isDarkTheme) {
       localStorage.setItem('isDarkTheme', 'false');
@@ -91,6 +69,7 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
     this.isDarkTheme = !this.isDarkTheme;
   }
 
+  /* 
   switchPage(page: number){
     this.currentPage = page;
     this.dataService.currentPage = page;
@@ -107,20 +86,14 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy {
             this.dataService.setFilters(adverts['filters']);
           }
           this.totalItems = adverts['meta'].total;
-          this.filters = this.dataService.filters;
           this.dataService.totalItems = this.totalItems;
         }
       );
     }
     else {
-      this.filters = this.dataService.getFilters();
       this.advertList = this.dataService.getStaticPage(page);
       this.totalItems = this.dataService.totalItems;
     }
   }
-  log(){
-    console.log(this.currentPage);
-    console.log(this.dataService.advertList[this.currentPage]);
-    console.log(this.advertList[0]);
-  }
+ */
 }

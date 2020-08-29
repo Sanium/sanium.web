@@ -1,9 +1,9 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { Advertisement } from 'src/app/models/Advertisement';
+
 import * as L from 'leaflet';
 import "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/images/marker-icon-2x.png";
-
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 @Component({
@@ -13,8 +13,8 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 })
 export class OpenStreetMapComponent implements OnChanges {
   @Input() advert: Advertisement;
-  private map;
-  private provider = new OpenStreetMapProvider();
+  map;
+  provider = new OpenStreetMapProvider();
 
   constructor() { }
 
@@ -36,9 +36,10 @@ export class OpenStreetMapComponent implements OnChanges {
       .bindPopup(`${this.advert.street}, ${this.advert.city}`)
       .openPopup();
   }
+
   initMap(x: number, y: number): void {
     this.map = L.map('map', {
-      center: [y, x], // TODO: change to args
+      center: [y, x], 
       zoom: 16
     });
     const tiles = L.tileLayer('http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {

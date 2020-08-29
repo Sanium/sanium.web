@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
       <div *ngIf="advert" class="col-12 col-lg-7">
-        <!-- Lewa część: Tytuł, firma dośw/typ/wynagrodzenie, tech stack-->
+        <!-- Left: Title, company, experience/type/salary, tech stack-->
         <div class="row justify-content-center z-depth-1 rounded mt-2 py-5"
         [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
           <div class="col-12 text-center my-auto">
-            <!-- Tytuł -->
+            <!-- Title -->
             <div class="accent-underline"
             [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
               <h2 ><strong>{{ advert.name }}</strong></h2>
@@ -16,32 +16,32 @@
         <div class="row z-depth-1 rounded mt-4 py-4"
         [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
           <div class="col-12 text-center col-lg-2 my-auto">
-            <!-- Ikona firmy -->
+            <!-- Company icon -->
             <img class="img-thumbnail rounded-circle " width="70" alt="thumbnail" [src]="advert.employer.logo">
           </div>
           <div class="col-12 col-lg-3 text-center my-auto">
-            <!-- nazwa firmy-->
+            <!-- Company name -->
             <p class="disclaimer-text mb-1">Nazwa firmy</p>
             <span class="">
               <h3><strong>{{advert.employer.name}}</strong></h3>
             </span>
           </div>
           <div class="col-12 col-lg-3 text-center my-auto">
-            <!-- rozmiar firmy-->
+            <!-- Company Size-->
             <p class="disclaimer-text mb-1">Rozmiar firmy</p>
             <span class="">
               <h4><b>{{advert.employer.size}}</b></h4>
             </span>
           </div>
           <div class="col-12 col-lg-4 text-center my-auto">
-            <!-- Strona firmy-->
+            <!-- Company website-->
             <p class="disclaimer-text mb-1">Strona firmy</p>
             <a [href]="advert.employer.website">
               <h5 class="text-truncate">{{advert.employer.website}}</h5>
             </a>
           </div>
         </div>
-        <!-- Wymagania-profity -->
+        <!-- Requirements/profits -->
         <div class="row z-depth-1 justify-content-center rounded mt-4 py-4"
         [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
           <div class="col-4 text-center">
@@ -59,7 +59,7 @@
         </div>
       </div>
       <div class="col-0 col-lg-5 mt-2 d-none d-lg-block">
-        <!-- Prawa część: Mapa, miasto, ulica-->
+        <!-- Right: Map -->
         <app-open-street-map [advert]="advert"></app-open-street-map>
       </div>
     </div>
@@ -85,7 +85,7 @@
       <div *ngIf="advert" class="col-12 my-3 py-4 z-depth-1 rounded"
       [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
         <div class="col-12 underline " [innerHTML]="advert.description">
-          <!-- Opis pracy -->
+          <!-- Advert description -->
         </div>
         <div class="col-12 py-2 my-auto">
           <!-- Disclaimer ??-->
@@ -93,7 +93,7 @@
         </div>
       </div>
     </div>
-    <!-- Display loading spinner if cant fetch adverts -->
+    <!-- Display loading spinner if cant fetch advert -->
     <div *ngIf="!advert" class="d-flex justify-content-center">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>

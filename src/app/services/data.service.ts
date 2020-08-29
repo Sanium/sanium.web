@@ -9,69 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  advertList: AdvertisementPages = {};
-  filters: {};
-  isAscendingOrder: boolean = false;
-  csrf: string;
-  totalItems: number;
-  currentPage: number = 1;
+  apiUrl = `http://sanium.olszanowski.it`;
 
-  urlBuilder: string;
-  apiUrl = `http://sanium.olszanowski.it`; //`${window.location.origin}` http://sanium.olszanowski.it/api
-  //TODO:
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { 
-    console.log(this.currentPage);
-  }
-
-  setAdverts(data: Advertisement[], page: number) {
-    this.advertList[page] = data;
-  }
-  setFilters(data: {}) {
-    this.filters = data;
-  }
-
-  getPage(page: number) {
-    return this.http.get<Advertisement[]>(`${this.apiUrl}/api/offers?page=${page}`);
-  }
-
-  getStaticPage(page: number) {
-    return this.advertList[page];
-  }
-
-  getFilters() {
-    return this.filters;
-  }
-
-  getAdvertsFromServer(): Observable<Advertisement[]> {
-    return this.http.get<Advertisement[]>(`${this.apiUrl}/api/offers`);
-  }
-
-  getSingleAdvert(id: number): Observable<Advertisement> {
-    return this.http.get<Advertisement>(`${this.apiUrl}/api/offers/${id}`);
-  }
-
-  getFilteredAdverts(filters: {}): Observable<Advertisement[]> {
-    this.urlBuilder = `${this.apiUrl}/api/offers`;
-    this.urlBuilder += `?from=${filters['salaryMin']}&to=${filters['salaryMax']}`;
-    if (filters['technology']) this.urlBuilder += `&tech=${filters['technology']}`;
-    if (filters['exp']) this.urlBuilder += `&exp=${filters['exp']}`;
-    if (filters['city']) this.urlBuilder += `&city=` + this.slugify(filters['city']);
-    if(this.urlBuilder === `${this.apiUrl}/api/offers?from=0&to=20000`){
-      return this.getPage(this.currentPage);
-    }
-    return this.http.get<Advertisement[]>(`${this.urlBuilder}`);
-  }
-
-  postApplication(id: number, formData) {
-    let httpOptions = {
-      headers: new HttpHeaders({
-        //'Content-Type': 'multipart/form-data',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': this.csrf
-      })
-    };
-    return this.http.post(`${this.apiUrl}/offers/${id}/contact`, formData, httpOptions);
+  getAdverts(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/offers`);
   }
 
   slugify(text: string): string {
