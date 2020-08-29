@@ -1,9 +1,9 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { getAdvertsError, getAdvertsSuccess, selectAdvert, setFilters} from './advert.actions';
+import * as AdvertActions from './advert.actions';
 import { AdvertState } from '../models/AdvertState';
 
 export const initialState: AdvertState = {
-    selectedAdvert: undefined,
+    visitedAdverts: {},
     adverts: [],
     filters: {
         cities: [],
@@ -20,10 +20,12 @@ export const initialState: AdvertState = {
 }
 
 const _advertReducer = createReducer(initialState, 
-    on(getAdvertsError, (state, {error}) => ({...state, error: error})),
-    on(getAdvertsSuccess, (state, {adverts, filters})=> ({...state, adverts: adverts, filters: filters})),
-    on(selectAdvert, (state, {advert}) => ({...state, selectedAdvert: advert})),
-    on(setFilters, (state, {selectedFilters})=> ({...state, selectedFilters: selectedFilters}))
+    on(AdvertActions.getAdvertsError, (state, {error}) => ({...state, error: error})),
+    on(AdvertActions.getAdvertsSuccess, (state, {adverts, filters})=> ({...state, adverts: adverts, filters: filters})),
+    on(AdvertActions.getSingleAdvertSuccess, (state, {advert, id})=> ({...state, visitedAdverts: {...state.visitedAdverts, [id]: advert}})),
+    on(AdvertActions.getSingleAdvertError, (state, {error}) => ({...state, error: error})),
+    on(AdvertActions.selectAdvert, (state, {advert}) => ({...state, selectedAdvert: advert})),
+    on(AdvertActions.setFilters, (state, {selectedFilters})=> ({...state, selectedFilters: selectedFilters}))
 );
 
 export function advertReducer(state: AdvertState | undefined, action: Action){

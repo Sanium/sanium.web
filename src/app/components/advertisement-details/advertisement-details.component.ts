@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../../services/data.service';
 import { Advertisement } from '../../models/Advertisement';
+import { AdvertState } from 'src/app/models/AdvertState';
 import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { getSingleAdvert } from '../../store/advert.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-advertisement-details',
@@ -11,25 +14,26 @@ import { Location } from '@angular/common';
 })
 export class AdvertisementDetailsComponent implements OnInit {
  
-  id: number;
   advert: Advertisement;
+  advertSub: Subscription;
   mapLocation: string;
   isDarkTheme: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private dataService: DataService,
-    private location: Location,
+    private store: Store<{store: AdvertState}>,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
-    
+    let id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.advertSub = this.store.select(state => state.store.visitedAdverts[id]).subscribe(
+      advert => advert? this.advert = advert : this.store.dispatch(getSingleAdvert({id: id}))
+    )    
   }
 
   goBack(): void {
-    //this.router.navigate(['adverts'], { queryParams: {page: this.dataService.currentPage}});
+    this.router.navigate(['adverts']);
   }
 }
