@@ -1,0 +1,105 @@
+<div *ngIf="(filters$ | async) as filters" class="mb-3">
+    <mdb-card>
+      <mdb-card-body class="py-1 light-bg" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+        <div class="container">
+          <div *ngIf="selectedFilters" class="form-group my-0 row justify-content-center">
+
+            <!-- Technologia -->
+            <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
+              <div class="btn-group btn-block mb-1 mb-lg-0 dropdown" mdbDropdown>
+                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
+                  mdbWavesEffect
+                  [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
+                  {{selectedFilters?.technology || "Technologia"}}
+                </button>
+                <!-- Tech dropdown -->
+                <div class="dropdown-menu w-100 dropdown-primary"
+                [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                  <ul class="rmpm">
+                    <li *ngFor="let tech of filters['tech']" (click)="selectTechOption(tech);" class="dropdown-item"
+                    [style]="!isDarkTheme ? 'color: black;' : 'color: white'">
+                      {{tech}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wynagrodzenie -->
+            <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
+              <div class="btn-group btn-block mb-1 mb-lg-0" mdbDropdown [autoClose]="false">
+                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
+                  mdbWavesEffect
+                  [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
+                  {{(selectedFilters.salaryMin+ " - " + selectedFilters.salaryMax)}}
+                </button>
+                <!-- Wynagrodzenie dropdown -->
+                <div class="dropdown-menu w-100"
+                [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                  <span class="ml-2"
+                  [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'">
+                    Od: {{selectedFilters?.salaryMin}}
+                  </span>
+                  <input #salaryMin
+                    min="0" 
+                    [max]="selectedFilters.salaryMax" 
+                    step="100" 
+                    type="range" 
+                    class="custom-range pl-2 pr-2"
+                    id="salaryMin" 
+                    [(ngModel)]="selectedFilters.salaryMin"> 
+                  <span class="text-primary-color ml-2"
+                  [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'">
+                    Do: {{selectedFilters?.salaryMax}}
+                  </span>
+                  <input #salaryMax
+                  [min]="selectedFilters.salaryMin" max="20000"
+                  step="100"
+                  type="range" 
+                  class="custom-range pl-2 pr-2"
+                  id="salaryMax"
+                  [(ngModel)]="selectedFilters.salaryMax">
+                </div>
+              </div>
+            </div>
+
+            <!-- Doświadczenie -->
+            <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
+              <div class="btn-group btn-block" mdbDropdown>
+                <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
+                  mdbWavesEffect
+                  [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
+                  {{selectedFilters?.exp || "Doświadczenie"}}
+                </button>
+                <!-- Doświadczenie dropdown -->
+                <div class="dropdown-menu w-100"
+                [ngClass]="{'dark-bg-surface' : isDarkTheme }">
+                  <ul class="rmpm">
+                    <li *ngFor="let exp of filters['exp']" (click)="selectExpOption(exp);" class="dropdown-item"
+                    [style]="!isDarkTheme ? 'color: black;' : 'color: white'">
+                      {{exp}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Miasto -->
+            <div class="col-12 col-sm-8 col-xl-3 my-auto ml-0">
+              <div class="md-form">
+                <input mdbInput type="text" class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" [(ngModel)]="selectedFilters.city">
+                <label [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" for="inputCity">Miasto</label>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="col-6 col-md-1 my-auto mr-0 text-center">
+              <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect"
+                (click)="filterAdverts();"
+                [ngClass]="!isDarkTheme ? 'primary-border' : 'primary-border-darkmode'"> Filtruj </button>
+            </div>
+
+          </div>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>

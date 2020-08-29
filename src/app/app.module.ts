@@ -13,13 +13,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment'; // Angular CLI environment
-
+import { advertReducer } from './store/advert.reducer'; 
+import { AdvertEffects } from './store/advert.effects';
 
 import { AppComponent } from './app.component';
 import { JobAdvertisementListComponent } from './components/job-advertisement-list/job-advertisement-list.component';
 import { AdvertisementDetailsComponent } from './components/advertisement-details/advertisement-details.component';
 import { ApplicationFormComponent } from './components/application-form/application-form.component';
 import { OpenStreetMapComponent } from './components/open-street-map/open-street-map.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { OpenStreetMapComponent } from './components/open-street-map/open-street
     AdvertisementDetailsComponent,
     ApplicationFormComponent,
     OpenStreetMapComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +40,8 @@ import { OpenStreetMapComponent } from './components/open-street-map/open-street
     ReactiveFormsModule,
     NgxPaginationModule,
     MDBBootstrapModule.forRoot(),
-    StoreModule.forRoot([]),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({store: advertReducer}),
+    EffectsModule.forRoot([AdvertEffects]),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

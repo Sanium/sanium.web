@@ -4,8 +4,6 @@ import { DataService } from '../../services/data.service';
 import { Advertisement } from '../../models/Advertisement';
 import { Location } from '@angular/common';
 
-
-
 @Component({
   selector: 'app-advertisement-details',
   templateUrl: './advertisement-details.component.html',
@@ -28,15 +26,10 @@ export class AdvertisementDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
-    this.dataService.getSingleAdvert(this.id)
-      .subscribe((data) => {
-        this.advert = data['data'];
-      });
+    
   }
 
-  
-
   goBack(): void {
-    this.router.navigate(['adverts'], { queryParams: {page: this.dataService.currentPage}});
+    //this.router.navigate(['adverts'], { queryParams: {page: this.dataService.currentPage}});
   }
 }
