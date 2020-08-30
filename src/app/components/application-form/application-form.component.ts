@@ -7,8 +7,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./application-form.component.scss']
 })
 export class ApplicationFormComponent implements OnInit {
-
-  @Input() id;
   fileInput: string = '';
   isDarkTheme: boolean;
   postResponse: { error?: string, ok?: string };

@@ -17,6 +17,10 @@ export class DataService {
     return this.http.get<any>(`${this.apiUrl}/api/offers`);
   }
 
+  getSingleAdvert(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/offers/${id}`);
+  }
+
   slugify(text: string): string {
     const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
     const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
