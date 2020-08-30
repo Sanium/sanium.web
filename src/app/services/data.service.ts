@@ -13,8 +13,9 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-  getAdverts(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/offers`);
+  getAdverts(page?: number): Observable<any> {
+    console.log(page);
+    return this.http.get<any>(`${this.apiUrl}/api/offers${page? '?page=' + page : ''}`);
   }
 
   getSingleAdvert(id: number): Observable<any> {

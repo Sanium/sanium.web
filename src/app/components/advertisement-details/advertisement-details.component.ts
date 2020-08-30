@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Advertisement } from '../../models/Advertisement';
 import { AdvertState } from 'src/app/models/AdvertState';
-import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { getSingleAdvert } from '../../store/advert.actions';
 import { Subscription } from 'rxjs';
@@ -12,12 +11,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './advertisement-details.component.html',
   styleUrls: ['./advertisement-details.component.scss']
 })
-export class AdvertisementDetailsComponent implements OnInit {
+export class AdvertisementDetailsComponent implements OnInit, OnDestroy {
  
   advert: Advertisement;
-  advertSub: Subscription;
-  mapLocation: string;
+  currentPage: number;
   isDarkTheme: boolean;
+
+  advertSub: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,12 +28,23 @@ export class AdvertisementDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
     let id = +this.activatedRoute.snapshot.paramMap.get('id');
+    
+    //Get details of selected adverts - if not found in store then fetch
     this.advertSub = this.store.select(state => state.store.visitedAdverts[id]).subscribe(
       advert => advert? this.advert = advert : this.store.dispatch(getSingleAdvert({id: id}))
-    )    
+    );
+
+    // Get current page and unsubscribe - navigation purposes
+    this.store.select(state => state.store.meta.current_page).subscribe(
+      state => this.currentPage = state
+    ).unsubscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.advertSub.unsubscribe();
   }
 
   goBack(): void {
-    this.router.navigate(['adverts']);
+    this.router.navigate(['adverts'], {queryParams: {page: this.currentPage}});
   }
 }

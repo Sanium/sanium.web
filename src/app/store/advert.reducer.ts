@@ -12,6 +12,15 @@ export const initialState: AdvertState = {
         min_salary: 0,
         max_salary: 0
     },
+    meta: {
+        current_page: 1,
+        from: 0,
+        to: 0,
+        last_page: 0,
+        path: "",
+        per_page: 0,
+        total: 0
+    },
     selectedFilters: {
         salaryMin: 0,
         salaryMax: 20000,
@@ -21,7 +30,7 @@ export const initialState: AdvertState = {
 
 const _advertReducer = createReducer(initialState, 
     on(AdvertActions.getAdvertsError, (state, {error}) => ({...state, error: error})),
-    on(AdvertActions.getAdvertsSuccess, (state, {adverts, filters})=> ({...state, adverts: adverts, filters: filters})),
+    on(AdvertActions.getAdvertsSuccess, (state, {adverts, filters, meta})=> ({...state, adverts: adverts, filters: filters, meta: meta})),
     on(AdvertActions.getSingleAdvertSuccess, (state, {advert, id})=> ({...state, visitedAdverts: {...state.visitedAdverts, [id]: advert}})),
     on(AdvertActions.getSingleAdvertError, (state, {error}) => ({...state, error: error})),
     on(AdvertActions.selectAdvert, (state, {advert}) => ({...state, selectedAdvert: advert})),
