@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Advertisement } from '../models/Advertisement';
 import { AdvertisementPages } from '../models/AdvertisementPages';
 import { Observable } from 'rxjs';
+import { SelectedFilters } from '../models/SelectedFilters';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,19 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-  getAdverts(page?: number): Observable<any> {
-    console.log(page);
+  getAdverts(page?: number, filters?: SelectedFilters): Observable<any> {
+    let url = `${this.apiUrl}/api/offers`;
+    // If filters were selected fetch adverts with filters included
+    if(filters) {
+      url = url + `?from=${filters.salaryMin}`
+      + `&to=${filters.salaryMax}`
+      + `${filters.exp? '&exp=' + filters.exp : ''}`
+      + `${filters.city? '&city=' + filters.city : ''}`
+      + `${filters.technology? '&tech=' + filters.technology : ''}`;
+
+      return this.http.get<any>(url);
+    }
+    // Else if page selected - fetch page, Else fetch from '/api/offers'
     return this.http.get<any>(`${this.apiUrl}/api/offers${page? '?page=' + page : ''}`);
   }
 

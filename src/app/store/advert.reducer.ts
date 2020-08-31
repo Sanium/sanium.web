@@ -22,10 +22,12 @@ export const initialState: AdvertState = {
         total: 0
     },
     selectedFilters: {
+        activated: false,
         salaryMin: 0,
         salaryMax: 20000,
     },
-    error: "Initial"
+    error: "Initial",
+    isDarkTheme: true
 }
 
 const _advertReducer = createReducer(initialState, 
@@ -34,7 +36,8 @@ const _advertReducer = createReducer(initialState,
     on(AdvertActions.getSingleAdvertSuccess, (state, {advert, id})=> ({...state, visitedAdverts: {...state.visitedAdverts, [id]: advert}})),
     on(AdvertActions.getSingleAdvertError, (state, {error}) => ({...state, error: error})),
     on(AdvertActions.selectAdvert, (state, {advert}) => ({...state, selectedAdvert: advert})),
-    on(AdvertActions.setFilters, (state, {selectedFilters})=> ({...state, selectedFilters: selectedFilters}))
+    on(AdvertActions.setFilters, (state, {selectedFilters, activated})=> ({...state, selectedFilters: {...selectedFilters, activated: activated}})),
+    on(AdvertActions.setIsDarkTheme, (state, {isDarkTheme}) => ({...state, isDarkTheme: isDarkTheme}))
 );
 
 export function advertReducer(state: AdvertState | undefined, action: Action){

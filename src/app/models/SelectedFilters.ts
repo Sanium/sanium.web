@@ -1,4 +1,5 @@
 export interface SelectedFilters {
+    activated: boolean,
     salaryMin: number,
     salaryMax: number,
     technology?: string,

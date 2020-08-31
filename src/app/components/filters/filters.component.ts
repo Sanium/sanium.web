@@ -16,31 +16,47 @@ export class FiltersComponent implements OnInit {
   filters$: Observable<Filters>;
   selectedFilters: SelectedFilters;
   selectedFiltersSub: Subscription;
-
   isDarkTheme: boolean;
+  isDarkThemeSub: Subscription;
 
   constructor(private store: Store<{store: AdvertState}>) {}
 
   ngOnInit(): void {
-    this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
+    
     this.filters$ = this.store.select(state => state.store.filters);
+    this.isDarkThemeSub = this.store.select(state => state.store.isDarkTheme).subscribe(
+      isDarkTheme => this.isDarkTheme = isDarkTheme
+    );
+
     this.selectedFiltersSub = this.store.select(state => state.store.selectedFilters).subscribe(
-      filters => this.selectedFilters = {...filters}
+      filters => {
+        this.selectedFilters = {...filters}
+      }
     )
   }
 
   filterAdverts(): void {
-    this.store.dispatch(setFilters({selectedFilters: this.selectedFilters}))
+    let filtersActivated: boolean = true;
+    if(
+      !this.selectedFilters.city &&
+      !this.selectedFilters.exp &&
+      !this.selectedFilters.technology &&
+      !this.selectedFilters.salaryMin &&
+      this.selectedFilters.salaryMax === 20000
+      ) {
+        filtersActivated = false;
+      } 
+    this.store.dispatch(setFilters({selectedFilters: this.selectedFilters, activated: filtersActivated}))
   }
 
   
   selectTechOption(option: string): void {
-    if (this.selectedFilters.technology === option) this.selectedFilters.technology = "";
+    if (this.selectedFilters.technology === option) this.selectedFilters.technology = undefined;
     else this.selectedFilters.technology = option;
   }
 
   selectExpOption(option: string): void {
-    if (this.selectedFilters.exp === option) this.selectedFilters.exp = "";
+    if (this.selectedFilters.exp === option) this.selectedFilters.exp = undefined;
     else this.selectedFilters.exp = option;
   }
   

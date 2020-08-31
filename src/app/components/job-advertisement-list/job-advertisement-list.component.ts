@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Advertisement } from '../../models/Advertisement';
 import { Store } from '@ngrx/store';
-import { getAdverts } from '../../store/advert.actions';
-import { ActivatedRoute, Router } from '@angular/router';
+import { getAdverts, setIsDarkTheme } from '../../store/advert.actions';
+import { Router } from '@angular/router';
 import { AdvertState } from 'src/app/models/AdvertState';
 import { Observable, Subscription } from 'rxjs';
 
@@ -19,45 +19,57 @@ export class JobAdvertisementListComponent implements OnInit{
   routeSub: Subscription;
   isAscendingOrder: boolean;
   isDarkTheme: boolean;
+
   currentPage: number;
   totalItems: number;
+  itemsPerPage: number;
 
   constructor(
     private store: Store<{store: AdvertState}>,
-    private route: ActivatedRoute,
     private router: Router
     ) { }
 
   ngOnInit(): void {
-    this.routeSub = this.route.queryParams.subscribe(params => {
-      if(!params['page'] ){
-        this.router.navigate(['adverts'], {queryParams: {page: 1}});
-      }
-      else {
-        this.store.dispatch(getAdverts({page: params['page']}));
-      }
-    });
-
+    this.isDarkTheme = (localStorage.getItem('isDarkTheme') === 'true');
+    this.setTheme();
+    
     this.advertList$ = this.store.select(state => state.store.adverts);
-    /* 
-    this.metaSub = this.store.select(state => state.store.meta).subscribe(
-      data =>  {
-        this.router.navigate(['adverts'], {queryParams: {page: data.current_page}})
+    const queryParams = new URLSearchParams(location.search);
+    this.currentPage = +queryParams.get('page');
+    if(!this.currentPage) {
+      this.router.navigate(['adverts'], {queryParams: {page: 1}});
+    } 
+
+    this.store.select(state => state.store.selectedFilters).subscribe(
+      filters => {
+        if(filters.activated) this.store.dispatch(getAdverts({filters: filters})); //dispatch with filters
+        else this.store.dispatch(getAdverts({page: this.currentPage})); // Dispatch with page
+      }
+    );
+
+    this.store.select(state => state.store.meta).subscribe(
+      meta => {
+        this.currentPage = meta.current_page;
+        this.totalItems = meta.total;
+        this.itemsPerPage = meta.per_page;
       }
     )
-    */
-    this.isDarkTheme = (localStorage.getItem('isDarkTheme') === 'true');
+    
+  }
 
+  setTheme(){
+    localStorage.setItem('isDarkTheme', (this.isDarkTheme).toString());
+    this.store.dispatch(setIsDarkTheme({isDarkTheme: this.isDarkTheme}));
   }
 
   switchTheme() {
-    if (this.isDarkTheme) {
-      localStorage.setItem('isDarkTheme', 'false');
-    }
-    else {
-      localStorage.setItem('isDarkTheme', 'true');
-    }
     this.isDarkTheme = !this.isDarkTheme;
+    this.setTheme();
+  }
+
+  switchPage(event){
+    this.store.dispatch(getAdverts({page: event}));
+    this.router.navigate(['adverts'], {queryParams: {page: event}});
   }
 
 }

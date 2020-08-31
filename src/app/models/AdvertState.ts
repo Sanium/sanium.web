@@ -10,5 +10,6 @@ export interface AdvertState {
     filters: Filters,
     meta: Meta,
     selectedFilters: SelectedFilters,
-    error: string
+    error: string,
+    isDarkTheme: boolean;
 }
