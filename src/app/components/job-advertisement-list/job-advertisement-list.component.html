@@ -2,13 +2,6 @@
   <div class="container-fluid rmpm">
     <!-- Filters -->
     <app-filters></app-filters>
-    <!-- Theme switch -->
-    <div class="row justify-content-center mb-3 mx-0">
-      <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
-      (click)="switchTheme();"
-      [ngClass]="{'hover-darkmode' : isDarkTheme}"> Zmień motyw <mdb-icon fas class="ml-1" [icon]="!isDarkTheme ? 'moon' : 'sun'"></mdb-icon> </button>
-    </div>
-
   <!-- List -->
   <div class="container" *ngIf="(advertList$ | async) as advertList" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'">
     <div class="row justify-content-center my-0">

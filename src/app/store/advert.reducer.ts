@@ -37,7 +37,7 @@ const _advertReducer = createReducer(initialState,
     on(AdvertActions.getSingleAdvertError, (state, {error}) => ({...state, error: error})),
     on(AdvertActions.selectAdvert, (state, {advert}) => ({...state, selectedAdvert: advert})),
     on(AdvertActions.setFilters, (state, {selectedFilters, activated})=> ({...state, selectedFilters: {...selectedFilters, activated: activated}})),
-    on(AdvertActions.setIsDarkTheme, (state, {isDarkTheme}) => ({...state, isDarkTheme: isDarkTheme}))
+    on(AdvertActions.setDarkTheme, (state, {isDarkTheme}) => ({...state, isDarkTheme: isDarkTheme}))
 );
 
 export function advertReducer(state: AdvertState | undefined, action: Action){
