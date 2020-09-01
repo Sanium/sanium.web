@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Advertisement } from '../models/Advertisement';
-import { AdvertisementPages } from '../models/AdvertisementPages';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SelectedFilters } from '../models/SelectedFilters';
 

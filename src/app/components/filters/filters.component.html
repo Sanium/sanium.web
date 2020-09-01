@@ -1,6 +1,6 @@
 <div *ngIf="(filters$ | async) as filters" class="mb-3">
     <mdb-card>
-      <mdb-card-body class="py-1 light-bg" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+      <mdb-card-body class="py-1" [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
         <div class="container">
           <div *ngIf="selectedFilters" class="form-group my-0 row justify-content-center">
 
@@ -10,7 +10,7 @@
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
                   mdbWavesEffect
                   [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
-                  {{selectedFilters?.technology || "Technologia"}}
+                  {{selectedFilters?.technology || "Technology"}}
                 </button>
                 <!-- Tech dropdown -->
                 <div class="dropdown-menu w-100 dropdown-primary"
@@ -37,7 +37,7 @@
                 [ngClass]="{'dark-bg-surface' : isDarkTheme }">
                   <span class="ml-2"
                   [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'">
-                    Od: {{selectedFilters?.salaryMin}}
+                    From: {{selectedFilters?.salaryMin}}
                   </span>
                   <input #salaryMin
                     min="0" 
@@ -49,7 +49,7 @@
                     [(ngModel)]="selectedFilters.salaryMin"> 
                   <span class="text-primary-color ml-2"
                   [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'">
-                    Do: {{selectedFilters?.salaryMax}}
+                    To: {{selectedFilters?.salaryMax}}
                   </span>
                   <input #salaryMax
                   [min]="selectedFilters.salaryMin" max="20000"
@@ -68,7 +68,7 @@
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
                   mdbWavesEffect
                   [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
-                  {{selectedFilters?.exp || "Doświadczenie"}}
+                  {{selectedFilters?.exp || "Experience"}}
                 </button>
                 <!-- Doświadczenie dropdown -->
                 <div class="dropdown-menu w-100"
@@ -87,7 +87,7 @@
             <div class="col-12 col-sm-8 col-xl-3 my-auto ml-0">
               <div class="md-form">
                 <input mdbInput type="text" class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" [(ngModel)]="selectedFilters.city">
-                <label [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" for="inputCity">Miasto</label>
+                <label [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" for="inputCity">Location</label>
               </div>
             </div>
 
@@ -95,7 +95,7 @@
             <div class="col-6 col-md-1 my-auto mr-0 text-center">
               <button mdbBtn type="submit" mdbWavesEffect class="primary-border rounded waves-effect"
                 (click)="filterAdverts();"
-                [ngClass]="!isDarkTheme ? 'primary-border' : 'primary-border-darkmode'"> Filtruj </button>
+                [ngClass]="!isDarkTheme ? 'primary-border' : 'primary-border-darkmode'"> Filter </button>
             </div>
 
           </div>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Filters } from 'src/app/models/Filters';
 import { SelectedFilters } from 'src/app/models/SelectedFilters';
-import { AdvertState } from 'src/app/models/AdvertState';
+import { StoreState } from 'src/app/models/StoreState';
 import { setFilters } from '../../store/advert.actions';
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   isDarkThemeSub: Subscription;
 
   constructor(
-    private store: Store<{store: AdvertState}>,
+    private store: Store<{store: StoreState}>,
     private router: Router
     ) {}
 

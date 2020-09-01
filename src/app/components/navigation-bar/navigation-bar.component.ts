@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { setDarkTheme } from '../../store/advert.actions';
-import { AdvertState } from 'src/app/models/AdvertState';
+import { StoreState } from 'src/app/models/StoreState';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -11,7 +11,7 @@ import { AdvertState } from 'src/app/models/AdvertState';
 export class NavigationBarComponent implements OnInit {
   isDarkTheme: boolean;
   
-  constructor(private store: Store<{store: AdvertState}>) { }
+  constructor(private store: Store<{store: StoreState}>) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('isDarkTheme')) {

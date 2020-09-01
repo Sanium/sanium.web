@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ApplicationFormComponent implements OnInit {
   fileInput: string = '';
-  isDarkTheme: boolean;
+  @Input() isDarkTheme: boolean;
   postResponse: { error?: string, ok?: string };
   formData: FormData;
 
@@ -23,7 +23,6 @@ export class ApplicationFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
     this.formData = new FormData();
   }
 

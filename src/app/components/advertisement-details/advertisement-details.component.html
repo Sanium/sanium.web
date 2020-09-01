@@ -4,7 +4,7 @@
       <div *ngIf="advert" class="col-12 col-lg-7">
         <!-- Left: Title, company, experience/type/salary, tech stack-->
         <div class="row justify-content-center z-depth-1 rounded mt-2 py-5"
-        [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+        [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
           <div class="col-12 text-center my-auto">
             <!-- Title -->
             <div class=""
@@ -14,28 +14,28 @@
           </div>
         </div>
         <div class="row z-depth-1 rounded mt-4 py-4"
-        [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+        [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
           <div class="col-12 text-center col-lg-2 my-auto">
             <!-- Company icon -->
             <img class="img-thumbnail rounded-circle " width="70" alt="thumbnail" [src]="advert.employer.logo">
           </div>
           <div class="col-12 col-lg-3 text-center my-auto">
             <!-- Company name -->
-            <p class="disclaimer-text mb-1">Nazwa firmy</p>
+            <p class="disclaimer-text mb-1">Company name</p>
             <span class="">
               <h3><strong>{{advert.employer.name}}</strong></h3>
             </span>
           </div>
           <div class="col-12 col-lg-3 text-center my-auto">
             <!-- Company Size-->
-            <p class="disclaimer-text mb-1">Rozmiar firmy</p>
+            <p class="disclaimer-text mb-1">Company size</p>
             <span class="">
               <h4><b>{{advert.employer.size}}</b></h4>
             </span>
           </div>
           <div class="col-12 col-lg-4 text-center my-auto">
             <!-- Company website-->
-            <p class="disclaimer-text mb-1">Strona firmy</p>
+            <p class="disclaimer-text mb-1">Company website</p>
             <a [href]="advert.employer.website">
               <h5 class="text-truncate">{{advert.employer.website}}</h5>
             </a>
@@ -43,17 +43,17 @@
         </div>
         <!-- Requirements/profits -->
         <div class="row z-depth-1 justify-content-center rounded mt-4 py-4"
-        [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+        [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
           <div class="col-4 text-center">
-            <p class="disclaimer-text mb-0">Doświadczenie</p>
+            <p class="disclaimer-text mb-0">Experience</p>
             <p class="font-weight-bold mb-0">{{advert.experience}}</p>
           </div>
           <div class="col-4 text-center border-left border-right">
-            <p class="disclaimer-text mb-0">Rodzaj zatrudnienia</p>
+            <p class="disclaimer-text mb-0">Employment type</p>
             <p class="font-weight-bold mb-0">{{advert.employment}}</p>
           </div>
           <div class="col-4 text-center">
-            <p class="disclaimer-text mb-0">Wynagrodzenie</p>
+            <p class="disclaimer-text mb-0">Salary</p>
             <p class="font-weight-bold mb-0">{{advert.salary_from}} - {{advert.salary_to}}</p>
           </div>
         </div>
@@ -65,8 +65,8 @@
     </div>
     <div class="row py-4 justify-content-center">
       <div *ngIf="advert?.tech_stack" class="col-12 z-depth-1 py-3 pb-3"
-      [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
-        <h4 class=""> <span class="ml-2 mt-2"> Pożądane umiejętności </span></h4>
+      [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
+        <h4 class=""> <span class="ml-2 mt-2"> Expected skills </span></h4>
         <div class="underline"></div>
 
         <div *ngIf="advert?.tech_stack" class="row mb-3">
@@ -83,7 +83,7 @@
       </div>
 
       <div *ngIf="advert" class="col-12 my-3 py-4 z-depth-1 rounded"
-      [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+      [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
         <div class="col-12 underline " [innerHTML]="advert.description">
           <!-- Advert description -->
         </div>
@@ -100,10 +100,10 @@
       </div>
     </div>
     <!-- Form component -->
-    <app-application-form ></app-application-form>
+    <app-application-form [isDarkTheme]="isDarkTheme"></app-application-form>
 
     <button mdbBtn mdbWavesEffect class="rounded waves-effect mb-5" (click)="goBack();"
     [ngClass]="{'primary-border' : !isDarkTheme , 'primary-border-darkmode' : isDarkTheme}">
-      Wstecz </button>
+      Back </button>
   </div>
 </div>

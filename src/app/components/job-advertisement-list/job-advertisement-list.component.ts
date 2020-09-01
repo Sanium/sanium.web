@@ -3,7 +3,7 @@ import { Advertisement } from '../../models/Advertisement';
 import { Store } from '@ngrx/store';
 import { getAdverts} from '../../store/advert.actions';
 import { Router } from '@angular/router';
-import { AdvertState } from 'src/app/models/AdvertState';
+import { StoreState } from 'src/app/models/StoreState';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -19,14 +19,13 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy{
   selectedFiltersSub: Subscription;
   isDarkThemeSub: Subscription;
 
-  isAscendingOrder: boolean;
   isDarkTheme: boolean;
   currentPage: number;
   totalItems: number;
   itemsPerPage: number;
 
   constructor(
-    private store: Store<{store: AdvertState}>,
+    private store: Store<{store: StoreState}>,
     private router: Router
     ) { }
 

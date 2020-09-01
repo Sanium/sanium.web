@@ -7,14 +7,14 @@
     <div class="row justify-content-center my-0">
 
       <!-- If not found -->
-      <div *ngIf="advertList?.length === 0" class="col-12 text-center">
-        <h5> Nie znaleziono ofert spełniających wymagania </h5>
+      <div *ngIf="totalItems === 0" class="col-12 text-center">
+        <h5> No matching offers were found </h5>
       </div>
 
       <!-- If found -->
       <div class="col-11 col-lg-12 mb-3 hoverable rounded-y"
        *ngFor="let advert of advertList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
-      [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+      [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
         <a [routerLink]="['/details', advert.id]">
           <!-- Main row -->
           <div class="row my-0 text-dark" >
@@ -79,7 +79,8 @@
           </div>
         </a>
       </div>
-      <div *ngIf="!advertList" class="spinner-border" role="status">
+      <!-- Loading -->
+      <div *ngIf="totalItems === undefined" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
       <!-- Pagination -->

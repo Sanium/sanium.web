@@ -1,8 +1,8 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as AdvertActions from './advert.actions';
-import { AdvertState } from '../models/AdvertState';
+import { StoreState } from '../models/StoreState';
 
-export const initialState: AdvertState = {
+export const initialState: StoreState = {
     visitedAdverts: {},
     adverts: [],
     filters: {
@@ -19,7 +19,7 @@ export const initialState: AdvertState = {
         last_page: 0,
         path: "",
         per_page: 0,
-        total: 0
+        total: undefined
     },
     selectedFilters: {
         activated: false,
@@ -40,7 +40,7 @@ const _advertReducer = createReducer(initialState,
     on(AdvertActions.setDarkTheme, (state, {isDarkTheme}) => ({...state, isDarkTheme: isDarkTheme}))
 );
 
-export function advertReducer(state: AdvertState | undefined, action: Action){
+export function advertReducer(state: StoreState | undefined, action: Action){
     return _advertReducer(state, action);
 }
 
