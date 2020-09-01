@@ -1,0 +1,22 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark dark-primary-bg py-2" [containerInside]="true">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">Sanium</a></mdb-navbar-brand>
+  
+      <!-- Links -->
+    <links>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item my-auto">
+                <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0 px-0 mr-3 "
+                (click)="switchTheme();"> 
+                    Zmień motyw <mdb-icon fas class="ml-1" [icon]="!isDarkTheme ? 'moon' : 'sun'"></mdb-icon>
+                </button>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" href="https://github.com/Sanium/sanium.web" mdbWavesEffect><mdb-icon size="lg" fab icon="github"></mdb-icon></a>
+            </li>
+        </ul>
+    </links>
+  </mdb-navbar>
+  <!--/.Navbar-->

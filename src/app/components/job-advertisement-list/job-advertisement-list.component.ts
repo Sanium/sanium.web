@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Advertisement } from '../../models/Advertisement';
 import { Store } from '@ngrx/store';
-import { getAdverts, setIsDarkTheme, setFilters } from '../../store/advert.actions';
+import { getAdverts} from '../../store/advert.actions';
 import { Router } from '@angular/router';
 import { AdvertState } from 'src/app/models/AdvertState';
 import { Observable, Subscription } from 'rxjs';
@@ -17,10 +17,10 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy{
   advertList$: Observable<Advertisement[]>;
   metaSub: Subscription;
   selectedFiltersSub: Subscription;
+  isDarkThemeSub: Subscription;
 
   isAscendingOrder: boolean;
   isDarkTheme: boolean;
-
   currentPage: number;
   totalItems: number;
   itemsPerPage: number;
@@ -31,13 +31,6 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy{
     ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('isDarkTheme')) {
-      this.isDarkTheme = (localStorage.getItem('isDarkTheme') === 'true');
-    }
-    else this.isDarkTheme = true;
-    this.setTheme();
-    
-    this.advertList$ = this.store.select(state => state.store.adverts);
     const queryParams = new URLSearchParams(location.search);
     this.currentPage = +queryParams.get('page');
     if(!this.currentPage) {
@@ -50,9 +43,16 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.selectedFiltersSub.unsubscribe();
     this.metaSub.unsubscribe();
+    this.isDarkThemeSub.unsubscribe();
   }
 
   startStoreSubscriptions(){
+    this.advertList$ = this.store.select(state => state.store.adverts);
+    
+    this.isDarkThemeSub = this.store.select(state => state.store.isDarkTheme).subscribe(
+      isDarkTheme => this.isDarkTheme = isDarkTheme
+    );
+
     this.selectedFiltersSub = this.store.select(state => state.store.selectedFilters).subscribe(
       filters => {
         if(filters.activated) this.store.dispatch(getAdverts({filters: filters})); //dispatch with filters
@@ -67,16 +67,6 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy{
         this.itemsPerPage = meta.per_page;
       }
     )
-  }
-
-  setTheme(){
-    localStorage.setItem('isDarkTheme', (this.isDarkTheme).toString());
-    this.store.dispatch(setIsDarkTheme({isDarkTheme: this.isDarkTheme}));
-  }
-
-  switchTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-    this.setTheme();
   }
 
   switchPage(event){

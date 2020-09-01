@@ -22,6 +22,7 @@ import { AdvertisementDetailsComponent } from './components/advertisement-detail
 import { ApplicationFormComponent } from './components/application-form/application-form.component';
 import { OpenStreetMapComponent } from './components/open-street-map/open-street-map.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     ApplicationFormComponent,
     OpenStreetMapComponent,
     FiltersComponent,
+    NavigationBarComponent,
   ],
   imports: [
     BrowserModule,

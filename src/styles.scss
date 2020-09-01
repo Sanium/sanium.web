@@ -59,7 +59,6 @@ $divider-color: #BDBDBD;
   border-bottom: 1px solid $divider-color;
 }
 
-
 .primary-border-bottom {
   border-bottom: 1px solid $primary-color;
 }
@@ -134,6 +133,11 @@ $dark-surface: #303031;
 
 .dark-bg-surface {
   background-color: $dark-surface;
+  color: #fff;
+}
+
+.dark-primary-bg {
+  background-color: $dark-primary-color;
   color: #fff;
 }
 
