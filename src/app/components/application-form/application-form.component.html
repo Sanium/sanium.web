@@ -1,8 +1,8 @@
 <!-- Form -->
-<div class="card w-100 my-5" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
+<div class="card col-12 my-5 z-depth-1" [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
   <div class="card-body">
     <div class="d-flex card-title">
-      <h2>Aplikuj na ofertę</h2>
+      <h2>Apply for this job</h2>
     </div>
     <form id="applicationForm" enctype="multipart/form-data" [formGroup]="applicationForm">
       <div class="row justify-content-center">
@@ -10,7 +10,7 @@
           <div class="md-form">
             <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name"
               class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" formControlName="name">
-            <label for="name" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Imię i Nazwisko*</label>
+            <label for="name" [ngClass]="{'dark-bg-surface' : isDarkTheme }">First & last name*</label>
           </div>
         </div>
         <div class="col-8 col-sm">
@@ -27,7 +27,7 @@
             <!-- Change -->
             <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links"
               class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" formControlName="links">
-            <label for="links" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Opowiedz o sobie (LinkedIn/GitHub
+            <label for="links" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Introduce yourself (LinkedIn/GitHub
               link)*</label>
           </div>
         </div>
@@ -35,10 +35,10 @@
           <div class="input-group">
             <div class="custom-file">
               <input type="file" name="file" class="custom-file-input" id="fileInput" aria-label="File input"
-                lang="pl-Pl" (change)="fileEvent($event)" [ngClass]="{'dark-bg-surface' : isDarkTheme }"
+                lang="en" (change)="fileEvent($event)" [ngClass]="{'dark-bg-surface' : isDarkTheme }"
                 accept="application/pdf" formControlName="fileInput">
               <label class="custom-file-label" for="fileInput" [ngClass]="{'dark-bg-surface' : isDarkTheme }"><span
-                  class="text-truncate">{{fileInput==='' ? 'Wybierz plik*': fileInput}}</span></label>
+                  class="text-truncate">{{fileInput==='' ? 'Upload CV*': fileInput}}</span></label>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
             <div class="md-form mb-0">
               <button [disabled]="!applicationForm.valid " class="btn light-blue text-white btn-block"
                 type="submit" [ngClass]="{'darken-3' : isDarkTheme}">
-                Aplikuj
+                Apply
               </button>
             </div>
           </div>

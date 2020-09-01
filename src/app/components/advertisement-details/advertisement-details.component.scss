@@ -33,7 +33,17 @@ h3 {
 }
 
 $dark-surface: #303031;
+$primary-color: #03A9F4;
 
 .primary-border-darkmode {
   background-color: $dark-surface;
+}
+
+.primary-border {
+  background-color: #fff;
+}
+
+button.primary-border:hover {
+  background-color: $primary-color;
+  color: white;
 }

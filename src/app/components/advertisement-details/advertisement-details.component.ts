@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Advertisement } from '../../models/Advertisement';
-import { AdvertState } from 'src/app/models/AdvertState';
+import { StoreState } from 'src/app/models/StoreState';
 import { Store } from '@ngrx/store';
 import { getSingleAdvert } from '../../store/advert.actions';
 import { Subscription } from 'rxjs';
@@ -18,20 +18,24 @@ export class AdvertisementDetailsComponent implements OnInit, OnDestroy {
   isDarkTheme: boolean;
 
   visitedSub: Subscription;
+  isDarkThemeSub:Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<{store: AdvertState}>,
+    private store: Store<{store: StoreState}>,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.isDarkTheme = (localStorage.getItem('isDarkTheme') == 'true');
     let id = +this.activatedRoute.snapshot.paramMap.get('id');
     
     //Get details of selected adverts - if not found in store then fetch
     this.visitedSub = this.store.select(state => state.store.visitedAdverts[id]).subscribe(
       advert => advert? this.advert = advert : this.store.dispatch(getSingleAdvert({id: id}))
+    );
+
+    this.isDarkThemeSub = this.store.select(state => state.store.isDarkTheme).subscribe(
+      isDarkTheme => this.isDarkTheme = isDarkTheme
     );
 
     // Get current page and unsubscribe - navigation purposes

@@ -4,7 +4,7 @@ import { SelectedFilters } from './SelectedFilters';
 import { Advertisements } from './Advertisements';
 import { Meta } from './Meta';
 
-export interface AdvertState {
+export interface StoreState {
     visitedAdverts: Advertisements,
     adverts: Advertisement[],
     filters: Filters,
