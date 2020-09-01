@@ -1,7 +1,7 @@
 export interface SelectedFilters {
-    activated: boolean,
     salaryMin: number,
     salaryMax: number,
+    activated?: boolean,
     technology?: string,
     exp?: string,
     city?: string

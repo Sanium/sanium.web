@@ -15,3 +15,4 @@ export const getSingleAdvertError = createAction('[Data Service] Get Single Adve
 export const selectAdvert = createAction('[Data Service] Select Advert', props<{advert: Advertisement}>());
 export const setFilters = createAction('[Filters Component] Set filters', props<{selectedFilters: SelectedFilters, activated: boolean}>());
 export const setIsDarkTheme = createAction('[Job-Advertisement-list Component] Set Dark Theme', props<{isDarkTheme: boolean}>());
+
