@@ -19,7 +19,7 @@ export class OpenStreetMapComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-    if(this.advert?.street && this.advert?.city) {this.setMapLocation(`${this.advert.street} ${this.advert.city}`);}
+    if(this.advert?.street && this.advert?.city) {this.setMapLocation(`${this.advert.city}, ${this.advert.street}`);}
   }
 
   setMapLocation(location: string): void {

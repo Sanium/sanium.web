@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Advertisement } from '../../models/Advertisement';
 import { Store } from '@ngrx/store';
-import { getAdverts } from '../../store/advert.actions';
-import { ActivatedRoute, Router } from '@angular/router';
+import { getAdverts, setIsDarkTheme, setFilters } from '../../store/advert.actions';
+import { Router } from '@angular/router';
 import { AdvertState } from 'src/app/models/AdvertState';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-job-advertisement-list',
@@ -12,88 +12,76 @@ import { Observable } from 'rxjs';
   styleUrls: ['./job-advertisement-list.component.scss']
 })
 
-export class JobAdvertisementListComponent implements OnInit{
+export class JobAdvertisementListComponent implements OnInit, OnDestroy{
 
   advertList$: Observable<Advertisement[]>;
+  metaSub: Subscription;
+  selectedFiltersSub: Subscription;
+
   isAscendingOrder: boolean;
   isDarkTheme: boolean;
+
   currentPage: number;
   totalItems: number;
+  itemsPerPage: number;
 
   constructor(
     private store: Store<{store: AdvertState}>,
-    private route: ActivatedRoute,
     private router: Router
     ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(getAdverts());
+    if(localStorage.getItem('isDarkTheme')) {
+      this.isDarkTheme = (localStorage.getItem('isDarkTheme') === 'true');
+    }
+    else this.isDarkTheme = true;
+    this.setTheme();
+    
     this.advertList$ = this.store.select(state => state.store.adverts);
-    this.isDarkTheme = (localStorage.getItem('isDarkTheme') === 'true');
+    const queryParams = new URLSearchParams(location.search);
+    this.currentPage = +queryParams.get('page');
+    if(!this.currentPage) {
+      this.router.navigate(['adverts'], {queryParams: {page: 1}});
+    } 
 
-    /* 
-    this.sub = this.route.queryParams.subscribe(params => {
-      if(params["page"] === undefined) {
-        this.currentPage = 1;
-      }
-      else {
-      this.currentPage = +params['page'];
-      }
-      this.dataService.currentPage = this.currentPage;
-      this.getPageFromServer(this.currentPage);
-   });
-    this.isAscendingOrder = this.dataService.isAscendingOrder;
-    */
+    this.startStoreSubscriptions();
   }
 
-  /* 
-  sort() {
-    this.advertList.sort( (a, b) => {
-      if(!this.isAscendingOrder) {
-        return a.salary_from - b.salary_from;
-      }
-      else {
-        return b.salary_from - a.salary_from;
-      }
-    });
-    this.isAscendingOrder = !this.isAscendingOrder;
+  ngOnDestroy(): void {
+    this.selectedFiltersSub.unsubscribe();
+    this.metaSub.unsubscribe();
   }
-*/
+
+  startStoreSubscriptions(){
+    this.selectedFiltersSub = this.store.select(state => state.store.selectedFilters).subscribe(
+      filters => {
+        if(filters.activated) this.store.dispatch(getAdverts({filters: filters})); //dispatch with filters
+        else this.store.dispatch(getAdverts({page: this.currentPage})); // Dispatch with page
+      }
+    );
+
+    this.metaSub = this.store.select(state => state.store.meta).subscribe(
+      meta => {
+        this.currentPage = meta.current_page;
+        this.totalItems = meta.total;
+        this.itemsPerPage = meta.per_page;
+      }
+    )
+  }
+
+  setTheme(){
+    localStorage.setItem('isDarkTheme', (this.isDarkTheme).toString());
+    this.store.dispatch(setIsDarkTheme({isDarkTheme: this.isDarkTheme}));
+  }
+
   switchTheme() {
-    if (this.isDarkTheme) {
-      localStorage.setItem('isDarkTheme', 'false');
-    }
-    else {
-      localStorage.setItem('isDarkTheme', 'true');
-    }
     this.isDarkTheme = !this.isDarkTheme;
+    this.setTheme();
   }
 
-  /* 
-  switchPage(page: number){
-    this.currentPage = page;
-    this.dataService.currentPage = page;
-    this.router.navigate(['advertst'], { queryParams: {page: page}});
+  switchPage(event){
+    this.store.dispatch(getAdverts({page: event}));
+    this.router.navigate(['adverts'], {queryParams: {page: event}});
   }
 
-  getPageFromServer(page: number){
-    if(this.dataService.getStaticPage(page) === undefined){
-      this.dataService.getPage(page).subscribe(
-        (adverts) => {
-          this.advertList = adverts['data'];
-          this.dataService.setAdverts(adverts['data'], this.currentPage);
-          if (this.dataService.filters === undefined) {
-            this.dataService.setFilters(adverts['filters']);
-          }
-          this.totalItems = adverts['meta'].total;
-          this.dataService.totalItems = this.totalItems;
-        }
-      );
-    }
-    else {
-      this.advertList = this.dataService.getStaticPage(page);
-      this.totalItems = this.dataService.totalItems;
-    }
-  }
- */
 }

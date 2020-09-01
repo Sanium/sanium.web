@@ -8,13 +8,6 @@
       (click)="switchTheme();"
       [ngClass]="{'hover-darkmode' : isDarkTheme}"> Zmień motyw <mdb-icon fas class="ml-1" [icon]="!isDarkTheme ? 'moon' : 'sun'"></mdb-icon> </button>
     </div>
-    <!-- Sorting -->
-    
-    <div *ngIf="(advertList$ | async) as advertList" class="row justify-content-center mb-3 mx-0">
-      <button mdbBtn size="sm" type="submit" mdbWavesEffect class="rounded waves-effect z-depth-0"
-      > Sortuj wg wynagrodzenia <mdb-icon fas icon="angle-down" style="margin-left: 2px;"></mdb-icon> </button>
-    </div>
-  </div>
 
   <!-- List -->
   <div class="container" *ngIf="(advertList$ | async) as advertList" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'">
@@ -27,7 +20,7 @@
 
       <!-- If found -->
       <div class="col-11 col-lg-12 mb-3 hoverable rounded-y"
-       *ngFor="let advert of advertList | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: totalItems }"
+       *ngFor="let advert of advertList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
       [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg-surface'">
         <a [routerLink]="['/details', advert.id]">
           <!-- Main row -->
@@ -65,17 +58,17 @@
             <!-- Advert tech stack -->
             <div class="col d-none d-lg-block text-right my-auto mr-0 py-0 py-lg-3">
               <div class="row justify-content-center mr-0">
-                <div *ngIf="advert?.tech_stack" class=" accent-bg badge text-wrap mr-2 col-auto px-2"
+                <div *ngIf="advert?.tech_stack[0]" class=" accent-bg badge text-wrap mr-2 col-auto px-2"
                 [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
                   {{advert.tech_stack[0]?.tag}}
                 </div>
                 <div class="col-lg-12 d-xl-none mt-1"></div>
-                <div *ngIf="advert?.tech_stack" class="accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
+                <div *ngIf="advert?.tech_stack[1]" class="accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
                 [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
                   {{advert.tech_stack[1]?.tag}}
                 </div>
                 <div class="col-lg-12 d-xl-none mt-1"></div>
-                <div *ngIf="advert.tech_stack" class=" accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
+                <div *ngIf="advert?.tech_stack[2]" class=" accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
                 [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
                   {{advert.tech_stack[2]?.tag}}
                 </div>
@@ -96,13 +89,14 @@
       <div *ngIf="!advertList" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
-      <!-- Pagination (pageChange)="switchPage($event);"-->
+      <!-- Pagination -->
       <pagination-controls
         directionLinks="true"
         autoHide="true"
         previousLabel=""
         nextLabel=""
         maxSize="5"
+        (pageChange)="switchPage($event);"
         screenReaderPaginationLabel="Pagination"
         screenReaderPageLabel="page"
         screenReaderCurrentLabel="You're on page"
@@ -111,5 +105,3 @@
     </div>
   </div>
 </div>
-
-

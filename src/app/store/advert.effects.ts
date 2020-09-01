@@ -11,8 +11,8 @@ export class AdvertEffects {
         this.actions$.pipe(
             ofType(AdvertActions.getAdverts),
             mergeMap(action => 
-                this.dataService.getAdverts().pipe(
-                    map(adverts => AdvertActions.getAdvertsSuccess({adverts: adverts.data, filters: adverts.filters})),
+                this.dataService.getAdverts(action.page, action.filters).pipe(
+                    map(adverts => AdvertActions.getAdvertsSuccess({adverts: adverts.data, filters: adverts.filters, meta: adverts.meta})),
                     catchError(error => of(AdvertActions.getAdvertsError({error: error})))
                 )    
             )

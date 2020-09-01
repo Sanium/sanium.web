@@ -12,20 +12,32 @@ export const initialState: AdvertState = {
         min_salary: 0,
         max_salary: 0
     },
+    meta: {
+        current_page: 1,
+        from: 0,
+        to: 0,
+        last_page: 0,
+        path: "",
+        per_page: 0,
+        total: 0
+    },
     selectedFilters: {
+        activated: false,
         salaryMin: 0,
         salaryMax: 20000,
     },
-    error: "Initial"
+    error: "Initial",
+    isDarkTheme: true
 }
 
 const _advertReducer = createReducer(initialState, 
     on(AdvertActions.getAdvertsError, (state, {error}) => ({...state, error: error})),
-    on(AdvertActions.getAdvertsSuccess, (state, {adverts, filters})=> ({...state, adverts: adverts, filters: filters})),
+    on(AdvertActions.getAdvertsSuccess, (state, {adverts, filters, meta})=> ({...state, adverts: adverts, filters: filters, meta: meta})),
     on(AdvertActions.getSingleAdvertSuccess, (state, {advert, id})=> ({...state, visitedAdverts: {...state.visitedAdverts, [id]: advert}})),
     on(AdvertActions.getSingleAdvertError, (state, {error}) => ({...state, error: error})),
     on(AdvertActions.selectAdvert, (state, {advert}) => ({...state, selectedAdvert: advert})),
-    on(AdvertActions.setFilters, (state, {selectedFilters})=> ({...state, selectedFilters: selectedFilters}))
+    on(AdvertActions.setFilters, (state, {selectedFilters, activated})=> ({...state, selectedFilters: {...selectedFilters, activated: activated}})),
+    on(AdvertActions.setIsDarkTheme, (state, {isDarkTheme}) => ({...state, isDarkTheme: isDarkTheme}))
 );
 
 export function advertReducer(state: AdvertState | undefined, action: Action){
