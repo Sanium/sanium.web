@@ -47,3 +47,27 @@ button.primary-border:hover {
   background-color: $primary-color;
   color: white;
 }
+
+.spy {
+  background-color: red;
+}
+
+.icon-absolute {
+  position: absolute;
+  background-color: black;
+  opacity: 40%;
+  left: 15px;
+  top: 20px;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.icon-light{
+  color: white;
+}
+
+.icon-absolute:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
