@@ -57,7 +57,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.router.navigate(['adverts'], {queryParams: {page: 1}});
     this.store.dispatch(setFilters({selectedFilters: this.selectedFilters, activated: filtersActivated}));
   }
-
   
   selectTechOption(option: string): void {
     if (this.selectedFilters.technology === option) this.selectedFilters.technology = undefined;

@@ -5,7 +5,9 @@
       <h2>Apply for this job</h2>
     </div>
     <form id="applicationForm" enctype="multipart/form-data" [formGroup]="applicationForm">
+      <!-- First row -->
       <div class="row justify-content-center">
+        <!-- First & Last name -->
         <div class="col-8 col-sm">
           <div class="md-form">
             <input mdbInput name="name" id="name" type="text" aria-label="Text input for First and Last Name"
@@ -13,6 +15,7 @@
             <label for="name" [ngClass]="{'dark-bg-surface' : isDarkTheme }">First & last name*</label>
           </div>
         </div>
+        <!-- Email -->
         <div class="col-8 col-sm">
           <div class="md-form">
             <input mdbInput name="email" id="email" type="email" aria-label="Text input for email" class="form-control"
@@ -21,16 +24,18 @@
           </div>
         </div>
       </div>
+      <!-- Second row -->
       <div class="row justify-content-center">
+        <!-- Introduce yourself -->
         <div class="col-8 col-sm">
           <div class="md-form">
-            <!-- Change -->
             <input mdbInput name="links" id="links" type="text" aria-label="Text input for additional links"
               class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" formControlName="links">
             <label for="links" [ngClass]="{'dark-bg-surface' : isDarkTheme }">Introduce yourself (LinkedIn/GitHub
               link)*</label>
           </div>
         </div>
+        <!-- File input -->
         <div class="col-8 col-sm my-auto">
           <div class="input-group">
             <div class="custom-file">
@@ -43,26 +48,21 @@
           </div>
         </div>
       </div>
+      <!-- Alerts  -->
       <div class="row">
-        <div *ngIf="postResponse?.error" class="col mt-3">
+        <div *ngIf="postResponse?.applied" class="col mt-3">
           <div class="d-flex justify-content-center">
-            <div class="alert alert-danger px-5 w-100 text-center" role="alert">
-              <span> {{postResponse?.error}} </span>
+            <div class="alert alert-info px-5 w-100 text-center" role="alert">
+              <span>To check apply functionality go to: <a href="http://sanium.olszanowski.it">sanium.olszanowski.it</a>. (App versions may be different).</span>
             </div>
           </div>
         </div>
-        <div *ngIf="postResponse?.ok" class="col mt-3">
-          <div class="d-flex justify-content-center">
-            <div class="alert alert-success px-5 w-100 text-center" role="alert">
-              <span> {{postResponse?.ok}} </span>
-            </div>
-          </div>
-        </div>
+        <!-- Apply button -->
         <div class="col-12">
           <div class="d-flex justify-content-end">
             <div class="md-form mb-0">
               <button [disabled]="!applicationForm.valid " class="btn light-blue text-white btn-block"
-                type="submit" [ngClass]="{'darken-3' : isDarkTheme}">
+                type="submit" [ngClass]="{'darken-3' : isDarkTheme}" (click)="submitForm();">
                 Apply
               </button>
             </div>

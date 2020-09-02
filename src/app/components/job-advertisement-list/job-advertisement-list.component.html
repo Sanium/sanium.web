@@ -2,100 +2,101 @@
   <div class="container-fluid rmpm">
     <!-- Filters -->
     <app-filters></app-filters>
-  <!-- List -->
-  <div class="container" *ngIf="(advertList$ | async) as advertList" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'">
-    <div class="row justify-content-center my-0">
+    <!-- List -->
+    <div class="container" *ngIf="(advertList$ | async) as advertList" [ngClass]="!isDarkTheme ? 'light-bg' : 'dark-bg'">
+      <div class="row justify-content-center my-0">
 
-      <!-- If not found -->
-      <div *ngIf="totalItems === 0" class="col-12 text-center">
-        <h5> No matching offers were found </h5>
-      </div>
+        <!-- If not found -->
+        <div *ngIf="totalItems === 0" class="col-12 text-center">
+          <h5> No matching offers were found </h5>
+        </div>
 
-      <!-- If found -->
-      <div class="col-11 col-lg-12 mb-3 hoverable rounded-y"
-       *ngFor="let advert of advertList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
-      [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
-        <a [routerLink]="['/details', advert.id]">
-          <!-- Main row -->
-          <div class="row my-0 text-dark" >
-            <!-- Employer logo -->
-            <div class="col-3 text-center col-md-2 my-auto py-3 ">
-              <img class="img-thumbnail rounded-circle float-left" width="70px" alt="thumbnail"
-                [src]="advert.employer.logo">
-            </div>
-            <!--Advert main section -->
-            <div class="col-6 col-md-7 col-lg-5 pt-3 ">
-              <div class="row mb-2 mb-xl-0">
-                <!-- Advert Name -->
-                <div class="col-auto mb-0 mb-xl-2">
-                  <h4 [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">{{advert.name}}</h4>
+        <!-- If found -->
+        <div class="col-11 col-lg-12 mb-3 hoverable rounded-y"
+        *ngFor="let advert of advertList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
+        [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
+          <a [routerLink]="['/details', advert.id]">
+            <!-- Main row -->
+            <div class="row my-0 text-dark" >
+              <!-- Employer logo -->
+              <div class="col-3 text-center col-md-2 my-auto py-3 ">
+                <img class="img-thumbnail rounded-circle float-left" width="70px" alt="thumbnail"
+                  [src]="advert.employer.logo">
+              </div>
+              <!--Advert main section -->
+              <div class="col-6 col-md-7 col-lg-5 pt-3 ">
+                <div class="row mb-2 mb-xl-0">
+                  <!-- Advert Name -->
+                  <div class="col-auto mb-0 mb-xl-2">
+                    <h4 [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">{{advert.name}}</h4>
+                  </div>
+                  <!-- Advert Salary range -->
+                  <div class="col-lg-12 col-xl" *ngIf="advert?.salary_from">
+                    <span [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}
+                      </b></span>
+                  </div>
                 </div>
-                <!-- Advert Salary range -->
-                <div class="col-lg-12 col-xl" *ngIf="advert?.salary_from">
-                  <span [ngClass]="!isDarkTheme ? 'text-primary-color' : 'text-primary-color-darkmode'"> <b>{{advert.salary_from}} - {{advert.salary_to}} {{advert.currency}}
-                    </b></span>
+                <!-- Employer name/city-->
+                <div class="row mb-1 mb-xl-0">
+                  <div class="col mb-1 mb-md-0 grey-text">
+                    <span class="mr-2 mr-lg-5 disclaimer-text" [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
+                      <mdb-icon far icon="building" class="mr-0 mr-md-1"></mdb-icon> {{advert.employer.name}}
+                    </span>
+                    <span class="disclaimer-text" [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
+                      <mdb-icon fas icon="map-marker-alt" class="mr-0 mr-md-1"></mdb-icon> {{advert.city}}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <!-- Employer name/city-->
-              <div class="row mb-1 mb-xl-0">
-                <div class="col mb-1 mb-md-0 grey-text">
-                  <span class="mr-2 mr-lg-5 disclaimer-text" [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
-                    <mdb-icon far icon="building" class="mr-0 mr-md-1"></mdb-icon> {{advert.employer.name}}
-                  </span>
-                  <span class="disclaimer-text" [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
-                    <mdb-icon fas icon="map-marker-alt" class="mr-0 mr-md-1"></mdb-icon> {{advert.city}}
-                  </span>
+              <!-- Advert tech stack -->
+              <div class="col d-none d-lg-block text-right my-auto mr-0 py-0 py-lg-3">
+                <div class="row justify-content-center mr-0">
+                  <div *ngIf="advert?.tech_stack[0]" class=" accent-bg badge text-wrap mr-2 col-auto px-2"
+                  [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
+                    {{advert.tech_stack[0]?.tag}}
+                  </div>
+                  <div class="col-lg-12 d-xl-none mt-1"></div>
+                  <div *ngIf="advert?.tech_stack[1]" class="accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
+                  [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
+                    {{advert.tech_stack[1]?.tag}}
+                  </div>
+                  <div class="col-lg-12 d-xl-none mt-1"></div>
+                  <div *ngIf="advert?.tech_stack[2]" class=" accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
+                  [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
+                    {{advert.tech_stack[2]?.tag}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-1 d-none d-md-block d-lg-none"></div>
+              <!-- Left aligned tech. icon -->
+              <div class="col col-md-2 col-xl-1 float-sm-left rounded-y text-center blue-gradient py-3 text-white">
+                <div class="row h-100">
+                  <div class="col-12 my-auto">
+                    <span class="text-technology">{{advert.technology}}</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- Advert tech stack -->
-            <div class="col d-none d-lg-block text-right my-auto mr-0 py-0 py-lg-3">
-              <div class="row justify-content-center mr-0">
-                <div *ngIf="advert?.tech_stack[0]" class=" accent-bg badge text-wrap mr-2 col-auto px-2"
-                [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
-                  {{advert.tech_stack[0]?.tag}}
-                </div>
-                <div class="col-lg-12 d-xl-none mt-1"></div>
-                <div *ngIf="advert?.tech_stack[1]" class="accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
-                [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
-                  {{advert.tech_stack[1]?.tag}}
-                </div>
-                <div class="col-lg-12 d-xl-none mt-1"></div>
-                <div *ngIf="advert?.tech_stack[2]" class=" accent-bg badge text-wrap mt-1 mt-md-0 mr-2 col-auto px-2"
-                [ngClass]="!isDarkTheme ? 'text-white' : 'text-black'">
-                  {{advert.tech_stack[2]?.tag}}
-                </div>
-              </div>
-            </div>
-            <div class="col-1 d-none d-md-block d-lg-none"></div>
-            <!-- Left aligned tech. icon -->
-            <div class="col col-md-2 col-xl-1 float-sm-left rounded-y text-center blue-gradient py-3 text-white">
-              <div class="row h-100">
-                <div class="col-12 my-auto">
-                  <span class="text-technology">{{advert.technology}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
+          </a>
+        </div>
+        <!-- Loading -->
+        <div *ngIf="totalItems === undefined" class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <!-- Pagination -->
+        <pagination-controls
+          directionLinks="true"
+          autoHide="true"
+          previousLabel=""
+          nextLabel=""
+          maxSize="5"
+          (pageChange)="switchPage($event);"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+          class="my-pagination text-center">
+        </pagination-controls>
       </div>
-      <!-- Loading -->
-      <div *ngIf="totalItems === undefined" class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <!-- Pagination -->
-      <pagination-controls
-        directionLinks="true"
-        autoHide="true"
-        previousLabel=""
-        nextLabel=""
-        maxSize="5"
-        (pageChange)="switchPage($event);"
-        screenReaderPaginationLabel="Pagination"
-        screenReaderPageLabel="page"
-        screenReaderCurrentLabel="You're on page"
-        class="my-pagination text-center">
-      </pagination-controls>
     </div>
   </div>
 </div>

@@ -29,16 +29,16 @@ export class AdvertisementDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let id = +this.activatedRoute.snapshot.paramMap.get('id');
     
-    //Get details of selected adverts - if not found in store then fetch
+    //Get details of selected advert - if not found in store then fetch
     this.visitedSub = this.store.select(state => state.store.visitedAdverts[id]).subscribe(
       advert => advert? this.advert = advert : this.store.dispatch(getSingleAdvert({id: id}))
     );
-
+    
     this.isDarkThemeSub = this.store.select(state => state.store.isDarkTheme).subscribe(
       isDarkTheme => this.isDarkTheme = isDarkTheme
     );
 
-    // Get current page and unsubscribe - navigation purposes
+    // Get current page from store and unsubscribe - navigation purposes
     this.store.select(state => state.store.meta.current_page).subscribe(
       state => this.currentPage = state
     ).unsubscribe();
@@ -49,7 +49,6 @@ export class AdvertisementDetailsComponent implements OnInit, OnDestroy {
   }
 
   goBack(): void {
-    console.log(this.currentPage);
     this.router.navigate(['adverts'], {queryParams: {page: this.currentPage}});
   }
 }

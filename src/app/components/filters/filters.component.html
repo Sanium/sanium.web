@@ -4,7 +4,7 @@
         <div class="container">
           <div *ngIf="selectedFilters" class="form-group my-0 row justify-content-center">
 
-            <!-- Technologia -->
+            <!-- Technology -->
             <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
               <div class="btn-group btn-block mb-1 mb-lg-0 dropdown" mdbDropdown>
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0"
@@ -24,7 +24,7 @@
               </div>
             </div>
 
-            <!-- Wynagrodzenie -->
+            <!-- Salary -->
             <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
               <div class="btn-group btn-block mb-1 mb-lg-0" mdbDropdown [autoClose]="false">
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
@@ -32,7 +32,7 @@
                   [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
                   {{(selectedFilters.salaryMin+ " - " + selectedFilters.salaryMax)}}
                 </button>
-                <!-- Wynagrodzenie dropdown -->
+                <!-- Salary dropdown -->
                 <div class="dropdown-menu w-100"
                 [ngClass]="{'dark-bg-surface' : isDarkTheme }">
                   <span class="ml-2"
@@ -62,7 +62,7 @@
               </div>
             </div>
 
-            <!-- Doświadczenie -->
+            <!-- Experience -->
             <div class="col-md-8 col-lg-4 col-xl-2 my-auto">
               <div class="btn-group btn-block" mdbDropdown>
                 <button mdbDropdownToggle type="button" mdbBtn size="md" class="dropdown-toggle z-depth-0 filter-border"
@@ -70,7 +70,7 @@
                   [ngClass]="!isDarkTheme ? 'filter-border' : 'filter-border-dark'">
                   {{selectedFilters?.exp || "Experience"}}
                 </button>
-                <!-- Doświadczenie dropdown -->
+                <!-- Experience dropdown -->
                 <div class="dropdown-menu w-100"
                 [ngClass]="{'dark-bg-surface' : isDarkTheme }">
                   <ul class="rmpm">
@@ -83,7 +83,7 @@
               </div>
             </div>
 
-            <!-- Miasto -->
+            <!-- Location -->
             <div class="col-12 col-sm-8 col-xl-3 my-auto ml-0">
               <div class="md-form">
                 <input mdbInput type="text" class="form-control" [ngClass]="{'dark-bg-surface' : isDarkTheme }" id="inputCity" [(ngModel)]="selectedFilters.city">

@@ -42,7 +42,7 @@
             </a>
           </div>
         </div>
-        <!-- Requirements/profits -->
+        <!-- Experienc / EMP. Type / Salary -->
         <div class="row z-depth-1 justify-content-center rounded mt-4 py-4"
         [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
           <div class="col-4 text-center">
@@ -61,17 +61,16 @@
       </div>
       <div class="col-0 col-lg-5 mt-2 d-none d-lg-block">
         <!-- Right: Map -->
-        <app-open-street-map [advert]="advert"></app-open-street-map>
+        <app-open-street-map *ngIf="advert" [advert]="advert"></app-open-street-map>
       </div>
     </div>
     <div class="row py-4 justify-content-center">
-      <div *ngIf="advert?.tech_stack" class="col-12 z-depth-1 py-3 pb-3"
+      <!-- Tech Stack -->
+      <div *ngIf="advert?.tech_stack" class="col-12 z-depth-1 py-3 pb-3 rounded"
       [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
         <h4 class=""> <span class="ml-2 mt-2"> Expected skills </span></h4>
         <div class="underline"></div>
-
         <div *ngIf="advert?.tech_stack" class="row mb-3">
-          <!-- class="text-white accent-bg badge text-wrap mt-1 mt-lg-0 mr-2" -->
           <div *ngFor="let tech of advert.tech_stack" class="rounded-big text-center col-auto mx-2 mx-lg-3 mt-3 z-depth-1"
             style="height: 5rem; min-width: 5rem;">
             <div class="row h-100">
@@ -82,16 +81,12 @@
           </div>
         </div>
       </div>
-
+      <!-- Advert description -->
       <div *ngIf="advert" class="col-12 my-3 py-4 z-depth-1 rounded"
       [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
-        <div class="col-12 underline " [innerHTML]="advert.description">
-          <!-- Advert description -->
-        </div>
-        <div class="col-12 py-2 my-auto">
-          <!-- Disclaimer ??-->
-          {{advert.disclaimer}}
-        </div>
+        <h4 class=""> <span class="ml-2 mt-2"> Description </span></h4>
+        <div class="underline mb-3"></div>
+        <div class="col-12" [innerHTML]="advert.description"></div>
       </div>
     </div>
     <!-- Display loading spinner if cant fetch advert -->
@@ -101,8 +96,8 @@
       </div>
     </div>
     <!-- Form component -->
-    <app-application-form [isDarkTheme]="isDarkTheme"></app-application-form>
-
+    <app-application-form *ngIf="advert" [isDarkTheme]="isDarkTheme"></app-application-form>
+    <!-- Go back button-->
     <button mdbBtn mdbWavesEffect class="rounded waves-effect mb-5" (click)="goBack();"
     [ngClass]="{'primary-border' : !isDarkTheme , 'primary-border-darkmode' : isDarkTheme}">
       <mdb-icon fas size="lg" icon="arrow-left"></mdb-icon>
