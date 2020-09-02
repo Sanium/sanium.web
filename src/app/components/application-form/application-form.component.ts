@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ApplicationFormComponent implements OnInit {
   fileInput: string = '';
   @Input() isDarkTheme: boolean;
-  postResponse: { error?: string, ok?: string };
+  postResponse: { applied: boolean} = {applied: false};
   formData: FormData;
 
   // Form
@@ -28,7 +28,6 @@ export class ApplicationFormComponent implements OnInit {
 
   fileEvent(fileInput: any) {
     let file = fileInput.target.files[0];
-    console.log(file);
     this.fileInput = file.name;
     this.formData.append('file', file, file.name);
   }
@@ -37,5 +36,7 @@ export class ApplicationFormComponent implements OnInit {
     this.formData.append('name', this.applicationForm.value.name);
     this.formData.append('email', this.applicationForm.value.email);
     this.formData.append('links', this.applicationForm.value.links);
+    // 
+    this.postResponse.applied = true;
   }
 }

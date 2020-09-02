@@ -54,8 +54,8 @@ export class JobAdvertisementListComponent implements OnInit, OnDestroy{
 
     this.selectedFiltersSub = this.store.select(state => state.store.selectedFilters).subscribe(
       filters => {
-        if(filters.activated) this.store.dispatch(getAdverts({filters: filters})); //dispatch with filters
-        else this.store.dispatch(getAdverts({page: this.currentPage})); // Dispatch with page
+        if(filters.activated) this.store.dispatch(getAdverts({filters: filters})); 
+        else this.store.dispatch(getAdverts({page: this.currentPage}));
       }
     );
 
