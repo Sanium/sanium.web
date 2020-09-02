@@ -5,11 +5,12 @@
         <!-- Left: Title, company, experience/type/salary, tech stack-->
         <div class="row justify-content-center z-depth-1 rounded mt-2 py-5"
         [ngClass]="!isDarkTheme ? 'light-bg-surface' : 'dark-bg-surface'">
-          <div class="col-12 text-center my-auto">
+          <!-- Go back icon -->
+          <mdb-icon size="lg" class="icon-absolute icon-light" fas icon="arrow-left" (click)="goBack();"></mdb-icon>
+          <div class="col-12 text-center my-auto ">
             <!-- Title -->
-            <div class=""
-            [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
-              <h2 ><strong>{{ advert.name }}</strong></h2>
+            <div [ngClass]="!isDarkTheme ? 'primary-text' : 'primary-text-darkmode'">
+              <h2><strong>{{ advert.name }}</strong></h2>
             </div>
           </div>
         </div>
@@ -104,6 +105,7 @@
 
     <button mdbBtn mdbWavesEffect class="rounded waves-effect mb-5" (click)="goBack();"
     [ngClass]="{'primary-border' : !isDarkTheme , 'primary-border-darkmode' : isDarkTheme}">
-      Back </button>
+      <mdb-icon fas size="lg" icon="arrow-left"></mdb-icon>
+    </button>
   </div>
 </div>

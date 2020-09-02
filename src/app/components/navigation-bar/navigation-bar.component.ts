@@ -10,7 +10,7 @@ import { StoreState } from 'src/app/models/StoreState';
 })
 export class NavigationBarComponent implements OnInit {
   isDarkTheme: boolean;
-  
+
   constructor(private store: Store<{store: StoreState}>) { }
 
   ngOnInit(): void {
