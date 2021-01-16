@@ -5,7 +5,3 @@ Fragment części wizualnej aplikacji Sanium - aplikacji umożliwiającej dodawa
     npm install
 ## Uruchomienie
     npm start
-
-## Dodatkowo
-Całą aplikację można znaleźć pod adresem(może nie zawierać korekt zawartych w repozytorium):<br/>
-     https://sanium.olszanowski.it
